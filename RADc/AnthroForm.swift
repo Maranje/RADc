@@ -20,6 +20,7 @@ struct AnthroForm: View {
     @State var labelsStanding: [String] = []
     @State var labelsSitting: [String] = []
     @State var idNumber: Int = 1
+    @State var loadedParticipant: Bool = true //initialize to true to get the initial user propmt to add the first participant (seen in "Form")
     
     //MARK: anthro page body
     var body: some View {
@@ -35,6 +36,7 @@ struct AnthroForm: View {
                         currentParticipant = Participant(labels: labels, labelsStanding: labelsStanding, labelsSitting: labelsSitting, pNum: idNumber)
                         participants.append(currentParticipant)
                         idNumber += 1
+                        loadedParticipant = true
                     }.padding().background(!newForm ? .blue : .gray).foregroundColor(.white).cornerRadius(10).disabled(newForm)
                     
                     Divider().frame(width: 170)
@@ -43,6 +45,7 @@ struct AnthroForm: View {
                         
                         Button("ID: \(participant.properties["Participant ID"] ?? "")\n\(participant.properties["Name"] ?? "")"){
                             currentParticipant = participants[participant.pNum - 1] //load selected participant from list
+                            loadedParticipant = true
                         }
                         
                     }.frame(width:200).cornerRadius(10)
@@ -54,12 +57,21 @@ struct AnthroForm: View {
             //Form side
             VStack{
                 if formLoaded{
-                    //load form
-                    Form(participants: $participants, currentParticipant: $currentParticipant, measurements: $measurements, newForm: $newForm, labels: $labels, labelsStanding: $labelsStanding, labelsSitting: $labelsSitting, fontSize: $fontSize)
+                    //load form (10 bindings)
+                    Form(participants: $participants,
+                         currentParticipant: $currentParticipant,
+                         measurements: $measurements,
+                         newForm: $newForm,
+                         labels: $labels,
+                         labelsStanding: $labelsStanding,
+                         labelsSitting: $labelsSitting,
+                         fontSize: $fontSize,
+                         loadedParticipant: $loadedParticipant,
+                         idNumber: $idNumber)
                         .transition(.move(edge: .bottom).combined(with: .scale).combined(with: .opacity))
                 }
                 else{
-                    //show new form button
+                    //show new form button, allow user to load the new form
                     Button("+ New Form"){
                         withAnimation{
                             formLoaded = true

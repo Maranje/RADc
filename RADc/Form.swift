@@ -18,6 +18,8 @@ struct Form: View{
     @Binding var labelsStanding: [String]
     @Binding var labelsSitting: [String]
     @Binding var fontSize: Double
+    @Binding var loadedParticipant: Bool
+    @Binding var idNumber: Int
     
     //MARK: form body
     var body: some View{
@@ -26,8 +28,16 @@ struct Form: View{
         }
         else{
             //allow user to initiate form by adding the first participant
-            if participants.isEmpty{
+            if participants.isEmpty && loadedParticipant{
                 Text("Add the first participant to begin").transition(.move(edge: .bottom).combined(with: .scale).combined(with: .opacity))
+            }
+            //prompt the user to add a participant to continue after having removed all prior participants from the participants array
+            else if participants.isEmpty && !loadedParticipant{
+                Text("Add a participant to continue").transition(.move(edge: .bottom).combined(with: .scale).combined(with: .opacity))
+            }
+            //prompt the user to add a participant to continue after having removed a prior participant from the participants array
+            else if !loadedParticipant{
+                Text("Add a participant or load an existing participant to continue").transition(.move(edge: .bottom).combined(with: .scale).combined(with: .opacity))
             }
             else{
                 ScrollView{
@@ -53,14 +63,40 @@ struct Form: View{
                         DataEntryField(label: label, labelWidthMultiplier: 10, labelColor: .green, participants: $participants, currentParticipant: $currentParticipant, fontSize: $fontSize)
                     }
                     
-                    //"remove entry" button
+                    //"remove entry" button: red trash icon
                     Image(systemName: "trash")
                         .padding(.top, 30.0)
                         .foregroundColor(.red)
                         .onTapGesture {
-                            // Handle trash button action here
+                            removeCurrent()
                         }
                 }
+            }
+        }
+    }
+    
+    //function for removing the current participant on the form by tapping the red trash icon
+    func removeCurrent(){
+        
+        //bool for flagging when a participant is removed during the forEach loop
+        var removed: Bool = false
+        
+        //loop to iterate through participants array
+        participants.enumerated().forEach {index, participant in
+            //determine if current iteration matches the current participant on the form
+            if participant.pNum == currentParticipant.pNum{
+                //remove the participant at the index
+                participants.remove(at: index)
+                //decrement the participant generator idNumber value by one
+                idNumber -= 1
+                //set bools
+                loadedParticipant = false
+                removed = true
+            }
+            //if a participant has been removed, the loop continues and shifts all subsequent participants down to fill the new vacancy
+            else if removed{
+                participants[index - 1].pNum -= 1
+                participants[index - 1].properties["Participant ID"] = String(participants[index - 1].pNum)
             }
         }
     }

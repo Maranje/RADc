@@ -34,7 +34,12 @@ struct DataEntryField: View{
                         //save to currentParticipant to display values on form
                         currentParticipant.properties[label] = newValue
                         //save to participants array
-                        participants[currentParticipant.pNum - 1].properties[label] = newValue
+                        participants.enumerated().forEach{index, participant in
+                            if participant.pNum == currentParticipant.pNum{
+                                participants[index].properties[label] = newValue
+                            }
+                        }
+                        //participants[currentParticipant.pNum - 1].properties[label] = newValue
                     }
                 )
             ).autocapitalization(autoCap ? .words : .none).disableAutocorrection(true)
@@ -42,7 +47,7 @@ struct DataEntryField: View{
             Spacer()
             
             //field label for after data has been entered
-            if !(participants[currentParticipant.pNum - 1].properties[label]?.isEmpty ?? true) {
+            if !(currentParticipant.properties[label]?.isEmpty ?? true) {
                 Text(label)
                     .frame(width: fontSize * labelWidthMultiplier)
                     .font(.system(size: fontSize * 0.8))

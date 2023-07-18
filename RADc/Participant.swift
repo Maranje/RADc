@@ -12,7 +12,7 @@ struct Participant: Identifiable{
     
     //MARK: properties
     var id: UUID
-    let pNum: Int
+    var pNum: Int //identifier uneditable by user
     var properties: [String: String]
     
     //MARK: initializer
