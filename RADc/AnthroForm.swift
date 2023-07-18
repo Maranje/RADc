@@ -41,7 +41,7 @@ struct AnthroForm: View {
                     //actual list
                     List(participants){ participant in
                         
-                        Button("ID: \(participant.pNum)\n\(participant.properties["Name"] ?? "")"){
+                        Button("ID: \(participant.properties["Participant ID"] ?? "")\n\(participant.properties["Name"] ?? "")"){
                             currentParticipant = participants[participant.pNum - 1] //load selected participant from list
                         }
                         
