@@ -39,7 +39,6 @@ struct DataEntryField: View{
                                 participants[index].properties[label] = newValue
                             }
                         }
-                        //participants[currentParticipant.pNum - 1].properties[label] = newValue
                     }
                 )
             ).autocapitalization(autoCap ? .words : .none).disableAutocorrection(true)
