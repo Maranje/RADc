@@ -33,17 +33,24 @@ struct Form: View{
                     
                     //PII text fields
                     Text("Participant Information").foregroundColor(.gray)
-                    DataEntryField(labels: $labels, participants: $participants, currentParticipant: $currentParticipant)
+                    ForEach(labels, id: \.self) { label in
+                        DataEntryField(label: label, participants: $participants, currentParticipant: $currentParticipant)
+                    }
+                    
                     
                     //standing measurements text fields
                     Divider().padding()
                     Text("Standing Measurements").foregroundColor(.blue)
-                    DataEntryField(labels: $labelsStanding, participants: $participants, currentParticipant: $currentParticipant)
+                    ForEach(labelsStanding, id: \.self) { label in
+                        DataEntryField(label: label, participants: $participants, currentParticipant: $currentParticipant)
+                    }
                     
                     //sitting measurements text fields
                     Divider().padding()
                     Text("Sitting Measurements").foregroundColor(.green)
-                    DataEntryField(labels: $labelsSitting, participants: $participants, currentParticipant: $currentParticipant)
+                    ForEach(labelsSitting, id: \.self) { label in
+                        DataEntryField(label: label, participants: $participants, currentParticipant: $currentParticipant)
+                    }
                     
                     //"remove entry" button
                     Image(systemName: "trash")

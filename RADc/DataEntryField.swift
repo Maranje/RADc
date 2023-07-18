@@ -10,29 +10,27 @@ import SwiftUI
 struct DataEntryField: View{
     
     //MARK: properties
-    @Binding var labels: [String]
+    @State var label: String
     @Binding var participants: [Participant]
     @Binding var currentParticipant: Participant
     
     var body: some View{
-        VStack{
-            ForEach(labels, id: \.self) { label in
-                //procedurally generated text entry fields
-                TextField(label, text:
-                    Binding(
-                        get: {
-                            currentParticipant.properties[label] ?? ""
-                        },
-                        set: {
-                            newValue in
-                            //save to currentParticipant to display values on form
-                            currentParticipant.properties[label] = newValue
-                            //actual save to participants array
-                            participants[currentParticipant.pNum - 1].properties[label] = newValue
-                        }
-                    )
+        //procedurally generated text entry fields
+        ZStack(alignment: .leading){
+            TextField(label, text:
+                Binding(
+                    get: {
+                        currentParticipant.properties[label] ?? ""
+                    },
+                    set: {
+                        newValue in
+                        //save to currentParticipant to display values on form
+                        currentParticipant.properties[label] = newValue
+                        //save to participants array
+                        participants[currentParticipant.pNum - 1].properties[label] = newValue
+                    }
                 )
-            }
+            )
         }
     }
 }
