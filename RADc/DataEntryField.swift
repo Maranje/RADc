@@ -45,7 +45,7 @@ struct DataEntryField: View{
             
             Spacer()
             
-            //field label for after data has been entered
+            //text field label, appears after data has been entered
             if !(currentParticipant.properties[label]?.isEmpty ?? true) {
                 Text(label)
                     .frame(width: fontSize * labelWidthMultiplier)
