@@ -11,6 +11,13 @@
 		019DAD2F2A61E41700118D44 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019DAD2E2A61E41700118D44 /* ContentView.swift */; };
 		019DAD312A61E41800118D44 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 019DAD302A61E41800118D44 /* Assets.xcassets */; };
 		019DAD342A61E41800118D44 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 019DAD332A61E41800118D44 /* Preview Assets.xcassets */; };
+		019DAD3F2A6314E400118D44 /* AnthroForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019DAD3E2A6314E400118D44 /* AnthroForm.swift */; };
+		019DAD412A6315B000118D44 /* CSV_Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019DAD402A6315B000118D44 /* CSV_Manager.swift */; };
+		019DAD432A63780600118D44 /* Form.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019DAD422A63780600118D44 /* Form.swift */; };
+		019DAD472A64A4A700118D44 /* FormConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019DAD462A64A4A700118D44 /* FormConfig.swift */; };
+		019DAD492A64AAC900118D44 /* Participant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019DAD482A64AAC900118D44 /* Participant.swift */; };
+		019DAD4B2A64CDF700118D44 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 019DAD4A2A64CDF700118D44 /* Launch Screen.storyboard */; };
+		019DAD4D2A65B9FC00118D44 /* DataEntryField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019DAD4C2A65B9FC00118D44 /* DataEntryField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +26,13 @@
 		019DAD2E2A61E41700118D44 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		019DAD302A61E41800118D44 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		019DAD332A61E41800118D44 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		019DAD3E2A6314E400118D44 /* AnthroForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnthroForm.swift; sourceTree = "<group>"; };
+		019DAD402A6315B000118D44 /* CSV_Manager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSV_Manager.swift; sourceTree = "<group>"; };
+		019DAD422A63780600118D44 /* Form.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Form.swift; sourceTree = "<group>"; };
+		019DAD462A64A4A700118D44 /* FormConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormConfig.swift; sourceTree = "<group>"; };
+		019DAD482A64AAC900118D44 /* Participant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Participant.swift; sourceTree = "<group>"; };
+		019DAD4A2A64CDF700118D44 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		019DAD4C2A65B9FC00118D44 /* DataEntryField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataEntryField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,8 +65,15 @@
 		019DAD2B2A61E41700118D44 /* RADc */ = {
 			isa = PBXGroup;
 			children = (
+				019DAD4A2A64CDF700118D44 /* Launch Screen.storyboard */,
 				019DAD2C2A61E41700118D44 /* RADcApp.swift */,
 				019DAD2E2A61E41700118D44 /* ContentView.swift */,
+				019DAD3E2A6314E400118D44 /* AnthroForm.swift */,
+				019DAD422A63780600118D44 /* Form.swift */,
+				019DAD462A64A4A700118D44 /* FormConfig.swift */,
+				019DAD482A64AAC900118D44 /* Participant.swift */,
+				019DAD4C2A65B9FC00118D44 /* DataEntryField.swift */,
+				019DAD402A6315B000118D44 /* CSV_Manager.swift */,
 				019DAD302A61E41800118D44 /* Assets.xcassets */,
 				019DAD322A61E41800118D44 /* Preview Content */,
 			);
@@ -125,6 +146,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				019DAD4B2A64CDF700118D44 /* Launch Screen.storyboard in Resources */,
 				019DAD342A61E41800118D44 /* Preview Assets.xcassets in Resources */,
 				019DAD312A61E41800118D44 /* Assets.xcassets in Resources */,
 			);
@@ -137,8 +159,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				019DAD472A64A4A700118D44 /* FormConfig.swift in Sources */,
+				019DAD3F2A6314E400118D44 /* AnthroForm.swift in Sources */,
+				019DAD412A6315B000118D44 /* CSV_Manager.swift in Sources */,
+				019DAD492A64AAC900118D44 /* Participant.swift in Sources */,
 				019DAD2F2A61E41700118D44 /* ContentView.swift in Sources */,
 				019DAD2D2A61E41700118D44 /* RADcApp.swift in Sources */,
+				019DAD432A63780600118D44 /* Form.swift in Sources */,
+				019DAD4D2A65B9FC00118D44 /* DataEntryField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -270,21 +298,26 @@
 				DEVELOPMENT_TEAM = 882K27AHSC;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.STI-TEC.RADc";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
 		};
@@ -299,21 +332,26 @@
 				DEVELOPMENT_TEAM = 882K27AHSC;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.STI-TEC.RADc";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
 		};
