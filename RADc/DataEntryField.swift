@@ -10,27 +10,61 @@ import SwiftUI
 struct DataEntryField: View{
     
     //MARK: properties
-    @State var label: String
+    let label: String
+    let labelWidthMultiplier: Double
+    let labelColor: Color
     @Binding var participants: [Participant]
     @Binding var currentParticipant: Participant
+    @Binding var fontSize: Double
+    @State var autoCap = false
+    @State var foreColor: Color = .white
+    @State var setLabelColor: Color = .gray
     
+    //MARK: data entry field body
     var body: some View{
         //procedurally generated text entry fields
-        ZStack(alignment: .leading){
+        HStack{
+            //text field for data entry
             TextField(label, text:
                 Binding(
                     get: {
                         currentParticipant.properties[label] ?? ""
                     },
-                    set: {
-                        newValue in
+                    set: {newValue in
                         //save to currentParticipant to display values on form
                         currentParticipant.properties[label] = newValue
                         //save to participants array
                         participants[currentParticipant.pNum - 1].properties[label] = newValue
                     }
                 )
-            )
+            ).autocapitalization(autoCap ? .words : .none).disableAutocorrection(true)
+            
+            Spacer()
+            
+            //field label for after data has been entered
+            if !(participants[currentParticipant.pNum - 1].properties[label]?.isEmpty ?? true) {
+                Text(label)
+                    .frame(width: fontSize * labelWidthMultiplier)
+                    .font(.system(size: fontSize * 0.8))
+                    .foregroundColor(foreColor)
+                    .background(checkBounds() ? labelColor : .red)
+                    .cornerRadius(5)
+            }
+        }.onAppear(perform: checkName)
+    }
+    
+    //check if the current label is "Name" in order to set autocap on for individual word
+    func checkName(){
+        if label == "Name"{
+            autoCap = true
         }
+    }
+    
+    //check if user input for current label is within bounds
+    func checkBounds()->Bool{
+        
+        //check bounds here
+        
+        return true
     }
 }

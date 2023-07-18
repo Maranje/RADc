@@ -55,7 +55,7 @@ struct AnthroForm: View {
             VStack{
                 if formLoaded{
                     //load form
-                    Form(participants: $participants, currentParticipant: $currentParticipant, measurements: $measurements, newForm: $newForm, labels: $labels, labelsStanding: $labelsStanding, labelsSitting: $labelsSitting)
+                    Form(participants: $participants, currentParticipant: $currentParticipant, measurements: $measurements, newForm: $newForm, labels: $labels, labelsStanding: $labelsStanding, labelsSitting: $labelsSitting, fontSize: $fontSize)
                         .transition(.move(edge: .bottom).combined(with: .scale).combined(with: .opacity))
                 }
                 else{
