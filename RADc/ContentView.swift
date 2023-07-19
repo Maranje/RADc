@@ -46,7 +46,7 @@ struct ContentView: View {
                             //picker label
                             Text("Units Selector")
                                 .frame(width:150, height: 20)
-                                .fontWeight(.thin)
+                                //.fontWeight(.thin)
                                 .alignmentGuide(.leading, computeValue: { _ in -25 })
                                 .alignmentGuide(.top, computeValue: { _ in 25 })
                             
@@ -62,7 +62,7 @@ struct ContentView: View {
                             //slider label
                             Text("Form Font Size")
                                 .frame(width:150, height: 20)
-                                .fontWeight(.thin)
+                                //.fontWeight(.thin)
                                 .alignmentGuide(.leading, computeValue: { _ in -25 })
                                 .alignmentGuide(.top, computeValue: { _ in 15 })
                             
