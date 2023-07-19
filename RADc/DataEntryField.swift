@@ -33,7 +33,7 @@ struct DataEntryField: View{
                     set: {newValue in
                         //save to currentParticipant to display values on form
                         currentParticipant.properties[label] = newValue
-                        //save to participants array
+                        //save from currentParticipant to corresponding participant in participants array
                         participants.enumerated().forEach{index, participant in
                             if participant.pNum == currentParticipant.pNum{
                                 participants[index].properties[label] = newValue

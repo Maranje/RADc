@@ -117,6 +117,52 @@ struct Form: View{
     }
     
     func changeUnits(){ //toggle between metric and imperial units in measurement data entry fields
-        //add code here
+        //iterate through all participants in participants array
+        participants.enumerated().forEach{index, participant in
+            //change weight
+            if !(participants[index].properties["Weight"]?.isEmpty ?? true){
+                let weight = Double(participants[index].properties["Weight"]?.trimmingCharacters(in: .whitespaces) ?? "0")
+                if units{ participants[index].properties["Weight"] = convertToKg(measurement: weight ?? 0) }
+                else{ participants[index].properties["Weight"] = convertToLbs(measurement: weight ?? 0) }
+            }
+            
+            //change standing measurements
+            labelsStanding.forEach {label in
+                if !(participants[index].properties[label]?.isEmpty ?? true){
+                    let measurement = Double(participants[index].properties[label]?.trimmingCharacters(in: .whitespaces) ?? "0")
+                    if units{ participants[index].properties[label] = convertToCm(measurement: measurement ?? 0) }
+                    else{ participants[index].properties[label] = convertToIn(measurement: measurement ?? 0) }
+                }
+            }
+            
+            //change sitting measurements
+            labelsSitting.forEach {label in
+                if !(participants[index].properties[label]?.isEmpty ?? true){
+                    let measurement = Double(participants[index].properties[label]?.trimmingCharacters(in: .whitespaces) ?? "0")
+                    if units{ participants[index].properties[label] = convertToCm(measurement: measurement ?? 0) }
+                    else{ participants[index].properties[label] = convertToIn(measurement: measurement ?? 0) }
+                }
+            }
+            
+            //update current participant on form
+            if currentParticipant.pNum == participant.pNum { currentParticipant = participants[index]}
+        }
     }
+    
+    func convertToCm(measurement: Double)->String{ //converts imperial to metric
+        return String(measurement * 2.54)
+    }
+    
+    func convertToIn(measurement: Double)->String{ //converts metric to imperial
+        return String(measurement / 2.54)
+    }
+    
+    func convertToKg(measurement: Double)->String{ //converts pounds to kilograms
+        return String(measurement / 2.2046)
+    }
+    
+    func convertToLbs(measurement: Double)->String{ //converts kilograms to pounds
+        return String(measurement * 2.2046)
+    }
+    
 }
