@@ -23,8 +23,9 @@ struct ContentView: View {
                 Spacer()
                 
                 //link to anthropometry form page
-                NavigationLink("Anthropometry Form", destination: AnthroForm(fontSize: $fontSize, formStarted: $formStarted))
-                    .frame(width:200, height: 50).padding(.all, 20.0).background(Color.white).cornerRadius(10)
+                NavigationLink("Anthropometry Form",
+                               destination: AnthroForm(fontSize: $fontSize, formStarted: $formStarted, units: $units)
+                ).frame(width:200, height: 50).padding(.all, 20.0).background(Color.white).cornerRadius(10)
                 Spacer()
                 
                 //form options

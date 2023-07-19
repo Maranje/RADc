@@ -12,6 +12,7 @@ struct AnthroForm: View {
     //MARK: properties
     @Binding var fontSize: Double
     @Binding var formStarted: Bool
+    @Binding var units: Bool
     @State var formLoaded: Bool = false
     @State var measurements: [Bool] = Array(repeating: true, count: 49)
     @State var newForm = true
@@ -21,7 +22,7 @@ struct AnthroForm: View {
     @State var labelsStanding: [String] = []
     @State var labelsSitting: [String] = []
     @State var idNumber: Int = 1
-    @State var loadedParticipant: Bool = true //initialize to true to get the initial user propmt to add the first participant (seen in "Form")
+    @State var loadedParticipant: Bool = false //initialize to true to get the initial user propmt to add the first participant (seen in "Form")
     
     //MARK: anthro page body
     var body: some View {
@@ -68,7 +69,9 @@ struct AnthroForm: View {
                          labelsSitting: $labelsSitting,
                          fontSize: $fontSize,
                          loadedParticipant: $loadedParticipant,
-                         idNumber: $idNumber)
+                         idNumber: $idNumber,
+                         units: $units
+                    )
                         .transition(.move(edge: .bottom).combined(with: .scale).combined(with: .opacity))
                 }
                 else{
@@ -79,7 +82,10 @@ struct AnthroForm: View {
                         }
                     }.font(.system(size: fontSize * 1.5))
                 }
-            }.cornerRadius(10).padding(.horizontal, 30.0)
+            }
+            .cornerRadius(10)
+            .padding(.horizontal, 30.0)
+            
             
             Spacer()
         }
@@ -89,4 +95,6 @@ struct AnthroForm: View {
         .navigationBarTitleDisplayMode(.inline)
         .onAppear(perform: {formStarted = true})
     }
+    
+    
 }

@@ -20,6 +20,7 @@ struct Form: View{
     @Binding var fontSize: Double
     @Binding var loadedParticipant: Bool
     @Binding var idNumber: Int
+    @Binding var units: Bool
     @State private var removeBool: Bool = false
     
     //MARK: form body
@@ -72,11 +73,15 @@ struct Form: View{
                         .onTapGesture {
                             removeBool = true
                         }
-                }.alert(isPresented: $removeBool) {
+                }.onChange(of: units){unit in
+                    changeUnits()
+                }
+                .alert(isPresented: $removeBool) {
                     Alert(title: Text("Remove Current Participant"),
                           message: Text("You sure about that?"),
-                          primaryButton: .destructive(Text("Remove"), action: removeCurrent),
+                          primaryButton: .destructive(Text("Remove"), action: removeCurrent), //run the removeCurrent()
                           secondaryButton: .cancel(Text("Cancel")))
+                
                 }
             }
         }
@@ -109,5 +114,9 @@ struct Form: View{
         
         //reset the remove button alert bool
         removeBool = false
+    }
+    
+    func changeUnits(){ //toggle between metric and imperial units in measurement data entry fields
+        //add code here
     }
 }

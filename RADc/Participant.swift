@@ -17,7 +17,6 @@ struct Participant: Identifiable{
     
     //MARK: initializer
     init(labels: [String], labelsStanding: [String], labelsSitting: [String], pNum: Int){
-        
         self.id = UUID() // Generate a unique identifier
         self.pNum = pNum //initialize ID number
         
@@ -39,5 +38,4 @@ struct Participant: Identifiable{
         //auto assign the ID number
         self.properties["Participant ID"] = String(pNum)
     }
-    
 }
