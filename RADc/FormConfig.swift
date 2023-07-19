@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-//form config sets an array of bools determining which measurements will be used in the anthro form
+//FormConfig allows the user to configure an array of bools determining which measurements will be used in the anthro form
 struct FormConfig: View{
     
     //MARK: properties
@@ -136,7 +136,7 @@ struct FormConfig: View{
                     if(measurements[48]){labelsSitting.append("Grip, left")}
                     
                     withAnimation{
-                        newForm = false //set newForm binding to false, return to "From"
+                        newForm = false //set newForm binding to false, return to "Form"
                     }
                 }.padding().background(.green).foregroundColor(.white).cornerRadius(10)//button visibility properties
             }

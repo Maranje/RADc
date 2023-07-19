@@ -39,6 +39,7 @@ struct Form: View{
             else if !loadedParticipant{
                 Text("Add a participant or load an existing participant to continue").transition(.move(edge: .bottom).combined(with: .scale).combined(with: .opacity))
             }
+            //present the form
             else{
                 ScrollView{
                     

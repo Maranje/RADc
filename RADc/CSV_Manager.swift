@@ -10,19 +10,17 @@ import Foundation
 
 struct CSVManager{
     
-    //PROPERTIES
-    
-    //2D array
+    //MARK: properties
     @State var data: [[String]] = [[]]
     @State var tableName: String
     
+    //MARK: initializer
     init(data: [[String]], tableName: String){
         self.data = data
         self.tableName = tableName
     }
     
-    //METHODS
-    
+    //MARK: methods
     //takes the csv converted 2D array data and exports it as a .csv file
     func exportCSV(){
         
@@ -32,9 +30,12 @@ struct CSVManager{
         let fileName = "\(tableName).csv"
 
         /*
-         set the file path, hopefully like in the most convenient place.
-         i used .userDomainMask so it just sets the path according to the
-         device it's running on and puts files in a super easy spot
+         set the file path, hopefully like... in the most convenient place.
+         i used ".userDomainMask" so it just sets the path according to the
+         device it's running on and ideally saves files in a super easy spot.
+         can't really test it for sure until the app can run on an ipad outside
+         of a container, so just hoping for the best here really.
+         works well in the sim at least.
         */
         let fileManager = FileManager.default
         guard let documentDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first
