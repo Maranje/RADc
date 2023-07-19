@@ -41,7 +41,7 @@ struct DataEntryField: View{
                         }
                     }
                 )
-            ).autocapitalization(autoCap ? .words : .none).disableAutocorrection(true)
+            ).onAppear(perform: checkName).autocapitalization(autoCap ? .words : .none).disableAutocorrection(true)
             
             Spacer()
             
@@ -54,18 +54,17 @@ struct DataEntryField: View{
                     .background(checkBounds() ? labelColor : .red)
                     .cornerRadius(5)
             }
-        }.onAppear(perform: checkName)
+        }
     }
     
-    //check if the current label is "Name" in order to set autocap on for individual word
-    func checkName(){
+    //MARK: methods
+    func checkName(){ //check if the current label is "Name" in order to set autocap on for individual word
         if label == "Name"{
             autoCap = true
         }
     }
     
-    //check if user input for current label is within bounds
-    func checkBounds()->Bool{
+    func checkBounds()->Bool{ //check if user input for current label is within bounds
         
         //check bounds here
         

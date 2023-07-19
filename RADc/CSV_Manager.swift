@@ -21,8 +21,7 @@ struct CSVManager{
     }
     
     //MARK: methods
-    //takes the csv converted 2D array data and exports it as a .csv file
-    func exportCSV(){
+    func exportCSV(){ //takes the csv converted 2D array data and exports it as a .csv file
         
         //convert 2D array "data"
         let csvString = convertToCSV()
@@ -55,8 +54,7 @@ struct CSVManager{
         }
     }
     
-    //converts the 2D array "data" into a csv formatted string
-    func convertToCSV() -> String {
+    func convertToCSV() -> String { //converts the 2D array "data" into a csv formatted string
         var csvString = ""
         for row in data {
             let rowString = row.map { "\"\($0)\"" }.joined(separator: ",")

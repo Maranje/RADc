@@ -20,6 +20,7 @@ struct Form: View{
     @Binding var fontSize: Double
     @Binding var loadedParticipant: Bool
     @Binding var idNumber: Int
+    @State private var removeBool: Bool = false
     
     //MARK: form body
     var body: some View{
@@ -69,15 +70,20 @@ struct Form: View{
                         .padding(.top, 30.0)
                         .foregroundColor(.red)
                         .onTapGesture {
-                            removeCurrent()
+                            removeBool = true
                         }
+                }.alert(isPresented: $removeBool) {
+                    Alert(title: Text("Remove Current Participant"),
+                          message: Text("You sure about that?"),
+                          primaryButton: .destructive(Text("Remove"), action:{ removeCurrent() }),
+                          secondaryButton: .cancel(Text("Cancel")))
                 }
             }
         }
     }
     
-    //function for removing the current participant on the form by tapping the red trash icon
-    func removeCurrent(){
+    //MARK: methods
+    func removeCurrent(){ //function for removing the current participant on the form by tapping the red trash icon
         
         //bool for flagging when a participant is removed during the forEach loop
         var removed: Bool = false
@@ -100,5 +106,8 @@ struct Form: View{
                 participants[index - 1].properties["Participant ID"] = String(participants[index - 1].pNum)
             }
         }
+        
+        //reset the remove button alert bool
+        removeBool = false
     }
 }
