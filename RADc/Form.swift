@@ -65,7 +65,7 @@ struct Form: View{
                         DataEntryField(label: label, labelWidthMultiplier: 10, labelColor: .green, participants: $participants, currentParticipant: $currentParticipant, fontSize: $fontSize)
                     }
                     
-                    //"remove entry" button: red trash icon
+                    //"remove entry" button: red trash icon + user alert prompt and confirmation
                     Image(systemName: "trash")
                         .padding(.top, 30.0)
                         .foregroundColor(.red)
@@ -75,7 +75,7 @@ struct Form: View{
                 }.alert(isPresented: $removeBool) {
                     Alert(title: Text("Remove Current Participant"),
                           message: Text("You sure about that?"),
-                          primaryButton: .destructive(Text("Remove"), action:{ removeCurrent() }),
+                          primaryButton: .destructive(Text("Remove"), action: removeCurrent),
                           secondaryButton: .cancel(Text("Cancel")))
                 }
             }

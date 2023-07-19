@@ -11,8 +11,9 @@ struct AnthroForm: View {
     
     //MARK: properties
     @Binding var fontSize: Double
+    @Binding var formStarted: Bool
+    @State var formLoaded: Bool = false
     @State var measurements: [Bool] = Array(repeating: true, count: 49)
-    @State var formLoaded = false
     @State var newForm = true
     @State var participants: [Participant] = []
     @State var currentParticipant: Participant = Participant(labels: [], labelsStanding: [], labelsSitting: [], pNum: 0) //load blank participant placeholder
@@ -86,5 +87,6 @@ struct AnthroForm: View {
         .font(.system(size: fontSize))
         .navigationTitle("Anthropometry Form")
         .navigationBarTitleDisplayMode(.inline)
+        .onAppear(perform: {formStarted = true})
     }
 }
