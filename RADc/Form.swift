@@ -48,7 +48,13 @@ struct Form: View{
                     //PII text fields
                     Text("Participant Information").foregroundColor(.gray)
                     ForEach(labels, id: \.self) { label in
-                        DataEntryField(label: label, labelWidthMultiplier: 8, labelColor: .gray, participants: $participants, currentParticipant: $currentParticipant, fontSize: $fontSize)
+                        DataEntryField(label: label,
+                                       labelWidthMultiplier: 8,
+                                       labelColor: .gray,
+                                       participants: $participants,
+                                       currentParticipant: $currentParticipant,
+                                       fontSize: $fontSize,
+                                       units: $units)
                     }
                     
                     
@@ -56,14 +62,26 @@ struct Form: View{
                     Divider().padding()
                     Text("Standing Measurements").foregroundColor(.blue)
                     ForEach(labelsStanding, id: \.self) { label in
-                        DataEntryField(label: label, labelWidthMultiplier: 18, labelColor: .blue, participants: $participants, currentParticipant: $currentParticipant, fontSize: $fontSize)
+                        DataEntryField(label: label,
+                                       labelWidthMultiplier: 18,
+                                       labelColor: .blue,
+                                       participants: $participants,
+                                       currentParticipant: $currentParticipant,
+                                       fontSize: $fontSize,
+                                       units: $units)
                     }
                     
                     //sitting measurements text fields
                     Divider().padding()
                     Text("Sitting Measurements").foregroundColor(.green)
                     ForEach(labelsSitting, id: \.self) { label in
-                        DataEntryField(label: label, labelWidthMultiplier: 10, labelColor: .green, participants: $participants, currentParticipant: $currentParticipant, fontSize: $fontSize)
+                        DataEntryField(label: label,
+                                       labelWidthMultiplier: 10,
+                                       labelColor: .green,
+                                       participants: $participants,
+                                       currentParticipant: $currentParticipant,
+                                       fontSize: $fontSize,
+                                       units: $units)
                     }
                     
                     //"remove entry" button: red trash icon + user alert prompt and confirmation
