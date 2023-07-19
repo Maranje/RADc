@@ -12,6 +12,7 @@ struct ContentView: View {
     //MARK: properties
     @State var fontSize = 12.0
     @State var formStarted = false
+    @State var units: Bool = true
     
     //MARK: launch page body and navigation
     var body: some View {
@@ -26,17 +27,43 @@ struct ContentView: View {
                     .frame(width:200, height: 50).padding(.all, 20.0).background(Color.white).cornerRadius(10)
                 Spacer()
                 
-                //font size adjustment
+                //form options
                 if formStarted{
                     Section{
+                        
                         Divider()
+                        
+                        //measurement units selector
+                        ZStack(alignment: .topLeading){
+                            //toggle between metric and imperial units
+                            Picker("units", selection: $units){
+                                Text("Metric").tag(true)
+                                Text("Imperial").tag(false)
+                            }
+                            .pickerStyle(.segmented).frame(width: 200.0, height: 50.0)
+                            
+                            //picker label
+                            Text("Units Selector")
+                                .frame(width:150, height: 20)
+                                .fontWeight(.thin)
+                                .alignmentGuide(.leading, computeValue: { _ in -25 })
+                                .alignmentGuide(.top, computeValue: { _ in 25 })
+                            
+                        }.padding([.top, .leading, .trailing], 20.0).background(Color.white).cornerRadius(10)
+                        
+                        //font size adjustment
                         ZStack(alignment: .topLeading){
                             //slider assigns font size from 12pt:24pt
                             Slider(value: $fontSize,
                                    in: 12.0...20.0
                             ).frame(width:200, height: 50)
+                            
                             //slider label
-                            Text("Form Font Size").frame(width:150, height: 20).fontWeight(.thin).alignmentGuide(.leading, computeValue: { _ in -25 }).alignmentGuide(.top, computeValue: { _ in 15 })
+                            Text("Form Font Size")
+                                .frame(width:150, height: 20)
+                                .fontWeight(.thin)
+                                .alignmentGuide(.leading, computeValue: { _ in -25 })
+                                .alignmentGuide(.top, computeValue: { _ in 15 })
                             
                         }.padding([.top, .leading, .trailing], 20.0).background(Color.white).cornerRadius(10)
                     }.padding(.bottom, 30.0)
