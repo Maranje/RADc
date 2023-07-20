@@ -10,8 +10,8 @@ import SwiftUI
 struct ContentView: View {
     
     //MARK: properties
-    @State var fontSize = 12.0
-    @State var formStarted = false
+    @State var fontSize: Double = 12.0
+    @State var formStarted: Bool = false
     @State var units: Bool = true
     @State var labels: [String] = ["Participant ID"]
     @State var labelsStanding: [String] = []
@@ -21,6 +21,7 @@ struct ContentView: View {
     @State var tableBool: Bool = false
     @State var tableBounce: Bool = false
     @State var tablePlaceholderText: String = "Table name"
+    @State var loadedParticipant: Bool = false
     
     //MARK: launch page body and navigation
     var body: some View {
@@ -38,11 +39,16 @@ struct ContentView: View {
                                                                              labels: $labels,
                                                                              labelsStanding: $labelsStanding,
                                                                              labelsSitting: $labelsSitting,
-                                                                             participants: $participants
+                                                                             participants: $participants,
+                                                                             loadedParticipant: $loadedParticipant
                                                                             )
                 ).frame(width:200, height: 50).padding(.all, 20.0).background(Color.white).cornerRadius(10)
                 
                 Spacer()
+                
+                ///I hate all these conditional layers, but as of right now i can't find anything in
+                ///any apple documentation that explains how to use guard clauses that
+                ///comply with View protocols so i guess this'll have to cut it in the meantime -_-
                 
                 //form options
                 if formStarted{
@@ -51,45 +57,47 @@ struct ContentView: View {
                         Divider()
                         
                         //MARK: export table button
-                        ZStack(alignment: .topLeading){
-                            //button for exporting table
-                            Button("Export Table"){
-                                //prompt user to enter a table name
-                                if tableName.isEmpty{
-                                    tablePlaceholderText = "Table Name Required"
-                                    withAnimation{ tableBounce = true }
-                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
-                                        withAnimation{ tableBounce = false}
+                        if loadedParticipant{
+                            ZStack(alignment: .topLeading){
+                                //button for exporting table
+                                Button("Export Table"){
+                                    //prompt user to enter a table name
+                                    if tableName.isEmpty{
+                                        tablePlaceholderText = "Table Name Required"
+                                        withAnimation{ tableBounce = true }
+                                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+                                            withAnimation{ tableBounce = false}
+                                        }
+                                    }
+                                    else{
+                                        tableBool = true
                                     }
                                 }
-                                else{
-                                    tableBool = true
+                                .alert(isPresented: $tableBool){
+                                    //export confirmation
+                                    Alert(
+                                        title: Text("Confirm Export Table"),
+                                        message: Text("You sure about that?"),
+                                        primaryButton: .default(Text("Export")) {
+                                            let csv = CSVManager(data: prepExport(), tableName: tableName)
+                                            csv.exportCSV()
+                                            tableBool = false
+                                        },
+                                        secondaryButton: .cancel()
+                                    )
                                 }
-                            }
-                            .alert(isPresented: $tableBool){
-                                //export confirmation
-                                Alert(
-                                    title: Text("Confirm Export Table"),
-                                    message: Text("You sure about that?"),
-                                    primaryButton: .default(Text("Export")) {
-                                        let csv = CSVManager(data: prepExport(), tableName: tableName)
-                                        csv.exportCSV()
-                                        tableBool = false
-                                    },
-                                    secondaryButton: .cancel()
-                                )
-                            }
-                            .alignmentGuide(.leading, computeValue: { _ in -55 })
-                            .alignmentGuide(.top, computeValue: { _ in 25 })
-
-                            //table name text field
-                            TextField(tablePlaceholderText, text: $tableName)
-                                .frame(width: 200.0, height: 50.0)
-                                .textFieldStyle(.roundedBorder)
-                                .multilineTextAlignment(.center)
-                                .scaleEffect(tableBounce ? 1.2 : 1.0)
-                            
-                        }.padding([.top, .leading, .trailing], 20.0).background(Color.white).cornerRadius(10)
+                                .alignmentGuide(.leading, computeValue: { _ in -55 })
+                                .alignmentGuide(.top, computeValue: { _ in 25 })
+                                
+                                //table name text field
+                                TextField(tablePlaceholderText, text: $tableName)
+                                    .frame(width: 200.0, height: 50.0)
+                                    .textFieldStyle(.roundedBorder)
+                                    .multilineTextAlignment(.center)
+                                    .scaleEffect(tableBounce ? 1.2 : 1.0)
+                                
+                            }.padding([.top, .leading, .trailing], 20.0).background(Color.white).cornerRadius(10)
+                        }
                         
                         //MARK: measurement units selector
                         ZStack(alignment: .topLeading){
