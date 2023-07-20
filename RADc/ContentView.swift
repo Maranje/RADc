@@ -133,7 +133,7 @@ struct ContentView: View {
             }.navigationTitle("RADc")
             
             //background logo image for splash page
-            Image("RADc_logo").resizable().aspectRatio(contentMode: .fill).edgesIgnoringSafeArea(.all).padding(350.0)
+            Image("RADc").resizable().aspectRatio(contentMode: .fill).edgesIgnoringSafeArea(.all).padding(350.0)
         }
     }
     
