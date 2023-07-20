@@ -88,6 +88,7 @@ struct DataEntryField: View{
                     }
                 )
             )
+            .textFieldStyle(.roundedBorder)
             .onAppear(perform: checkName)
             .autocapitalization(autoCap ? .words : .none)
             .disableAutocorrection(true)

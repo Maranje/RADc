@@ -10,19 +10,19 @@ import SwiftUI
 struct ContentView: View {
     
     //MARK: properties
-    @State var fontSize: Double = 12.0
     @State var formStarted: Bool = false
     @State var units: Bool = true
+    @State var tableBool: Bool = false
+    @State var tableBounce: Bool = false
+    @State var fade: Bool = false
+    @State var fontSize: Double = 12.0
+    @State var tablePlaceholderText: String = "Table name"
+    @State var tableName: String = ""
     @State var labels: [String] = ["Participant ID"]
     @State var labelsStanding: [String] = []
     @State var labelsSitting: [String] = []
     @State var participants: [Participant] = []
-    @State var tableName: String = ""
-    @State var tableBool: Bool = false
-    @State var tableBounce: Bool = false
-    @State var tablePlaceholderText: String = "Table name"
-    @State var loadedParticipant: Bool = false
-    @State var fade: Bool = false
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
     
     //MARK: launch page body and navigation
     var body: some View {
@@ -40,8 +40,7 @@ struct ContentView: View {
                                                                              labels: $labels,
                                                                              labelsStanding: $labelsStanding,
                                                                              labelsSitting: $labelsSitting,
-                                                                             participants: $participants,
-                                                                             loadedParticipant: $loadedParticipant
+                                                                             participants: $participants
                                                                             )
                 ).frame(width:200, height: 50).padding(.all, 20.0).background(Color.white).cornerRadius(10)
                 
@@ -58,7 +57,7 @@ struct ContentView: View {
                         Divider()
                         
                         //MARK: export table button
-                        if loadedParticipant{
+                        if !participants.isEmpty{
                             ZStack(alignment: .topLeading){
                                 //button for exporting table
                                 Button("Export Table"){
@@ -146,14 +145,16 @@ struct ContentView: View {
                 Image("backdrop").resizable().scaledToFill().edgesIgnoringSafeArea(.all).frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity).padding([.top, .leading], 60).opacity(fade ? 1.0 : 0.0)
                 Image("RADc").resizable().aspectRatio(contentMode: .fill).edgesIgnoringSafeArea(.all).padding(350.0)
             }.onAppear {
-                //fade in and out the backdrop to catch user's attention and guide them to the nav bar button to begin
-                withAnimation(Animation.easeInOut(duration: 0.4).repeatCount(4, autoreverses: true)) {
-                    fade = true
-                }
-                //fade back out and stay invisible after the duration of the previous animation
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1.3) {
-                    withAnimation(.easeInOut(duration: 0.4)) {
-                        fade = false
+                if horizontalSizeClass == .regular{
+                    //fade in and out the backdrop to catch user's attention and guide them to the nav bar button to begin
+                    withAnimation(Animation.easeInOut(duration: 0.4).repeatCount(4, autoreverses: true)) {
+                        fade = true
+                    }
+                    //fade back out and stay invisible after the duration of the previous animation
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.3) {
+                        withAnimation(.easeInOut(duration: 0.4)) {
+                            fade = false
+                        }
                     }
                 }
             }

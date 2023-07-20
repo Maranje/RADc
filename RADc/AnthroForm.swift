@@ -17,14 +17,13 @@ struct AnthroForm: View {
     @Binding var labelsStanding: [String]
     @Binding var labelsSitting: [String]
     @Binding var participants: [Participant]
-    @Binding var loadedParticipant: Bool
+    @State var loadedParticipant: Bool = false
     @State var formLoaded: Bool = false
+    @State var newForm: Bool = true
     @State var measurements: [Bool] = Array(repeating: true, count: 49)
-    @State var newForm = true
-    @State var currentParticipant: Participant = Participant(labels: [], labelsStanding: [], labelsSitting: [], pNum: 0) //load blank participant placeholder
     @State var idNumber: Int = 1
-    
-    
+    @State var currentParticipant: Participant = Participant(labels: [], labelsStanding: [], labelsSitting: [], pNum: 0) //load blank participant placeholder
+
     //MARK: anthro page body
     var body: some View {
         HStack{

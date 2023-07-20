@@ -20,7 +20,7 @@ struct Participant: Identifiable{
         self.id = UUID() // Generate a unique identifier
         self.pNum = pNum //initialize ID number
         
-        //procedurally generate participant properties according to the form configuraton
+        //procedurally generate participant "properties" according to the form configuraton
         var props: [String: String] = [:]
         for name in labels{
             props[name] = ""
