@@ -13,14 +13,14 @@ struct AnthroForm: View {
     @Binding var fontSize: Double
     @Binding var formStarted: Bool
     @Binding var units: Bool
+    @Binding var labels: [String]
+    @Binding var labelsStanding: [String]
+    @Binding var labelsSitting: [String]
+    @Binding var participants: [Participant]
     @State var formLoaded: Bool = false
     @State var measurements: [Bool] = Array(repeating: true, count: 49)
     @State var newForm = true
-    @State var participants: [Participant] = []
     @State var currentParticipant: Participant = Participant(labels: [], labelsStanding: [], labelsSitting: [], pNum: 0) //load blank participant placeholder
-    @State var labels: [String] = ["Participant ID"]
-    @State var labelsStanding: [String] = []
-    @State var labelsSitting: [String] = []
     @State var idNumber: Int = 1
     @State var loadedParticipant: Bool = false //initialize to true to get the initial user propmt to add the first participant (seen in "Form")
     

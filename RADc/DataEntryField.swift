@@ -23,7 +23,7 @@ struct DataEntryField: View{
     
     //MARK: boundary values
     //reference list for storing boundary values, [upper bound, lower bound]
-    //(refine these values to 2 std. dev. from their respective means)
+    //(to do: refine these values to 2 std. dev. from their respective means)
     let boundsReference: [String: [Double]] = [
         "Stature, standing" : [85.64, 53.68],
         "Stature, sitting" : [43.43, 29.01],
@@ -87,7 +87,10 @@ struct DataEntryField: View{
                         }
                     }
                 )
-            ).onAppear(perform: checkName).autocapitalization(autoCap ? .words : .none).disableAutocorrection(true)
+            )
+            .onAppear(perform: checkName)
+            .autocapitalization(autoCap ? .words : .none)
+            .disableAutocorrection(true)
             
             Spacer()
             
@@ -119,7 +122,7 @@ struct DataEntryField: View{
             //set lower bounds according to units
             let lower = units ? valueCheck[1] * 2.54 : valueCheck[1]
             //convert the value in the text field from a string to a double
-            var value = Double(currentParticipant.properties[label]?.trimmingCharacters(in: .whitespaces) ?? "0") ?? 0
+            let value = Double(currentParticipant.properties[label]?.trimmingCharacters(in: .whitespaces) ?? "0") ?? 0
             
             //check boundary compliance
             if upper < value || lower > value {
