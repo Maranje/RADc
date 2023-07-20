@@ -31,30 +31,34 @@ struct ContentView: View {
         NavigationView{
             VStack{
                 
-                Spacer()
-                
-                //link to anthropometry form page
-                NavigationLink("Anthropometry Form", destination: AnthroForm(fontSize: $fontSize,
-                                                                             formStarted: $formStarted,
-                                                                             units: $units,
-                                                                             labels: $labels,
-                                                                             labelsStanding: $labelsStanding,
-                                                                             labelsSitting: $labelsSitting,
-                                                                             participants: $participants
-                                                                            )
-                ).frame(width:200, height: 50).padding(.all, 20.0).background(Color.white).cornerRadius(10)
-                
-                Spacer()
+                if !formStarted{
+                    Spacer()
+                    
+                    //link to anthropometry form page
+                    NavigationLink("Anthropometry Form", destination: AnthroForm(fontSize: $fontSize,
+                                                                                 formStarted: $formStarted,
+                                                                                 units: $units,
+                                                                                 labels: $labels,
+                                                                                 labelsStanding: $labelsStanding,
+                                                                                 labelsSitting: $labelsSitting,
+                                                                                 participants: $participants
+                                                                                )
+                    ).frame(width:200, height: 50).padding(.all, 20.0).background(Color.white).cornerRadius(10)
+                    
+                    Spacer()
+                    Divider()
+                }
                 
                 ///I hate all these conditional layers, but as of right now i can't find anything in
                 ///any apple documentation that explains how to use guard clauses that
                 ///comply with View protocols so i guess this'll have to cut it in the meantime -_-
                 
                 //form options
-                if formStarted{
+                else{
+                    
+                    Spacer()
+                    
                     Section{
-                        
-                        Divider()
                         
                         //MARK: export table button
                         if !participants.isEmpty{
@@ -133,9 +137,12 @@ struct ContentView: View {
                             
                         }.padding([.top, .leading, .trailing], 20.0).background(Color.white).cornerRadius(10)
                     }.padding(.bottom, 30.0)
+                    Spacer()
+                    Divider()
                 }
+                
                 //company name subtext
-                Text("© 2023 STI-TEC, INC").fontWeight(.thin)
+                Text("© 2023 STI-TEC, INC").fontWeight(.thin).padding()
                 
             //app title in nav window
             }.navigationTitle("RADc")

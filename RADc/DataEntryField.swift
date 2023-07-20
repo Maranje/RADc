@@ -20,6 +20,7 @@ struct DataEntryField: View{
     @State var autoCap = false
     @State var foreColor: Color = .white
     @State var setLabelColor: Color = .gray
+    let labelHeightMultiplier: Double = 34.0
     
     //MARK: boundary values
     //reference list for storing boundary values, [upper bound, lower bound]
@@ -98,7 +99,7 @@ struct DataEntryField: View{
             //text field label, appears after data has been entered
             if !(currentParticipant.properties[label]?.isEmpty ?? true) {
                 Text(label)
-                    .frame(width: fontSize * labelWidthMultiplier)
+                    .frame(width: fontSize * labelWidthMultiplier, height: labelHeightMultiplier)
                     .font(.system(size: fontSize * 0.8))
                     .foregroundColor(foreColor)
                     .background(checkBounds() ? labelColor : .red)
