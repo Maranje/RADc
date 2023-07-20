@@ -17,9 +17,10 @@ struct AnthroForm: View {
     @Binding var labelsStanding: [String]
     @Binding var labelsSitting: [String]
     @Binding var participants: [Participant]
+    @Binding var newForm: Bool
+    @Binding var formLoaded: Bool
     @State var loadedParticipant: Bool = false
-    @State var formLoaded: Bool = false
-    @State var newForm: Bool = true
+
     @State var measurements: [Bool] = Array(repeating: true, count: 49)
     @State var idNumber: Int = 1
     @State var currentParticipant: Participant = Participant(labels: [], labelsStanding: [], labelsSitting: [], pNum: 0) //load blank participant placeholder
@@ -27,6 +28,7 @@ struct AnthroForm: View {
     //MARK: anthro page body
     var body: some View {
         HStack{
+            
             //submitted participants list
             VStack{
                 //title
@@ -71,8 +73,7 @@ struct AnthroForm: View {
                          loadedParticipant: $loadedParticipant,
                          idNumber: $idNumber,
                          units: $units
-                    )
-                        .transition(.move(edge: .bottom).combined(with: .scale).combined(with: .opacity))
+                    ).transition(.move(edge: .bottom).combined(with: .scale).combined(with: .opacity))
                 }
                 else{
                     //show new form button, allow user to load the new form
@@ -95,6 +96,5 @@ struct AnthroForm: View {
         .navigationBarTitleDisplayMode(.inline)
         .onAppear(perform: {formStarted = true})
     }
-    
     
 }

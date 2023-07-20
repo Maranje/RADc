@@ -14,7 +14,9 @@ struct ContentView: View {
     @State var units: Bool = true
     @State var tableBool: Bool = false
     @State var tableBounce: Bool = false
-    @State var fade: Bool = false
+    @State var newForm: Bool = true
+    @State var reset: Bool = false
+    @State var formLoaded: Bool = false
     @State var fontSize: Double = 12.0
     @State var tablePlaceholderText: String = "Table name"
     @State var tableName: String = ""
@@ -22,7 +24,7 @@ struct ContentView: View {
     @State var labelsStanding: [String] = []
     @State var labelsSitting: [String] = []
     @State var participants: [Participant] = []
-    @Environment(\.horizontalSizeClass) var horizontalSizeClass
+    //@Environment(\.horizontalSizeClass) var horizontalSizeClass
     
     //MARK: launch page body and navigation
     var body: some View {
@@ -41,7 +43,9 @@ struct ContentView: View {
                                                                                  labels: $labels,
                                                                                  labelsStanding: $labelsStanding,
                                                                                  labelsSitting: $labelsSitting,
-                                                                                 participants: $participants
+                                                                                 participants: $participants,
+                                                                                 newForm: $newForm,
+                                                                                 formLoaded: $formLoaded
                                                                                 )
                     ).frame(width:200, height: 50).padding(.all, 20.0).background(Color.white).cornerRadius(10)
                     
@@ -52,13 +56,12 @@ struct ContentView: View {
                 ///I hate all these conditional layers, but as of right now i can't find anything in
                 ///any apple documentation that explains how to use guard clauses that
                 ///comply with View protocols so i guess this'll have to cut it in the meantime -_-
-                
                 //form options
                 else{
                     
-                    Spacer()
-                    
                     Section{
+                        
+                        Spacer()
                         
                         //MARK: export table button
                         if !participants.isEmpty{
@@ -137,13 +140,43 @@ struct ContentView: View {
                             
                         }.padding([.top, .leading, .trailing], 20.0).background(Color.white).cornerRadius(10)
                         
-//                        //MARK: return to spalsh page
-//                        ZStack(alignment: .topLeading){
-//
-//
-//                        }.padding([.top, .leading, .trailing], 20.0).background(Color.white).cornerRadius(10)
+                        Spacer()
+                        
+                        if !newForm{
+                            //MARK: reset form
+                            ZStack(alignment: .topLeading){
+                                Button("Reset Form") {
+                                    reset = true
+                                }
+                                .frame(width:200, height: 50)
+                                .foregroundColor(Color.red)
+                                .alert(isPresented: $reset){
+                                    Alert(
+                                        title: Text("Reset Form"),
+                                        message: Text("YOU SURE ABOUT THAT?"),
+                                        primaryButton: .destructive(Text("Reset")){
+                                            units = true
+                                            tableBool = false
+                                            tableBounce = false
+                                            newForm = true
+                                            formLoaded = false
+                                            fontSize = 12.0
+                                            tablePlaceholderText = "Table name"
+                                            tableName = ""
+                                            labels = ["Participant ID"]
+                                            labelsStanding = []
+                                            labelsSitting = []
+                                            participants = []
+                                            reset = false
+                                        },
+                                        secondaryButton: .cancel()
+                                    )
+                                }
+                                
+                            }.padding(.all, 20.0).background(Color.white).cornerRadius(10)
+                        }
                     }.padding(.bottom, 30.0)
-                    Spacer()
+                    
                     Divider()
                 }
                 
