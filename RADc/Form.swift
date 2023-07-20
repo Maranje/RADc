@@ -31,7 +31,7 @@ struct Form: View{
         else{
             //allow user to initiate form by adding the first participant
             if participants.isEmpty{
-                Text("Add a participant to begin").transition(.move(edge: .bottom).combined(with: .scale).combined(with: .opacity))
+                Text("Add a new entry to begin").transition(.move(edge: .bottom).combined(with: .scale).combined(with: .opacity))
             }
             //prompt the user to add a participant to continue after having removed a prior participant from the participants array
             else if !loadedParticipant{

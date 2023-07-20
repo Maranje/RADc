@@ -22,6 +22,7 @@ struct ContentView: View {
     @State var tableBounce: Bool = false
     @State var tablePlaceholderText: String = "Table name"
     @State var loadedParticipant: Bool = false
+    @State var fade: Bool = false
     
     //MARK: launch page body and navigation
     var body: some View {
@@ -141,7 +142,21 @@ struct ContentView: View {
             }.navigationTitle("RADc")
             
             //background logo image for splash page
-            Image("RADc").resizable().aspectRatio(contentMode: .fill).edgesIgnoringSafeArea(.all).padding(350.0)
+            ZStack{
+                Image("backdrop").resizable().scaledToFill().edgesIgnoringSafeArea(.all).frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity).padding([.top, .leading], 60).opacity(fade ? 1.0 : 0.0)
+                Image("RADc").resizable().aspectRatio(contentMode: .fill).edgesIgnoringSafeArea(.all).padding(350.0)
+            }.onAppear {
+                //fade in and out the backdrop to catch user's attention and guide them to the nav bar button to begin
+                withAnimation(Animation.easeInOut(duration: 0.4).repeatCount(4, autoreverses: true)) {
+                    fade = true
+                }
+                //fade back out and stay invisible after the duration of the previous animation
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.3) {
+                    withAnimation(.easeInOut(duration: 0.4)) {
+                        fade = false
+                    }
+                }
+            }
         }
     }
     
