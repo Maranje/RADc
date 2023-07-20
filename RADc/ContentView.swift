@@ -27,7 +27,7 @@ struct ContentView: View {
     //MARK: launch page body and navigation
     var body: some View {
         
-        //overall nav
+        //overall nav (NavigationView has been deprecated after iOS 16, plan to switch to either NavigationStack or NavigationSplitView)
         NavigationView{
             VStack{
                 
@@ -123,7 +123,7 @@ struct ContentView: View {
                         
                         //MARK: font size adjustment
                         ZStack(alignment: .topLeading){
-                            //slider assigns font size from 12pt:24pt
+                            //slider assigns font size from 12pt:20pt
                             Slider(value: $fontSize,
                                    in: 12.0...20.0
                             ).frame(width:200, height: 50)
@@ -136,6 +136,12 @@ struct ContentView: View {
                                 .alignmentGuide(.top, computeValue: { _ in 15 })
                             
                         }.padding([.top, .leading, .trailing], 20.0).background(Color.white).cornerRadius(10)
+                        
+//                        //MARK: return to spalsh page
+//                        ZStack(alignment: .topLeading){
+//
+//
+//                        }.padding([.top, .leading, .trailing], 20.0).background(Color.white).cornerRadius(10)
                     }.padding(.bottom, 30.0)
                     Spacer()
                     Divider()
@@ -149,22 +155,23 @@ struct ContentView: View {
             
             //background logo image for splash page
             ZStack{
-                Image("backdrop").resizable().scaledToFill().edgesIgnoringSafeArea(.all).frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity).padding([.top, .leading], 60).opacity(fade ? 1.0 : 0.0)
+                //Image("backdrop").resizable().opacity(fade ? 1.0 : 0.0).scaledToFill().edgesIgnoringSafeArea(.all).frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity).padding([.top, .leading], 60)
                 Image("RADc").resizable().aspectRatio(contentMode: .fill).edgesIgnoringSafeArea(.all).padding(350.0)
-            }.onAppear {
-                if horizontalSizeClass == .regular{
-                    //fade in and out the backdrop to catch user's attention and guide them to the nav bar button to begin
-                    withAnimation(Animation.easeInOut(duration: 0.4).repeatCount(4, autoreverses: true)) {
-                        fade = true
-                    }
-                    //fade back out and stay invisible after the duration of the previous animation
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.3) {
-                        withAnimation(.easeInOut(duration: 0.4)) {
-                            fade = false
-                        }
-                    }
-                }
             }
+//            .onAppear {
+//                if horizontalSizeClass == .regular{
+//                    //fade in and out the backdrop to catch user's attention and guide them to the nav bar button to begin
+//                    withAnimation(Animation.easeInOut(duration: 0.4).repeatCount(4, autoreverses: true)) {
+//                        fade = true
+//                    }
+//                    //fade back out and stay invisible after the duration of the previous animation
+//                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.3) {
+//                        withAnimation(.easeInOut(duration: 0.4)) {
+//                            fade = false
+//                        }
+//                    }
+//                }
+//            }
         }
     }
     
