@@ -78,6 +78,7 @@ struct AnthroForm: View {
                 else{
                     //show new form button, allow user to load the new form
                     Button("+ New Form"){
+                        idNumber = 1
                         withAnimation{
                             formLoaded = true
                         }

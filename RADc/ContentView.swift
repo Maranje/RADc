@@ -58,9 +58,7 @@ struct ContentView: View {
                 ///comply with View protocols so i guess this'll have to cut it in the meantime -_-
                 //form options
                 else{
-                    
                     Section{
-                        
                         Spacer()
                         
                         //MARK: export table button
@@ -155,6 +153,7 @@ struct ContentView: View {
                                         title: Text("Reset Form"),
                                         message: Text("YOU SURE ABOUT THAT?"),
                                         primaryButton: .destructive(Text("Reset")){
+                                            //reset all properties to clear the form and start over
                                             units = true
                                             tableBool = false
                                             tableBounce = false
@@ -191,6 +190,9 @@ struct ContentView: View {
                 //Image("backdrop").resizable().opacity(fade ? 1.0 : 0.0).scaledToFill().edgesIgnoringSafeArea(.all).frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity).padding([.top, .leading], 60)
                 Image("RADc").resizable().aspectRatio(contentMode: .fill).edgesIgnoringSafeArea(.all).padding(350.0)
             }
+            
+            
+            
 //            .onAppear {
 //                if horizontalSizeClass == .regular{
 //                    //fade in and out the backdrop to catch user's attention and guide them to the nav bar button to begin
@@ -205,6 +207,9 @@ struct ContentView: View {
 //                    }
 //                }
 //            }
+            
+            
+            
         }
     }
     
