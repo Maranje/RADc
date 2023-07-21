@@ -20,6 +20,14 @@ struct ExportTable: View{
     
     var body: some View{
         ZStack(alignment: .topLeading){
+            
+            //table name text field
+            TextField(tablePlaceholderText, text: $tableName)
+                .frame(width: 200.0, height: 50.0)
+                .textFieldStyle(.roundedBorder)
+                .multilineTextAlignment(.center)
+                .scaleEffect(tableBounce ? 1.2 : 1.0)
+            
             //button for exporting table
             Button("Export Table"){
                 //prompt user to enter a table name
@@ -48,13 +56,6 @@ struct ExportTable: View{
             }
             .alignmentGuide(.leading, computeValue: { _ in -55 })
             .alignmentGuide(.top, computeValue: { _ in 25 })
-            
-            //table name text field
-            TextField(tablePlaceholderText, text: $tableName)
-                .frame(width: 200.0, height: 50.0)
-                .textFieldStyle(.roundedBorder)
-                .multilineTextAlignment(.center)
-                .scaleEffect(tableBounce ? 1.2 : 1.0)
             
         }.padding([.top, .leading, .trailing], 20.0).background(Color.white).cornerRadius(10)
     }

@@ -22,8 +22,8 @@ struct UnitsSelector: View{
             
             //picker label
             Text("Units Selector")
-                .frame(width:150, height: 20)
-                //.fontWeight(.thin)
+                .frame(width:150)
+                .fontWeight(.thin)
                 .alignmentGuide(.leading, computeValue: { _ in -25 })
                 .alignmentGuide(.top, computeValue: { _ in 25 })
             
