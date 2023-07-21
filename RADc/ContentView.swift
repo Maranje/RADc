@@ -17,14 +17,16 @@ struct ContentView: View {
     @State var newForm: Bool = true
     @State var reset: Bool = false
     @State var formLoaded: Bool = false
+    @State var fade: Bool = false
     @State var fontSize: Double = 12.0
     @State var tablePlaceholderText: String = "Table name"
     @State var tableName: String = ""
     @State var labels: [String] = ["Participant ID"]
     @State var labelsStanding: [String] = []
     @State var labelsSitting: [String] = []
+    @State var measurements: [Bool] = Array(repeating: true, count: 49)
     @State var participants: [Participant] = []
-    //@Environment(\.horizontalSizeClass) var horizontalSizeClass
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
     
     //MARK: launch page body and navigation
     var body: some View {
@@ -45,7 +47,8 @@ struct ContentView: View {
                                                                                  labelsSitting: $labelsSitting,
                                                                                  participants: $participants,
                                                                                  newForm: $newForm,
-                                                                                 formLoaded: $formLoaded
+                                                                                 formLoaded: $formLoaded,
+                                                                                 measurements: $measurements
                                                                                 )
                     ).frame(width:200, height: 50).padding(.all, 20.0).background(Color.white).cornerRadius(10)
                     
@@ -166,6 +169,7 @@ struct ContentView: View {
                                             labelsStanding = []
                                             labelsSitting = []
                                             participants = []
+                                            measurements = Array(repeating: true, count: 49)
                                             reset = false
                                         },
                                         secondaryButton: .cancel()
@@ -187,29 +191,23 @@ struct ContentView: View {
             
             //background logo image for splash page
             ZStack{
-                //Image("backdrop").resizable().opacity(fade ? 1.0 : 0.0).scaledToFill().edgesIgnoringSafeArea(.all).frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity).padding([.top, .leading], 60)
+                Image("backdrop").resizable().opacity(fade ? 1.0 : 0.0).scaledToFill().edgesIgnoringSafeArea(.all).frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity).padding([.top, .leading], 60)
                 Image("RADc").resizable().aspectRatio(contentMode: .fill).edgesIgnoringSafeArea(.all).padding(350.0)
             }
-            
-            
-            
-//            .onAppear {
-//                if horizontalSizeClass == .regular{
-//                    //fade in and out the backdrop to catch user's attention and guide them to the nav bar button to begin
-//                    withAnimation(Animation.easeInOut(duration: 0.4).repeatCount(4, autoreverses: true)) {
-//                        fade = true
-//                    }
-//                    //fade back out and stay invisible after the duration of the previous animation
-//                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.3) {
-//                        withAnimation(.easeInOut(duration: 0.4)) {
-//                            fade = false
-//                        }
-//                    }
-//                }
-//            }
-            
-            
-            
+            .onAppear {
+                if horizontalSizeClass == .regular{
+                    //fade in and out the backdrop to catch user's attention and guide them to the nav bar button to begin
+                    withAnimation(Animation.easeInOut(duration: 0.4).repeatCount(4, autoreverses: true)) {
+                        fade = true
+                    }
+                    //fade back out and stay invisible after the duration of the previous animation
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
+                        withAnimation(.easeInOut(duration: 0.4)) {
+                            fade = false
+                        }
+                    }
+                }
+            }
         }
     }
     

@@ -19,9 +19,8 @@ struct AnthroForm: View {
     @Binding var participants: [Participant]
     @Binding var newForm: Bool
     @Binding var formLoaded: Bool
+    @Binding var measurements: [Bool]
     @State var loadedParticipant: Bool = false
-
-    @State var measurements: [Bool] = Array(repeating: true, count: 49)
     @State var idNumber: Int = 1
     @State var currentParticipant: Participant = Participant(labels: [], labelsStanding: [], labelsSitting: [], pNum: 0) //load blank participant placeholder
 
