@@ -25,18 +25,36 @@ struct Form: View{
     
     //MARK: form body
     var body: some View{
+        
         if newForm{
-            FormConfig(measurements: $measurements, newForm: $newForm, labels: $labels, labelsStanding: $labelsStanding, labelsSitting: $labelsSitting).transition(.move(edge: .bottom).combined(with: .scale).combined(with: .opacity))
+            
+            //load the form configuration view
+            FormConfig(measurements: $measurements,
+                       newForm: $newForm,
+                       labels: $labels,
+                       labelsStanding: $labelsStanding,
+                       labelsSitting: $labelsSitting)
+                .transition(.move(edge: .bottom)
+                .combined(with: .scale)
+                .combined(with: .opacity))
+            
         }
         else{
+            
             //allow user to initiate form by adding the first participant
             if participants.isEmpty{
-                Text("Add a new entry to begin").transition(.move(edge: .bottom).combined(with: .scale).combined(with: .opacity))
+                
+                Text("Add a new entry to begin")
+                
             }
+            
             //prompt the user to add a participant to continue after having removed a prior participant from the participants array
             else if !loadedParticipant{
-                Text("Add a participant or load an existing participant to continue").transition(.move(edge: .bottom).combined(with: .scale).combined(with: .opacity))
+                
+                Text("Add a participant or load an existing participant to continue")
+                
             }
+            
             //present the form
             else{
                 ScrollView{
@@ -44,6 +62,7 @@ struct Form: View{
                     //PII text fields
                     Text("Participant Information").foregroundColor(.gray)
                     ForEach(labels, id: \.self) { label in
+                        
                         DataEntryField(label: label,
                                        labelWidthMultiplier: 8,
                                        labelColor: .gray,
@@ -51,13 +70,14 @@ struct Form: View{
                                        currentParticipant: $currentParticipant,
                                        fontSize: $fontSize,
                                        units: $units)
+                        
                     }
-                    
                     
                     //standing measurements text fields
                     Divider().padding()
                     Text("Standing Measurements").foregroundColor(.blue)
                     ForEach(labelsStanding, id: \.self) { label in
+                        
                         DataEntryField(label: label,
                                        labelWidthMultiplier: 18,
                                        labelColor: .blue,
@@ -71,6 +91,7 @@ struct Form: View{
                     Divider().padding()
                     Text("Sitting Measurements").foregroundColor(.green)
                     ForEach(labelsSitting, id: \.self) { label in
+                        
                         DataEntryField(label: label,
                                        labelWidthMultiplier: 10,
                                        labelColor: .green,
@@ -87,16 +108,18 @@ struct Form: View{
                         .onTapGesture {
                             removeBool = true
                         }
+                        .alert(isPresented: $removeBool) {
+                            Alert(title: Text("Remove Current Participant"),
+                                  message: Text("You sure about that?"),
+                                  primaryButton: .destructive(Text("Remove"), action: removeCurrent), //run the removeCurrent()
+                                  secondaryButton: .cancel(Text("Cancel")))
+                            
+                        }
+                    
                 }.onChange(of: units){unit in
                     changeUnits()
                 }
-                .alert(isPresented: $removeBool) {
-                    Alert(title: Text("Remove Current Participant"),
-                          message: Text("You sure about that?"),
-                          primaryButton: .destructive(Text("Remove"), action: removeCurrent), //run the removeCurrent()
-                          secondaryButton: .cancel(Text("Cancel")))
                 
-                }
             }
         }
     }
@@ -131,6 +154,7 @@ struct Form: View{
     }
     
     func changeUnits(){ //toggle between metric and imperial units in measurement data entry fields
+        
         //iterate through all participants in participants array
         participants.enumerated().forEach{index, participant in
             //change weight

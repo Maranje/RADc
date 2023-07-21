@@ -21,7 +21,7 @@ struct AnthroForm: View {
     @State var labelsSitting: [String] = []
     @State var measurements: [Bool] = Array(repeating: true, count: 49)
     @State var participants: [Participant] = []
-    @State var currentParticipant: Participant = Participant(labels: [], labelsStanding: [], labelsSitting: [], pNum: 0) //load blank participant placeholder
+    @State var currentParticipant: Participant = Participant(labels: [], labelsStanding: [], labelsSitting: [], pNum: 0)
 
     //MARK: anthro page body
     var body: some View {
@@ -68,10 +68,12 @@ struct AnthroForm: View {
                 
                 //submitted participants list
                 VStack{
+                    
                     //title
                     Section(header: Text("Participants").fontWeight(.thin).padding(.top)){
                         
                         Divider().frame(width: 170)
+                        
                         //new entry button
                         Button("+ New Entry"){
                             currentParticipant = Participant(labels: labels, labelsStanding: labelsStanding, labelsSitting: labelsSitting, pNum: idNumber)
@@ -81,9 +83,11 @@ struct AnthroForm: View {
                         }.padding().background(!newForm ? .blue : .gray).foregroundColor(.white).cornerRadius(10).disabled(newForm)
                         
                         Divider().frame(width: 170)
+                        
                         //actual list
                         List(participants){ participant in
                             
+                            //each list item is a button that allows the user to instantly load any participant in the list
                             Button("ID: \(participant.properties["Participant ID"] ?? "")\n\(participant.properties["Name"] ?? "")"){
                                 currentParticipant = participants[participant.pNum - 1] //load selected participant from list
                                 loadedParticipant = true
@@ -125,8 +129,8 @@ struct AnthroForm: View {
                 .cornerRadius(10)
                 .padding(.horizontal, 30.0)
                 
-                
                 Spacer()
+                
             }
             .padding()
             .font(.system(size: fontSize))

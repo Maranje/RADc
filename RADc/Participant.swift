@@ -12,13 +12,16 @@ struct Participant: Identifiable{
     
     //MARK: properties
     var id: UUID
-    var pNum: Int //identifier uneditable by user
+    var pNum: Int
     var properties: [String: String]
     
     //MARK: initializer
     init(labels: [String], labelsStanding: [String], labelsSitting: [String], pNum: Int){
-        self.id = UUID() // Generate a unique identifier
-        self.pNum = pNum //initialize ID number
+        
+        // Generate a unique identifier
+        self.id = UUID()
+        //initialize ID number
+        self.pNum = pNum
         
         //procedurally generate participant "properties" according to the form configuraton
         var props: [String: String] = [:]

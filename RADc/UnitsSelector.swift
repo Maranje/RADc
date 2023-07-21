@@ -9,11 +9,15 @@ import SwiftUI
 
 struct UnitsSelector: View{
     
+    //MARK: properties
     @Binding var units: Bool
     
+    //MARK: unit selector option body
     var body: some View{
+        
         ZStack(alignment: .topLeading){
-            //toggle between metric and imperial units
+            
+            //toggle between metric and imperial units with a stlyed picker
             Picker("units", selection: $units){
                 Text("Metric").tag(true)
                 Text("Imperial").tag(false)

@@ -12,24 +12,31 @@ struct SplashPage: View {
     //MARK: properties
     @State var splash: Bool = true
     
+    //MARK: splash page body
     var body: some View {
         ZStack{
+            
             if splash{
+                
                 //create app splash page
                 Image("RADc")
                     .resizable()
                     .frame(width: 300, height: 300)
                     .cornerRadius(50)
                     .onTapGesture {
-                        withAnimation{
-                            splash = false
-                        }
+                        
+                        //set splash to false and load AnthroForm
+                        withAnimation{ splash = false }
+                        
                     }
             }
             else{
+                
                 //initialize anthro form
                 AnthroForm()
+                
             }
+
         }
     }
 }

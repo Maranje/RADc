@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ExportTable: View{
     
+    //MARK: properties
     @Binding var labels: [String]
     @Binding var labelsStanding: [String]
     @Binding var labelsSitting: [String]
@@ -18,6 +19,7 @@ struct ExportTable: View{
     @State var tablePlaceholderText: String = "Table name"
     @State var tableName: String = ""
     
+    //MARK: export table option body
     var body: some View{
         ZStack(alignment: .topLeading){
             
@@ -30,14 +32,24 @@ struct ExportTable: View{
             
             //button for exporting table
             Button("Export Table"){
+                
                 //prompt user to enter a table name
                 if tableName.isEmpty{
+                    
+                    //set tableBounce to true within "withAnimation" to animate scale increase effect
                     withAnimation{ tableBounce = true }
+                    
+                    //run after 0.25 seconds
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+                        
+                        //set tableBounce back to false within "withAnimation" to animate scale decrease effect
                         withAnimation{ tableBounce = false}
+                        
                     }
                 }
                 else{
+                    
+                    //set table name flag to true to prompt the user to confirm table export
                     tableBool = true
                 }
             }
@@ -47,9 +59,16 @@ struct ExportTable: View{
                     title: Text("Confirm Export Table"),
                     message: Text("You sure about that?"),
                     primaryButton: .default(Text("Export")) {
+                        
+                        //create a csv using CSVManager
                         let csv = CSVManager(data: prepExport(), tableName: tableName)
+                        
+                        //export the csv to device documents
                         csv.exportCSV()
+                        
+                        //reset tableBool to false to exit prompt
                         tableBool = false
+                        
                     },
                     secondaryButton: .cancel()
                 )

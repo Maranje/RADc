@@ -9,10 +9,14 @@ import SwiftUI
 
 struct FontSizeSlider: View{
     
+    //MARK: properties
     @Binding var fontSize: Double
     
+    //MARK: font size slider option body
     var body: some View{
+        
         ZStack(alignment: .topLeading){
+            
             //slider assigns font size from 12pt:20pt
             Slider(value: $fontSize,
                    in: 12.0...20.0

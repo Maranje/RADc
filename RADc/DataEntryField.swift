@@ -111,7 +111,10 @@ struct DataEntryField: View{
     //MARK: methods
     func checkName(){ //check if the current label is "Name" in order to set autocap on for individual word
         if label == "Name"{
+            
+            //set autoCap to true for the particular entry field that is designated for "Name"
             autoCap = true
+            
         }
     }
     

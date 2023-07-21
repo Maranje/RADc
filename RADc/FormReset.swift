@@ -21,8 +21,12 @@ struct FormReset: View{
     @Binding var measurements: [Bool]
     @State var reset: Bool = false
     
+    //MARK: form reset option body
     var body: some View{
+        
         ZStack(alignment: .topLeading){
+            
+            //button to reset all form values and prepare the AnthroForm view for a new form
             Button("Reset Form") {
                 reset = true
             }
@@ -33,6 +37,7 @@ struct FormReset: View{
                     title: Text("Reset Form"),
                     message: Text("YOU SURE ABOUT THAT?"),
                     primaryButton: .destructive(Text("Reset")){
+                        
                         //reset all properties to clear the form and start over
                         units = true
                         newForm = true
@@ -44,6 +49,7 @@ struct FormReset: View{
                         participants = []
                         measurements = Array(repeating: true, count: 49)
                         reset = false
+                        
                     },
                     secondaryButton: .cancel()
                 )

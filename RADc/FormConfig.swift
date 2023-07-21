@@ -21,7 +21,7 @@ struct FormConfig: View{
     var body: some View{
         ScrollView{
             Section(header: Text("New Form Configuration").fontWeight(.thin)) {
-                
+                //allow user to assign all the desired labels in the form
                 VStack{
                     Toggle("Name", isOn: $measurements[1]).padding(.horizontal)
                     Toggle("Phone Number", isOn: $measurements[2]).padding(.horizontal)
@@ -84,7 +84,7 @@ struct FormConfig: View{
                 Divider()
                     .padding(/*@START_MENU_TOKEN@*/.bottom/*@END_MENU_TOKEN@*/)
                 
-                //create the form and load all the chosen measurement labels into the appropriate string arrays
+                //"create form" button to create the form and load all the chosen measurement labels into the appropriate string arrays
                 Button("Create Form"){
                     if(measurements[1]){labels.append("Name")}
                     if(measurements[2]){labels.append("Phone Number")}
@@ -136,8 +136,12 @@ struct FormConfig: View{
                     if(measurements[48]){labelsSitting.append("Grip, left")}
                     
                     withAnimation{
-                        newForm = false //set newForm binding to false, return to "Form"
+                        
+                        //set newForm binding to false, return to "Form"
+                        newForm = false
+                        
                     }
+                    
                 }.padding().background(.green).foregroundColor(.white).cornerRadius(10)//button visibility properties
             }
         }.padding()
