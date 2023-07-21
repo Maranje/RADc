@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		019DAD2D2A61E41700118D44 /* RADcApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019DAD2C2A61E41700118D44 /* RADcApp.swift */; };
-		019DAD2F2A61E41700118D44 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019DAD2E2A61E41700118D44 /* ContentView.swift */; };
 		019DAD312A61E41800118D44 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 019DAD302A61E41800118D44 /* Assets.xcassets */; };
 		019DAD342A61E41800118D44 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 019DAD332A61E41800118D44 /* Preview Assets.xcassets */; };
 		019DAD3F2A6314E400118D44 /* AnthroForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019DAD3E2A6314E400118D44 /* AnthroForm.swift */; };
@@ -17,12 +16,16 @@
 		019DAD472A64A4A700118D44 /* FormConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019DAD462A64A4A700118D44 /* FormConfig.swift */; };
 		019DAD492A64AAC900118D44 /* Participant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019DAD482A64AAC900118D44 /* Participant.swift */; };
 		019DAD4D2A65B9FC00118D44 /* DataEntryField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019DAD4C2A65B9FC00118D44 /* DataEntryField.swift */; };
+		01B4A25E2A6AFE6B0063FA27 /* SplashPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B4A25D2A6AFE6B0063FA27 /* SplashPage.swift */; };
+		01B4A2602A6B07480063FA27 /* ExportTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B4A25F2A6B07480063FA27 /* ExportTable.swift */; };
+		01B4A2622A6B095B0063FA27 /* UnitsSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B4A2612A6B095B0063FA27 /* UnitsSelector.swift */; };
+		01B4A2642A6B0A5F0063FA27 /* FontSizeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B4A2632A6B0A5F0063FA27 /* FontSizeSlider.swift */; };
+		01B4A2662A6B0B2D0063FA27 /* FormReset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B4A2652A6B0B2D0063FA27 /* FormReset.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		019DAD292A61E41700118D44 /* RADc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RADc.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		019DAD2C2A61E41700118D44 /* RADcApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RADcApp.swift; sourceTree = "<group>"; };
-		019DAD2E2A61E41700118D44 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		019DAD302A61E41800118D44 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		019DAD332A61E41800118D44 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		019DAD3E2A6314E400118D44 /* AnthroForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnthroForm.swift; sourceTree = "<group>"; };
@@ -31,6 +34,11 @@
 		019DAD462A64A4A700118D44 /* FormConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormConfig.swift; sourceTree = "<group>"; };
 		019DAD482A64AAC900118D44 /* Participant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Participant.swift; sourceTree = "<group>"; };
 		019DAD4C2A65B9FC00118D44 /* DataEntryField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataEntryField.swift; sourceTree = "<group>"; };
+		01B4A25D2A6AFE6B0063FA27 /* SplashPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashPage.swift; sourceTree = "<group>"; };
+		01B4A25F2A6B07480063FA27 /* ExportTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportTable.swift; sourceTree = "<group>"; };
+		01B4A2612A6B095B0063FA27 /* UnitsSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitsSelector.swift; sourceTree = "<group>"; };
+		01B4A2632A6B0A5F0063FA27 /* FontSizeSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontSizeSlider.swift; sourceTree = "<group>"; };
+		01B4A2652A6B0B2D0063FA27 /* FormReset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormReset.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,11 +72,15 @@
 			isa = PBXGroup;
 			children = (
 				019DAD2C2A61E41700118D44 /* RADcApp.swift */,
-				019DAD2E2A61E41700118D44 /* ContentView.swift */,
+				01B4A25D2A6AFE6B0063FA27 /* SplashPage.swift */,
 				019DAD3E2A6314E400118D44 /* AnthroForm.swift */,
 				019DAD422A63780600118D44 /* Form.swift */,
 				019DAD462A64A4A700118D44 /* FormConfig.swift */,
 				019DAD482A64AAC900118D44 /* Participant.swift */,
+				01B4A25F2A6B07480063FA27 /* ExportTable.swift */,
+				01B4A2612A6B095B0063FA27 /* UnitsSelector.swift */,
+				01B4A2632A6B0A5F0063FA27 /* FontSizeSlider.swift */,
+				01B4A2652A6B0B2D0063FA27 /* FormReset.swift */,
 				019DAD4C2A65B9FC00118D44 /* DataEntryField.swift */,
 				019DAD402A6315B000118D44 /* CSV_Manager.swift */,
 				019DAD302A61E41800118D44 /* Assets.xcassets */,
@@ -155,13 +167,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01B4A2602A6B07480063FA27 /* ExportTable.swift in Sources */,
 				019DAD472A64A4A700118D44 /* FormConfig.swift in Sources */,
 				019DAD3F2A6314E400118D44 /* AnthroForm.swift in Sources */,
+				01B4A2662A6B0B2D0063FA27 /* FormReset.swift in Sources */,
 				019DAD412A6315B000118D44 /* CSV_Manager.swift in Sources */,
 				019DAD492A64AAC900118D44 /* Participant.swift in Sources */,
-				019DAD2F2A61E41700118D44 /* ContentView.swift in Sources */,
 				019DAD2D2A61E41700118D44 /* RADcApp.swift in Sources */,
+				01B4A25E2A6AFE6B0063FA27 /* SplashPage.swift in Sources */,
+				01B4A2642A6B0A5F0063FA27 /* FontSizeSlider.swift in Sources */,
 				019DAD432A63780600118D44 /* Form.swift in Sources */,
+				01B4A2622A6B095B0063FA27 /* UnitsSelector.swift in Sources */,
 				019DAD4D2A65B9FC00118D44 /* DataEntryField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

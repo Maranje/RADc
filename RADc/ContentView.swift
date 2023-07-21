@@ -39,17 +39,7 @@ struct ContentView: View {
                     Spacer()
                     
                     //link to anthropometry form page
-                    NavigationLink("Anthropometry Form", destination: AnthroForm(fontSize: $fontSize,
-                                                                                 formStarted: $formStarted,
-                                                                                 units: $units,
-                                                                                 labels: $labels,
-                                                                                 labelsStanding: $labelsStanding,
-                                                                                 labelsSitting: $labelsSitting,
-                                                                                 participants: $participants,
-                                                                                 newForm: $newForm,
-                                                                                 formLoaded: $formLoaded,
-                                                                                 measurements: $measurements
-                                                                                )
+                    NavigationLink("Anthropometry Form", destination: AnthroForm()
                     ).frame(width:200, height: 50).padding(.all, 20.0).background(Color.white).cornerRadius(10)
                     
                     Spacer()
