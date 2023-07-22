@@ -20,6 +20,7 @@ struct FormReset: View{
     @Binding var participants: [Participant]
     @Binding var measurements: [Bool]
     @State var reset: Bool = false
+    @Environment(\.colorScheme) var colorScheme
     
     //MARK: form reset option body
     var body: some View{
@@ -55,6 +56,9 @@ struct FormReset: View{
                 )
             }
             
-        }.padding(.all, 20.0).background(Color.white).cornerRadius(10)
+        }
+        .padding(.all, 20.0)
+        .background(colorScheme == .light ? .white : Color(red: 0.1, green: 0.1, blue: 0.1))
+        .cornerRadius(10)
     }
 }

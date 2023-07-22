@@ -18,6 +18,7 @@ struct ExportTable: View{
     @State var tableBounce: Bool = false
     @State var tablePlaceholderText: String = "Table name"
     @State var tableName: String = ""
+    @Environment(\.colorScheme) var colorScheme
     
     //MARK: export table option body
     var body: some View{
@@ -76,7 +77,10 @@ struct ExportTable: View{
             .alignmentGuide(.leading, computeValue: { _ in -55 })
             .alignmentGuide(.top, computeValue: { _ in 25 })
             
-        }.padding([.top, .leading, .trailing], 20.0).background(Color.white).cornerRadius(10)
+        }
+        .padding([.top, .leading, .trailing], 20.0)
+        .background(colorScheme == .light ? .white : Color(red: 0.1, green: 0.1, blue: 0.1))
+        .cornerRadius(10)
     }
     
     //MARK: methods

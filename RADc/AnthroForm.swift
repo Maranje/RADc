@@ -22,7 +22,8 @@ struct AnthroForm: View {
     @State var measurements: [Bool] = Array(repeating: true, count: 49)
     @State var participants: [Participant] = []
     @State var currentParticipant: Participant = Participant(labels: [], labelsStanding: [], labelsSitting: [], pNum: 0)
-
+    @Environment(\.colorScheme) var colorScheme
+    
     //MARK: anthro page body
     var body: some View {
         NavigationSplitView{
@@ -95,7 +96,9 @@ struct AnthroForm: View {
                             
                         }.frame(width:200).cornerRadius(10)
                     }.padding([.leading, .bottom, .trailing])
-                }.background(Color(red: 0.949, green: 0.949, blue: 0.971)).cornerRadius(10)
+                }
+                .background(colorScheme == .light ? Color(red: 0.949, green: 0.949, blue: 0.971) : Color(red: 0.1, green: 0.1, blue: 0.1))
+                .cornerRadius(10)
                 
                 Spacer()
                 

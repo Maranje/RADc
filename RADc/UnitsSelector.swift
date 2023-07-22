@@ -11,6 +11,7 @@ struct UnitsSelector: View{
     
     //MARK: properties
     @Binding var units: Bool
+    @Environment(\.colorScheme) var colorScheme
     
     //MARK: unit selector option body
     var body: some View{
@@ -31,6 +32,9 @@ struct UnitsSelector: View{
                 .alignmentGuide(.leading, computeValue: { _ in -25 })
                 .alignmentGuide(.top, computeValue: { _ in 25 })
             
-        }.padding([.top, .leading, .trailing], 20.0).background(Color.white).cornerRadius(10)
+        }
+        .padding([.top, .leading, .trailing], 20.0)
+        .background(colorScheme == .light ? .white : Color(red: 0.1, green: 0.1, blue: 0.1))
+        .cornerRadius(10)
     }
 }
