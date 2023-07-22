@@ -2,7 +2,7 @@
 //  SplashPage.swift
 //  RADc
 //
-//  Created by Frank Maranje on 7/21/23.
+//  Created by Frank Maranje on 7/21/23 for STI-TEC, INC.
 //
 
 import SwiftUI
