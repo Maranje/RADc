@@ -14,6 +14,7 @@ struct AnthroForm: View {
     @State var newForm: Bool = true
     @State var formLoaded: Bool = false
     @State var loadedParticipant: Bool = false
+    @State var exported: Bool = false
     @State var fontSize: Double = 12.0
     @State var idNumber: Int = 1
     @State var labels: [String] = ["Participant ID"]
@@ -33,7 +34,7 @@ struct AnthroForm: View {
             
             //"export table" button and table name entry field
             if !participants.isEmpty{
-                ExportTable(labels: $labels, labelsStanding: $labelsStanding, labelsSitting: $labelsSitting, participants: $participants)
+                ExportTable(labels: $labels, labelsStanding: $labelsStanding, labelsSitting: $labelsSitting, participants: $participants, exported: $exported)
             }
             
             //select between metric or imperial
@@ -65,80 +66,97 @@ struct AnthroForm: View {
             Text("© 2023 STI-TEC, INC").fontWeight(.thin).padding()
             
         } detail:{
-            HStack{
-                
-                //submitted participants list
-                VStack{
+            ZStack{
+                HStack{
                     
-                    //title
-                    Section(header: Text("Participants").fontWeight(.thin).padding(.top)){
+                    //submitted participants list
+                    VStack{
                         
-                        Divider().frame(width: 170)
-                        
-                        //new entry button
-                        Button("+ New Entry"){
-                            currentParticipant = Participant(labels: labels, labelsStanding: labelsStanding, labelsSitting: labelsSitting, pNum: idNumber)
-                            participants.append(currentParticipant)
-                            idNumber += 1
-                            loadedParticipant = true
-                        }.padding().background(!newForm ? .blue : .gray).foregroundColor(.white).cornerRadius(10).disabled(newForm)
-                        
-                        Divider().frame(width: 170)
-                        
-                        //actual list
-                        List(participants){ participant in
+                        //title
+                        Section(header: Text("Participants").fontWeight(.thin).padding(.top)){
                             
-                            //each list item is a button that allows the user to instantly load any participant in the list
-                            Button("ID: \(participant.properties["Participant ID"] ?? "")\n\(participant.properties["Name"] ?? "")"){
-                                currentParticipant = participants[participant.pNum - 1] //load selected participant from list
+                            Divider().frame(width: 170)
+                            
+                            //new entry button
+                            Button("+ New Entry"){
+                                currentParticipant = Participant(labels: labels, labelsStanding: labelsStanding, labelsSitting: labelsSitting, pNum: idNumber)
+                                participants.append(currentParticipant)
+                                idNumber += 1
                                 loadedParticipant = true
-                            }
+                            }.padding().background(!newForm ? .blue : .gray).foregroundColor(.white).cornerRadius(10).disabled(newForm)
                             
-                        }.frame(width:200).cornerRadius(10)
-                    }.padding([.leading, .bottom, .trailing])
-                }
-                .background(colorScheme == .light ? Color(red: 0.949, green: 0.949, blue: 0.971) : Color(red: 0.1, green: 0.1, blue: 0.1))
-                .cornerRadius(10)
-                
-                Spacer()
-                
-                //Form side
-                VStack{
-                    if formLoaded{
-                        //load form
-                        Form(participants: $participants,
-                             currentParticipant: $currentParticipant,
-                             measurements: $measurements,
-                             newForm: $newForm,
-                             labels: $labels,
-                             labelsStanding: $labelsStanding,
-                             labelsSitting: $labelsSitting,
-                             fontSize: $fontSize,
-                             loadedParticipant: $loadedParticipant,
-                             idNumber: $idNumber,
-                             units: $units
-                        ).transition(.move(edge: .bottom).combined(with: .scale).combined(with: .opacity))
+                            Divider().frame(width: 170)
+                            
+                            //actual list
+                            List(participants){ participant in
+                                
+                                //each list item is a button that allows the user to instantly load any participant in the list
+                                Button("ID: \(participant.properties["Participant ID"] ?? "")\n\(participant.properties["Name"] ?? "")"){
+                                    currentParticipant = participants[participant.pNum - 1] //load selected participant from list
+                                    loadedParticipant = true
+                                }
+                                
+                            }.frame(width:200).cornerRadius(10)
+                        }.padding([.leading, .bottom, .trailing])
                     }
-                    else{
-                        //show new form button, allow user to load the new form
-                        Button("+ New Form"){
-                            idNumber = 1
-                            withAnimation{
-                                formLoaded = true
-                            }
-                        }.font(.system(size: fontSize * 1.5))
+                    .background(colorScheme == .light ? Color(red: 0.949, green: 0.949, blue: 0.971) : Color(red: 0.1, green: 0.1, blue: 0.1))
+                    .cornerRadius(10)
+                    
+                    Spacer()
+                    
+                    //Form side
+                    VStack{
+                        if formLoaded{
+                            //load form
+                            Form(participants: $participants,
+                                 currentParticipant: $currentParticipant,
+                                 measurements: $measurements,
+                                 newForm: $newForm,
+                                 labels: $labels,
+                                 labelsStanding: $labelsStanding,
+                                 labelsSitting: $labelsSitting,
+                                 fontSize: $fontSize,
+                                 loadedParticipant: $loadedParticipant,
+                                 idNumber: $idNumber,
+                                 units: $units
+                            ).transition(.move(edge: .bottom).combined(with: .scale).combined(with: .opacity))
+                        }
+                        else{
+                            //show new form button, allow user to load the new form
+                            Button("+ New Form"){
+                                idNumber = 1
+                                withAnimation{
+                                    formLoaded = true
+                                }
+                            }.font(.system(size: fontSize * 1.5))
+                        }
                     }
+                    .cornerRadius(10)
+                    .padding(.horizontal, 30.0)
+                    
+                    Spacer()
+                    
                 }
-                .cornerRadius(10)
-                .padding(.horizontal, 30.0)
+                .padding()
+                .font(.system(size: fontSize))
+                .navigationTitle("Anthropometry Form")
+                .navigationBarTitleDisplayMode(.inline)
                 
-                Spacer()
                 
+                if exported{
+                    //fading in/out export table visual feedback text & format
+                    Text("EXPORTED!")
+                        .font(.body)
+                        .fontWeight(.heavy)
+                        .padding(.horizontal, 15.0)
+                        .padding(.vertical, 50.0)
+                        .background(Color(hue: 1.0, saturation: 0.0, brightness: 0.5, opacity: 0.85))
+                        .foregroundColor(.white)
+                        .clipShape(RoundedRectangle(cornerRadius: 20.0))
+                        .frame(width: 300.0, height: 300.0)
+                        .zIndex(100)
+                }
             }
-            .padding()
-            .font(.system(size: fontSize))
-            .navigationTitle("Anthropometry Form")
-            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }

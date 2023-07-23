@@ -14,6 +14,7 @@ struct ExportTable: View{
     @Binding var labelsStanding: [String]
     @Binding var labelsSitting: [String]
     @Binding var participants: [Participant]
+    @Binding var exported: Bool
     @State var tableBool: Bool = false
     @State var tableBounce: Bool = false
     @State var tablePlaceholderText: String = "Table name"
@@ -69,6 +70,17 @@ struct ExportTable: View{
                         
                         //reset tableBool to false to exit prompt
                         tableBool = false
+                        
+                        //set exported to true within "withAnimation" to animate appear
+                        withAnimation{ exported = true }
+                        
+                        //run after 0.25 seconds
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                            
+                            //set exported back to false within "withAnimation" to animate disappear
+                            withAnimation{ exported = false}
+                            
+                        }
                         
                     },
                     secondaryButton: .cancel()
