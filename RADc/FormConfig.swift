@@ -150,13 +150,13 @@ struct FormConfig: View{
                         Button("Deselect All"){
                             measurements = Array(repeating: false, count: 49)
                             selectAll = false
-                        }.padding().background(.gray).foregroundColor(.white).cornerRadius(10)//button visibility properties
+                        }.padding().background(.orange).foregroundColor(.white).cornerRadius(10)//button visibility properties
                     }
                     else{
                         Button("Reselect All"){
                             measurements = Array(repeating: true, count: 49)
                             selectAll = true
-                        }.padding().background(.gray).foregroundColor(.white).cornerRadius(10)//button visibility properties
+                        }.padding().background(.orange).foregroundColor(.white).cornerRadius(10)//button visibility properties
                     }
                 }
             }
