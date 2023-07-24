@@ -51,7 +51,6 @@ struct AnthroForm: View {
                     units: $units,
                     newForm: $newForm,
                     formLoaded: $formLoaded,
-                    fontSize: $fontSize,
                     labels: $labels,
                     labelsStanding: $labelsStanding,
                     labelsSitting: $labelsSitting,

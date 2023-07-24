@@ -13,7 +13,6 @@ struct FormReset: View{
     @Binding var units: Bool
     @Binding var newForm: Bool
     @Binding var formLoaded: Bool
-    @Binding var fontSize: Double
     @Binding var labels: [String]
     @Binding var labelsStanding: [String]
     @Binding var labelsSitting: [String]
@@ -43,7 +42,6 @@ struct FormReset: View{
                         units = true
                         newForm = true
                         formLoaded = false
-                        fontSize = 12.0
                         labels = ["Participant ID"]
                         labelsStanding = []
                         labelsSitting = []
