@@ -34,7 +34,7 @@ struct SplashPage: View {
                         .scaleEffect(bounce ? 1.1 : 1.0)
                         .onAppear {
                             // Start the bounce timer when the view appears
-                            Timer.scheduledTimer(withTimeInterval: 5.0, repeats: true) { _ in
+                            Timer.scheduledTimer(withTimeInterval: 3.0, repeats: true) { _ in
                                 withAnimation(.easeInOut(duration: 0.2)) {
                                     // Toggle the isBouncing state variable to trigger the animation
                                     bounce = true
@@ -49,7 +49,7 @@ struct SplashPage: View {
                             }
 
                             //start the prompt timer when the view appears, only run once
-                            Timer.scheduledTimer(withTimeInterval: 5.0, repeats: false){ _ in
+                            Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false){ _ in
                                 withAnimation{
                                     //set tapPrompt to true and show the text
                                     tapPrompt = true
