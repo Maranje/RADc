@@ -74,8 +74,10 @@ struct Form: View{
                     }
                     
                     //standing measurements text fields
-                    Divider().padding()
-                    Text("Standing Measurements").foregroundColor(.blue)
+                    if !labelsStanding.isEmpty{
+                        Divider().padding()
+                        Text("Standing Measurements").foregroundColor(.blue)
+                    }
                     ForEach(labelsStanding, id: \.self) { label in
                         
                         DataEntryField(label: label,
@@ -88,8 +90,10 @@ struct Form: View{
                     }
                     
                     //sitting measurements text fields
-                    Divider().padding()
-                    Text("Sitting Measurements").foregroundColor(.green)
+                    if !labelsSitting.isEmpty{
+                        Divider().padding()
+                        Text("Sitting Measurements").foregroundColor(.green)
+                    }
                     ForEach(labelsSitting, id: \.self) { label in
                         
                         DataEntryField(label: label,
