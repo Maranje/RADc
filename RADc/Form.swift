@@ -22,6 +22,7 @@ struct Form: View{
     @Binding var idNumber: Int
     @Binding var units: Bool
     @State private var removeBool: Bool = false
+    @State private var fieldNum: Int = 1
     
     //MARK: form body
     var body: some View{
@@ -62,15 +63,22 @@ struct Form: View{
                     //PII text fields
                     Text("Participant Information").foregroundColor(.gray)
                     ForEach(labels, id: \.self) { label in
-                        
-                        DataEntryField(label: label,
-                                       labelWidthMultiplier: 8,
-                                       labelColor: .gray,
-                                       participants: $participants,
-                                       currentParticipant: $currentParticipant,
-                                       fontSize: $fontSize,
-                                       units: $units)
-                        
+                        HStack{
+                            
+                            //generate entry field number
+                            if let index = labels.firstIndex(of: label){
+                                Text("\(index + 1). ").fontWeight(.thin).foregroundColor(.gray)
+                            }
+                            
+                            //generate entry field
+                            DataEntryField(label: label,
+                                           labelWidthMultiplier: 8,
+                                           labelColor: .gray,
+                                           participants: $participants,
+                                           currentParticipant: $currentParticipant,
+                                           fontSize: $fontSize,
+                                           units: $units)
+                        }
                     }
                     
                     //standing measurements text fields
@@ -79,14 +87,22 @@ struct Form: View{
                         Text("Standing Measurements").foregroundColor(.blue)
                     }
                     ForEach(labelsStanding, id: \.self) { label in
-                        
-                        DataEntryField(label: label,
-                                       labelWidthMultiplier: 18,
-                                       labelColor: .blue,
-                                       participants: $participants,
-                                       currentParticipant: $currentParticipant,
-                                       fontSize: $fontSize,
-                                       units: $units)
+                        HStack{
+                            
+                            //generate entry field number
+                            if let index = labelsStanding.firstIndex(of: label){
+                                Text("\(index + 1 + labels.count). ").fontWeight(.thin).foregroundColor(.gray)
+                            }
+                            
+                            //generate entry field
+                            DataEntryField(label: label,
+                                           labelWidthMultiplier: 18,
+                                           labelColor: .blue,
+                                           participants: $participants,
+                                           currentParticipant: $currentParticipant,
+                                           fontSize: $fontSize,
+                                           units: $units)
+                        }
                     }
                     
                     //sitting measurements text fields
@@ -95,14 +111,22 @@ struct Form: View{
                         Text("Sitting Measurements").foregroundColor(.green)
                     }
                     ForEach(labelsSitting, id: \.self) { label in
-                        
-                        DataEntryField(label: label,
-                                       labelWidthMultiplier: 10,
-                                       labelColor: .green,
-                                       participants: $participants,
-                                       currentParticipant: $currentParticipant,
-                                       fontSize: $fontSize,
-                                       units: $units)
+                        HStack{
+                            
+                            //generate entry field number
+                            if let index = labelsSitting.firstIndex(of: label){
+                                Text("\(index + 1 + labels.count + labelsStanding.count). ").fontWeight(.thin).foregroundColor(.gray)
+                            }
+                            
+                            //generate entry field
+                            DataEntryField(label: label,
+                                           labelWidthMultiplier: 10,
+                                           labelColor: .green,
+                                           participants: $participants,
+                                           currentParticipant: $currentParticipant,
+                                           fontSize: $fontSize,
+                                           units: $units)
+                        }
                     }
                     
                     //"remove entry" button: red trash icon + user alert prompt and confirmation
