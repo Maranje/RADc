@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0120E3CF2A704197007E83E5 /* DocumentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0120E3CE2A704197007E83E5 /* DocumentHandler.swift */; };
+		0120E3D12A704286007E83E5 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0120E3D02A704286007E83E5 /* Info.plist */; };
 		019DAD2D2A61E41700118D44 /* RADcApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019DAD2C2A61E41700118D44 /* RADcApp.swift */; };
 		019DAD312A61E41800118D44 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 019DAD302A61E41800118D44 /* Assets.xcassets */; };
 		019DAD342A61E41800118D44 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 019DAD332A61E41800118D44 /* Preview Assets.xcassets */; };
@@ -24,6 +26,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0120E3CE2A704197007E83E5 /* DocumentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentHandler.swift; sourceTree = "<group>"; };
+		0120E3D02A704286007E83E5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		019DAD292A61E41700118D44 /* RADc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RADc.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		019DAD2C2A61E41700118D44 /* RADcApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RADcApp.swift; sourceTree = "<group>"; };
 		019DAD302A61E41800118D44 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -84,7 +88,9 @@
 				019DAD4C2A65B9FC00118D44 /* DataEntryField.swift */,
 				019DAD402A6315B000118D44 /* CSV_Manager.swift */,
 				019DAD302A61E41800118D44 /* Assets.xcassets */,
+				0120E3D02A704286007E83E5 /* Info.plist */,
 				019DAD322A61E41800118D44 /* Preview Content */,
+				0120E3CE2A704197007E83E5 /* DocumentHandler.swift */,
 			);
 			path = RADc;
 			sourceTree = "<group>";
@@ -157,6 +163,7 @@
 			files = (
 				019DAD342A61E41800118D44 /* Preview Assets.xcassets in Resources */,
 				019DAD312A61E41800118D44 /* Assets.xcassets in Resources */,
+				0120E3D12A704286007E83E5 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -172,6 +179,7 @@
 				019DAD3F2A6314E400118D44 /* AnthroForm.swift in Sources */,
 				01B4A2662A6B0B2D0063FA27 /* FormReset.swift in Sources */,
 				019DAD412A6315B000118D44 /* CSV_Manager.swift in Sources */,
+				0120E3CF2A704197007E83E5 /* DocumentHandler.swift in Sources */,
 				019DAD492A64AAC900118D44 /* Participant.swift in Sources */,
 				019DAD2D2A61E41700118D44 /* RADcApp.swift in Sources */,
 				01B4A25E2A6AFE6B0063FA27 /* SplashPage.swift in Sources */,
