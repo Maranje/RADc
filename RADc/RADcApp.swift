@@ -10,8 +10,8 @@ import SwiftUI
 @main
 struct RADcApp: App {
     var body: some Scene {
-        WindowGroup {
-            SplashPage()
+        DocumentGroup(newDocument: DocumentHandler()) { file in
+            AnthroForm(document: file.$document)
         }
     }
 }

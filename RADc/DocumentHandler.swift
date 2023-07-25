@@ -14,7 +14,7 @@ extension UTType {
     }
 }
 
-struct testDocument: FileDocument {
+struct DocumentHandler: FileDocument {
     var text: String
 
     init(text: String = "") {

@@ -9,6 +9,8 @@ import SwiftUI
 
 struct AnthroForm: View {
     
+    @Binding var document: DocumentHandler
+    
     //MARK: properties
     @State var units: Bool = true
     @State var newForm: Bool = true
@@ -32,10 +34,12 @@ struct AnthroForm: View {
             //options bar title
             Text("Options").fontWeight(.thin).padding()
             
-            //"export table" button and table name entry field
+            //"save" button and table name entry field
             if !participants.isEmpty{
-                ExportTable(labels: $labels, labelsStanding: $labelsStanding, labelsSitting: $labelsSitting, participants: $participants, exported: $exported)
+                Save(document: $document, labels: $labels, labelsStanding: $labelsStanding, labelsSitting: $labelsSitting, participants: $participants, exported: $exported)
             }
+            
+            Divider().padding().frame(width: 100)
             
             //select between metric or imperial
             UnitsSelector(units: $units)
@@ -140,11 +144,12 @@ struct AnthroForm: View {
                 .font(.system(size: fontSize))
                 .navigationTitle("Anthropometry Form")
                 .navigationBarTitleDisplayMode(.inline)
+                .navigationBarBackButtonHidden(true)
                 
                 
                 if exported{
                     //fading in/out export table visual feedback text & format
-                    Text("EXPORTED!")
+                    Text("FILE SAVED")
                         .font(.body)
                         .fontWeight(.heavy)
                         .padding(.horizontal, 15.0)
@@ -157,5 +162,13 @@ struct AnthroForm: View {
                 }
             }
         }
+        .navigationBarTitle("", displayMode: .inline) //removes the document name from the display
+        .navigationBarBackButtonHidden(true) // removes the extraneous back button from the display
+    }
+}
+
+struct AnthroForm_Previews: PreviewProvider {
+    static var previews: some View {
+        AnthroForm(document: .constant(DocumentHandler()))
     }
 }
