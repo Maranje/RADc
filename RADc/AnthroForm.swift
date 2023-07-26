@@ -61,7 +61,8 @@ struct AnthroForm: View {
                     labelsStanding: $labelsStanding,
                     labelsSitting: $labelsSitting,
                     participants: $participants,
-                    measurements: $measurements
+                    measurements: $measurements,
+                    idNumber: $idNumber
                 )
             }
             
