@@ -24,11 +24,8 @@ struct Save: View{
             //button for exporting table
             Button("Save"){
                 
-                //create a csv using CSVManager
-                let csv = CSVManager(data: prepExport(), tableName: "")
-                
-                //export the csv as an excel format file to device documents
-                document.text = csv.convertToCSV()
+                //convert data into csv format and export it as an excel file to device documents
+                document.text = CSVManager(data: prepExport()).convertToCSV()
                 
                 //set exported to true within "withAnimation" to animate appear
                 withAnimation{ exported = true }

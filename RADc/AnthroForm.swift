@@ -17,6 +17,8 @@ struct AnthroForm: View {
     @State var formLoaded: Bool = false
     @State var loadedParticipant: Bool = false
     @State var exported: Bool = false
+    @State var newFormBounce: Bool = false
+    @State var newEntryBounce: Bool = false
     @State var fontSize: Double = 12.0
     @State var idNumber: Int = 1
     @State var labels: [String] = ["Participant ID"]
@@ -86,7 +88,21 @@ struct AnthroForm: View {
                                 participants.append(currentParticipant)
                                 idNumber += 1
                                 loadedParticipant = true
-                            }.padding().background(!newForm ? .blue : .gray).foregroundColor(.white).cornerRadius(10).disabled(newForm)
+                            }
+                            .padding()
+                            .background(!newForm ? .blue : .gray)
+                            .foregroundColor(.white)
+                            .cornerRadius(10)
+                            .disabled(newForm)
+                            .scaleEffect(newEntryBounce ? 1.2 : 1.0)
+                            .onChange(of: newForm, perform: {change in
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                    withAnimation{ newEntryBounce = true }
+                                }
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
+                                    withAnimation{ newEntryBounce = false }
+                                }
+                            })
                             
                             Divider().frame(width: 170)
                             
@@ -127,11 +143,21 @@ struct AnthroForm: View {
                         else{
                             //show new form button, allow user to load the new form
                             Button("+ New Form"){
-                                idNumber = 1
                                 withAnimation{
                                     formLoaded = true
                                 }
-                            }.font(.system(size: fontSize * 1.5))
+                            }
+                            .frame(width: 200, height: 100)
+                            .font(.system(size: fontSize * 1.5))
+                            .scaleEffect(newFormBounce ? 1.5 : 1.0)
+                            .onAppear(){
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
+                                    withAnimation{ newFormBounce = true }
+                                }
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                                    withAnimation{ newFormBounce = false }
+                                }
+                            }
                         }
                     }
                     .cornerRadius(10)
@@ -164,6 +190,62 @@ struct AnthroForm: View {
         }
         .navigationBarTitle("", displayMode: .inline) //removes the document name from the display
         .navigationBarBackButtonHidden(true) // removes the extraneous back button from the display
+        .onAppear(){
+            if !document.text.isEmpty{
+                //load form contenst if DocumentHandler "text" property is not empty
+                loadForm()
+
+            }
+        }
+    }
+    
+    //MARK: methods
+    func loadLabels(loadedData: [[String]]){//load labels into their corresponding string arrays
+        
+        loadedData[0].enumerated().forEach{index, labelRaw in
+            
+            let label = labelRaw.replacingOccurrences(of: "\"", with: "")
+            
+            if Labels().checkLabels(label: label) == true{
+                labels.append(label)
+            }
+            else if Labels().checkLabelsStanding(label: label) == true{
+                labelsStanding.append(label)
+            }
+            else if Labels().checkLabelsSitting(label: label) == true{
+                labelsSitting.append(label)
+            }
+            
+        }
+    }
+    
+    func loadParticipants(loadedData: [[String]]){//create list of participants and set their properties with the loaded values
+        var participantNum: Int = 1
+        while participantNum < idNumber{
+            participants.append(Participant(labels: labels, labelsStanding: labelsStanding, labelsSitting: labelsSitting, pNum: participantNum))
+            participantNum += 1
+        }
+        participants.enumerated().forEach{pIndex, participant in
+            loadedData[participant.pNum].enumerated().forEach{dIndex, data in
+                participants[pIndex].properties[loadedData[0][dIndex].replacingOccurrences(of: "\"", with: "")] = data.replacingOccurrences(of: "\"", with: "")
+            }
+        }
+    }
+    
+    func loadForm(){//reset some values of AnthroForm properties and load data from saved document
+        
+        //a 2D array generated from a .csv format
+        let loadedData = CSVManager().revertFromCSV(loadString: document.text)
+        
+        //relevant AnthroForm properties
+        newForm = false
+        formLoaded = true
+        idNumber = loadedData.count
+
+        //load document labels
+        loadLabels(loadedData: loadedData)
+        //load document participants
+        loadParticipants(loadedData: loadedData)
     }
 }
 
