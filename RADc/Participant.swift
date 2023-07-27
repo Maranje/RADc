@@ -16,7 +16,7 @@ struct Participant: Identifiable{
     var properties: [String: String]
     
     //MARK: initializer
-    init(labels: [String], labelsStanding: [String], labelsSitting: [String], pNum: Int){
+    init(labels: [String], labelsStanding: [String], labelsSitting: [String], participantOffset: Int, pNum: Int){
         
         // Generate a unique identifier
         self.id = UUID()
@@ -39,6 +39,7 @@ struct Participant: Identifiable{
         properties = props
         
         //auto assign the ID number
-        self.properties["Participant ID"] = String(pNum)
+        //participantOffset compensates the pNum value when dynamic ID mode is set to off
+        self.properties["Participant ID"] = String(pNum + participantOffset)
     }
 }

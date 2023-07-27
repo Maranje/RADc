@@ -19,6 +19,7 @@ struct FormReset: View{
     @Binding var participants: [Participant]
     @Binding var measurements: [Bool]
     @Binding var idNumber: Int
+    @Binding var participantOffset: Int
     @State var reset: Bool = false
     @Environment(\.colorScheme) var colorScheme
     
@@ -50,6 +51,7 @@ struct FormReset: View{
                         measurements = Array(repeating: true, count: 49)
                         reset = false
                         idNumber = 1
+                        participantOffset = 0
                         
                     },
                     secondaryButton: .cancel()

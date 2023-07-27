@@ -21,6 +21,8 @@ struct Form: View{
     @Binding var loadedParticipant: Bool
     @Binding var idNumber: Int
     @Binding var units: Bool
+    @Binding var dynamicReassign: Bool
+    @Binding var participantOffset: Int
     @State private var removeBool: Bool = false
     @State private var fieldNum: Int = 1
     
@@ -166,14 +168,21 @@ struct Form: View{
                 participants.remove(at: index)
                 //decrement the participant generator idNumber value by one
                 idNumber -= 1
+                //if dynamic ID mode is on, increment the participant offset property
+                if !dynamicReassign{ participantOffset += 1 }
                 //set bools
                 loadedParticipant = false
                 removed = true
             }
-            //if a participant has been removed, the loop continues and shifts all subsequent participants down to fill the new vacancy
+            //if a participant has been removed, the loop continues and shifts
+            //all subsequent participant pNum values down to fill the new vacancy
+            //to prevent from accidentally trying to access out of range
             else if removed{
                 participants[index - 1].pNum -= 1
-                participants[index - 1].properties["Participant ID"] = String(participants[index - 1].pNum)
+                //if dynamic reassign is selected, decrement all subsequrnt participant ID
+                if dynamicReassign{
+                    participants[index - 1].properties["Participant ID"] = String(participants[index - 1].pNum)
+                }
             }
         }
         

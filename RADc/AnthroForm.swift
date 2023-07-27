@@ -19,14 +19,16 @@ struct AnthroForm: View {
     @State var exported: Bool = false
     @State var newFormBounce: Bool = false
     @State var newEntryBounce: Bool = false
+    @State var dynamicReassign: Bool = false
     @State var fontSize: Double = 12.0
     @State var idNumber: Int = 1
+    @State var participantOffset: Int = 0
     @State var labels: [String] = ["Participant ID"]
     @State var labelsStanding: [String] = []
     @State var labelsSitting: [String] = []
     @State var measurements: [Bool] = Array(repeating: true, count: 49)
     @State var participants: [Participant] = []
-    @State var currentParticipant: Participant = Participant(labels: [], labelsStanding: [], labelsSitting: [], pNum: 0)
+    @State var currentParticipant: Participant = Participant(labels: [], labelsStanding: [], labelsSitting: [], participantOffset: 0, pNum: 0)
     @Environment(\.colorScheme) var colorScheme
     
     //MARK: anthro page body
@@ -49,6 +51,9 @@ struct AnthroForm: View {
             //slider to choose form font size
             FontSizeSlider(fontSize: $fontSize)
             
+            //dynamic participant ID toggle
+            DynamicID(dynamicReassign: $dynamicReassign, newForm: $newForm)
+            
             Spacer()
             
             //"form reset" button
@@ -62,7 +67,8 @@ struct AnthroForm: View {
                     labelsSitting: $labelsSitting,
                     participants: $participants,
                     measurements: $measurements,
-                    idNumber: $idNumber
+                    idNumber: $idNumber,
+                    participantOffset: $participantOffset
                 )
             }
             
@@ -85,7 +91,7 @@ struct AnthroForm: View {
                             
                             //new entry button
                             Button("+ New Entry"){
-                                currentParticipant = Participant(labels: labels, labelsStanding: labelsStanding, labelsSitting: labelsSitting, pNum: idNumber)
+                                currentParticipant = Participant(labels: labels, labelsStanding: labelsStanding, labelsSitting: labelsSitting, participantOffset: participantOffset, pNum: idNumber)
                                 participants.append(currentParticipant)
                                 idNumber += 1
                                 loadedParticipant = true
@@ -138,7 +144,9 @@ struct AnthroForm: View {
                                  fontSize: $fontSize,
                                  loadedParticipant: $loadedParticipant,
                                  idNumber: $idNumber,
-                                 units: $units
+                                 units: $units,
+                                 dynamicReassign: $dynamicReassign,
+                                 participantOffset: $participantOffset
                             ).transition(.move(edge: .bottom).combined(with: .scale).combined(with: .opacity))
                         }
                         else{
@@ -223,7 +231,7 @@ struct AnthroForm: View {
     func loadParticipants(loadedData: [[String]]){//create list of participants and set their properties with the loaded values
         var participantNum: Int = 1
         while participantNum < idNumber{
-            participants.append(Participant(labels: labels, labelsStanding: labelsStanding, labelsSitting: labelsSitting, pNum: participantNum))
+            participants.append(Participant(labels: labels, labelsStanding: labelsStanding, labelsSitting: labelsSitting, participantOffset: participantOffset, pNum: participantNum))
             participantNum += 1
         }
         participants.enumerated().forEach{pIndex, participant in

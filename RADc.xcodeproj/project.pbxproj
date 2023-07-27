@@ -22,6 +22,7 @@
 		01B4A2622A6B095B0063FA27 /* UnitsSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B4A2612A6B095B0063FA27 /* UnitsSelector.swift */; };
 		01B4A2642A6B0A5F0063FA27 /* FontSizeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B4A2632A6B0A5F0063FA27 /* FontSizeSlider.swift */; };
 		01B4A2662A6B0B2D0063FA27 /* FormReset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B4A2652A6B0B2D0063FA27 /* FormReset.swift */; };
+		01F1E9C72A7178E2007509AF /* DynamicID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F1E9C62A7178E2007509AF /* DynamicID.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		01B4A2612A6B095B0063FA27 /* UnitsSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitsSelector.swift; sourceTree = "<group>"; };
 		01B4A2632A6B0A5F0063FA27 /* FontSizeSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontSizeSlider.swift; sourceTree = "<group>"; };
 		01B4A2652A6B0B2D0063FA27 /* FormReset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormReset.swift; sourceTree = "<group>"; };
+		01F1E9C62A7178E2007509AF /* DynamicID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicID.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 				01B4A25F2A6B07480063FA27 /* SaveFile.swift */,
 				01B4A2612A6B095B0063FA27 /* UnitsSelector.swift */,
 				01B4A2632A6B0A5F0063FA27 /* FontSizeSlider.swift */,
+				01F1E9C62A7178E2007509AF /* DynamicID.swift */,
 				01B4A2652A6B0B2D0063FA27 /* FormReset.swift */,
 				019DAD4C2A65B9FC00118D44 /* DataEntryField.swift */,
 				019DAD402A6315B000118D44 /* CSVManager.swift */,
@@ -172,6 +175,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01F1E9C72A7178E2007509AF /* DynamicID.swift in Sources */,
 				01B4A2602A6B07480063FA27 /* SaveFile.swift in Sources */,
 				019DAD472A64A4A700118D44 /* FormConfig.swift in Sources */,
 				019DAD3F2A6314E400118D44 /* AnthroForm.swift in Sources */,
