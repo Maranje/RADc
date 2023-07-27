@@ -22,6 +22,33 @@ struct FormConfig: View{
     var body: some View{
         ScrollView{
             Section(header: Text("New Form Configuration").fontWeight(.thin)) {
+                
+                Divider().padding()
+                
+                HStack{
+                    //"create form" button to create the form and load all the chosen measurement labels into the appropriate string arrays
+                    Button("Create Form"){
+                        
+                        //apply all selected labels and create the form
+                        createForm()
+                        
+                    }.padding().background(.green).foregroundColor(.white).cornerRadius(10)//button visibility properties
+                    
+                    //buttons for toggling all values selected or de-selected
+                    if selectAll{
+                        Button("Deselect All"){
+                            measurements = Array(repeating: false, count: 49)
+                            selectAll = false
+                        }.padding().background(.orange).foregroundColor(.white).cornerRadius(10)//button visibility properties
+                    }
+                    else{
+                        Button("Reselect All"){
+                            measurements = Array(repeating: true, count: 49)
+                            selectAll = true
+                        }.padding().background(.orange).foregroundColor(.white).cornerRadius(10)//button visibility properties
+                    }
+                }
+                
                 //allow user to assign all the desired labels in the form
                 VStack{
                     Toggle("Name", isOn: $measurements[1]).padding(.horizontal)
@@ -82,8 +109,7 @@ struct FormConfig: View{
                     Toggle("Grip (left)", isOn: $measurements[48]).padding(.horizontal)
                 }
                 
-                Divider()
-                    .padding(/*@START_MENU_TOKEN@*/.bottom/*@END_MENU_TOKEN@*/)
+                //redundant button copies at bottom of form
                 HStack{
                     //"create form" button to create the form and load all the chosen measurement labels into the appropriate string arrays
                     Button("Create Form"){
@@ -106,7 +132,10 @@ struct FormConfig: View{
                             selectAll = true
                         }.padding().background(.orange).foregroundColor(.white).cornerRadius(10)//button visibility properties
                     }
-                }
+                }.padding()
+                
+                Divider().padding(/*@START_MENU_TOKEN@*/.bottom/*@END_MENU_TOKEN@*/)
+                
             }
         }.padding()
     }
