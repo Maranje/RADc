@@ -10,6 +10,7 @@ import SwiftUI
 struct FormReset: View{
     
     //MARK: properties
+    @Binding var document: DocumentHandler
     @Binding var units: Bool
     @Binding var newForm: Bool
     @Binding var formLoaded: Bool
@@ -20,6 +21,7 @@ struct FormReset: View{
     @Binding var measurements: [Bool]
     @Binding var idNumber: Int
     @Binding var participantOffset: Int
+    @Binding var autoSave: Bool
     @State var reset: Bool = false
     @Environment(\.colorScheme) var colorScheme
     
@@ -53,6 +55,14 @@ struct FormReset: View{
                         idNumber = 1
                         participantOffset = 0
                         
+                        if autoSave{
+                            //use save manager to save form contents
+                            SaveManager(document: $document,
+                                        labels: $labels,
+                                        labelsStanding: $labelsStanding,
+                                        labelsSitting: $labelsSitting,
+                                        participants: $participants).export()
+                        }
                     },
                     secondaryButton: .cancel()
                 )

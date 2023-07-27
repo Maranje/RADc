@@ -13,14 +13,20 @@ struct DataEntryField: View{
     let label: String
     let labelWidthMultiplier: Double
     let labelColor: Color
+    @Binding var document: DocumentHandler
+    @Binding var labels: [String]
+    @Binding var labelsStanding: [String]
+    @Binding var labelsSitting: [String]
     @Binding var participants: [Participant]
     @Binding var currentParticipant: Participant
     @Binding var fontSize: Double
     @Binding var units: Bool
+    @Binding var autoSave: Bool
     @State var autoCap = false
     @State var foreColor: Color = .white
     @State var setLabelColor: Color = .gray
     let labelHeightMultiplier: Double = 34.0
+    @State var edited: Bool = false
     
     //MARK: boundary values
     //reference list for storing boundary values, [upper bound, lower bound]
@@ -84,15 +90,26 @@ struct DataEntryField: View{
                         participants.enumerated().forEach{index, participant in
                             if participant.pNum == currentParticipant.pNum{
                                 participants[index].properties[label] = newValue
+                                
                             }
                         }
                     }
-                )
+                ), onEditingChanged: {editing in
+                    //use save manager to save form contents
+                    if autoSave{
+                        SaveManager(document: $document,
+                                    labels: $labels,
+                                    labelsStanding: $labelsStanding,
+                                    labelsSitting: $labelsSitting,
+                                    participants: $participants).export()
+                    }
+                }
             )
             .textFieldStyle(.roundedBorder)
             .onAppear(perform: checkName)
             .autocapitalization(autoCap ? .words : .none)
             .disableAutocorrection(true)
+            
             
             Spacer()
             

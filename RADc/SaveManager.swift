@@ -1,13 +1,13 @@
 //
-//  ExportTable.swift
+//  SaveContents.swift
 //  RADc
 //
-//  Created by Frank Maranje on 7/21/23 for STI-TEC, INC.
+//  Created by Frank Maranje on 7/27/23.
 //
 
 import SwiftUI
 
-struct Save: View{
+struct SaveManager{
     
     //MARK: properties
     @Binding var document: DocumentHandler
@@ -15,38 +15,15 @@ struct Save: View{
     @Binding var labelsStanding: [String]
     @Binding var labelsSitting: [String]
     @Binding var participants: [Participant]
-    @Binding var exported: Bool
-    @Environment(\.colorScheme) var colorScheme
-    
-    //MARK: export table option body
-    var body: some View{
-        ZStack(alignment: .topLeading){
-            //button for exporting table
-            Button("Save"){
-                
-                //convert data into csv format and export it as an excel file to device documents
-                document.text = CSVManager(data: prepExport()).convertToCSV()
-                
-                //set exported to true within "withAnimation" to animate appear
-                withAnimation{ exported = true }
-                
-                //run after 0.25 seconds
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                    
-                    //set exported back to false within "withAnimation" to animate disappear
-                    withAnimation{ exported = false}
-                    
-                }
-            }
-            .frame(width: 200, height: 50)
-            
-        }
-        .padding(.all, 20.0)
-        .background(colorScheme == .light ? .white : Color(red: 0.1, green: 0.1, blue: 0.1))
-        .cornerRadius(10)
-    }
     
     //MARK: methods
+    func export(){
+        
+        //convert data into csv format and export it as an excel file to device documents
+        document.text = CSVManager(data: prepExport()).convertToCSV()
+        
+    }
+    
     func prepExport()->[[String]]{//prepare a 2D array of all data for conversion to a .csv file
         
         //2D array for prep and export

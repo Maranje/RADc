@@ -10,6 +10,7 @@ import SwiftUI
 struct Form: View{
     
     //MARK: properties
+    @Binding var document: DocumentHandler
     @Binding var participants: [Participant]
     @Binding var currentParticipant: Participant
     @Binding var measurements: [Bool]
@@ -23,6 +24,7 @@ struct Form: View{
     @Binding var units: Bool
     @Binding var dynamicReassign: Bool
     @Binding var participantOffset: Int
+    @Binding var autoSave: Bool
     @State private var removeBool: Bool = false
     @State private var fieldNum: Int = 1
     
@@ -76,10 +78,16 @@ struct Form: View{
                             DataEntryField(label: label,
                                            labelWidthMultiplier: 8,
                                            labelColor: .gray,
+                                           document: $document,
+                                           labels: $labels,
+                                           labelsStanding: $labelsStanding,
+                                           labelsSitting: $labelsSitting,
                                            participants: $participants,
                                            currentParticipant: $currentParticipant,
                                            fontSize: $fontSize,
-                                           units: $units)
+                                           units: $units,
+                                           autoSave: $autoSave
+                            )
                         }
                     }
                     
@@ -100,10 +108,16 @@ struct Form: View{
                             DataEntryField(label: label,
                                            labelWidthMultiplier: 18,
                                            labelColor: .blue,
+                                           document: $document,
+                                           labels: $labels,
+                                           labelsStanding: $labelsStanding,
+                                           labelsSitting: $labelsSitting,
                                            participants: $participants,
                                            currentParticipant: $currentParticipant,
                                            fontSize: $fontSize,
-                                           units: $units)
+                                           units: $units,
+                                           autoSave: $autoSave
+                            )
                         }
                     }
                     
@@ -124,10 +138,16 @@ struct Form: View{
                             DataEntryField(label: label,
                                            labelWidthMultiplier: 10,
                                            labelColor: .green,
+                                           document: $document,
+                                           labels: $labels,
+                                           labelsStanding: $labelsStanding,
+                                           labelsSitting: $labelsSitting,
                                            participants: $participants,
                                            currentParticipant: $currentParticipant,
                                            fontSize: $fontSize,
-                                           units: $units)
+                                           units: $units,
+                                           autoSave: $autoSave
+                            )
                         }
                     }
                     

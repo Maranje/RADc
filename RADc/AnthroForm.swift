@@ -20,6 +20,7 @@ struct AnthroForm: View {
     @State var newFormBounce: Bool = false
     @State var newEntryBounce: Bool = false
     @State var dynamicReassign: Bool = false
+    @State var autoSave: Bool = true
     @State var fontSize: Double = 12.0
     @State var idNumber: Int = 1
     @State var participantOffset: Int = 0
@@ -40,25 +41,39 @@ struct AnthroForm: View {
             
             //"save" button and table name entry field
             if !participants.isEmpty{
-                Save(document: $document, labels: $labels, labelsStanding: $labelsStanding, labelsSitting: $labelsSitting, participants: $participants, exported: $exported)
+                ManualSave(document: $document,
+                           labels: $labels,
+                           labelsStanding: $labelsStanding,
+                           labelsSitting: $labelsSitting,
+                           participants: $participants,
+                           exported: $exported,
+                           autoSave: $autoSave
+                )
             }
             
             Divider().padding().frame(width: 100)
             
-            //select between metric or imperial
-            UnitsSelector(units: $units)
-            
-            //slider to choose form font size
-            FontSizeSlider(fontSize: $fontSize)
-            
-            //dynamic participant ID toggle
-            DynamicID(dynamicReassign: $dynamicReassign, newForm: $newForm)
-            
+            VStack{
+                
+                //auto save option selector (default on)
+                AutoSave(autoSave: $autoSave)
+                
+                //select between metric or imperial (default metric)
+                UnitsSelector(units: $units)
+                
+                //slider to choose form font size (default 12pt)
+                FontSizeSlider(fontSize: $fontSize)
+                
+                //dynamic participant ID toggle (default off)
+                DynamicID(dynamicReassign: $dynamicReassign, newForm: $newForm)
+                
+            }
             Spacer()
             
             //"form reset" button
             if !newForm{
                 FormReset(
+                    document: $document,
                     units: $units,
                     newForm: $newForm,
                     formLoaded: $formLoaded,
@@ -68,7 +83,8 @@ struct AnthroForm: View {
                     participants: $participants,
                     measurements: $measurements,
                     idNumber: $idNumber,
-                    participantOffset: $participantOffset
+                    participantOffset: $participantOffset,
+                    autoSave: $autoSave
                 )
             }
             
@@ -95,6 +111,14 @@ struct AnthroForm: View {
                                 participants.append(currentParticipant)
                                 idNumber += 1
                                 loadedParticipant = true
+                                if autoSave{
+                                    //use save manager to save form contents
+                                    SaveManager(document: $document,
+                                                labels: $labels,
+                                                labelsStanding: $labelsStanding,
+                                                labelsSitting: $labelsSitting,
+                                                participants: $participants).export()
+                                }
                             }
                             .padding()
                             .background(!newForm ? .blue : .gray)
@@ -134,7 +158,8 @@ struct AnthroForm: View {
                     VStack{
                         if formLoaded{
                             //load form
-                            Form(participants: $participants,
+                            Form(document: $document,
+                                 participants: $participants,
                                  currentParticipant: $currentParticipant,
                                  measurements: $measurements,
                                  newForm: $newForm,
@@ -146,7 +171,8 @@ struct AnthroForm: View {
                                  idNumber: $idNumber,
                                  units: $units,
                                  dynamicReassign: $dynamicReassign,
-                                 participantOffset: $participantOffset
+                                 participantOffset: $participantOffset,
+                                 autoSave: $autoSave
                             ).transition(.move(edge: .bottom).combined(with: .scale).combined(with: .opacity))
                         }
                         else{
