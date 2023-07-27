@@ -2,7 +2,7 @@
 //  SaveContents.swift
 //  RADc
 //
-//  Created by Frank Maranje on 7/27/23.
+//  Created by Frank Maranje on 7/27/23 for STI-TEC, INC.
 //
 
 import SwiftUI
@@ -29,7 +29,7 @@ struct SaveManager{
         //2D array for prep and export
         var exportData: [[String]] = [[]]
         //concatenate three label arrays into one, making all the table labels
-        let allLabels: [String] = labels + labelsStanding + labelsSitting
+        let allLabels: [String] = labels + labelsStanding + labelsSitting + ["Comments"]
         //append labels to first array in 2D array
         exportData.append(allLabels)
         

@@ -2,7 +2,7 @@
 //  Labels.swift
 //  RADc
 //
-//  Created by Frank Maranje on 7/25/23.
+//  Created by Frank Maranje on 7/25/23 for STI-TEC, INC.
 //
 
 import Foundation

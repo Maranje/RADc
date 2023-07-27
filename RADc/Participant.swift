@@ -35,6 +35,8 @@ struct Participant: Identifiable{
             props[name] = ""
         }
         
+        props["Comments"] = ""
+        
         //set properties
         properties = props
         

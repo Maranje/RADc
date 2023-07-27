@@ -151,6 +151,44 @@ struct Form: View{
                         }
                     }
                     
+                    //comments text editor field
+                    Divider().padding()
+                    Text("Comments").foregroundColor(.orange)
+                    HStack{
+                        //generate entry field number
+                        Text("\(1 + labels.count + labelsStanding.count + labelsSitting.count). ").fontWeight(.thin).foregroundColor(.gray)
+                        TextEditor(text: Binding(
+                                get: {
+                                    currentParticipant.properties["Comments"] ?? ""
+                                },
+                                set: {newValue in
+                                    //save to currentParticipant to display values on form
+                                    currentParticipant.properties["Comments"] = newValue
+                                    //save from currentParticipant to corresponding participant in participants array
+                                    participants.enumerated().forEach{index, participant in
+                                        if participant.pNum == currentParticipant.pNum{
+                                            participants[index].properties["Comments"] = newValue
+                                            
+                                        }
+                                    }
+                                }
+                            )
+                        )
+                        .frame(height:100)
+                        .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray.opacity(0.5), lineWidth: 1))
+                        .onChange(of: currentParticipant.properties["Comments"]) {change in
+                            if autoSave{
+                                SaveManager(document: $document,
+                                            labels: $labels,
+                                            labelsStanding: $labelsStanding,
+                                            labelsSitting: $labelsSitting,
+                                            participants: $participants).export()
+                            }
+                        }
+                        
+                        
+                    }.padding(1)
+                    
                     //"remove entry" button: red trash icon + user alert prompt and confirmation
                     Image(systemName: "trash")
                         .padding(.top, 30.0)

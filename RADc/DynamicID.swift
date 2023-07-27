@@ -2,7 +2,7 @@
 //  DynamicID.swift
 //  RADc
 //
-//  Created by Frank Maranje on 7/26/23.
+//  Created by Frank Maranje on 7/26/23 for STI-TEC, INC.
 //
 
 import SwiftUI
