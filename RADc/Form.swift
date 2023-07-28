@@ -94,7 +94,7 @@ struct Form: View{
                     //standing measurements text fields
                     if !labelsStanding.isEmpty{
                         Divider().padding()
-                        Text("Standing Measurements").foregroundColor(.blue)
+                        Text(units ? "Standing Measurements [cm]" : "Standing Measurements [inches]").foregroundColor(.blue)
                     }
                     ForEach(labelsStanding, id: \.self) { label in
                         HStack{
@@ -124,7 +124,7 @@ struct Form: View{
                     //sitting measurements text fields
                     if !labelsSitting.isEmpty{
                         Divider().padding()
-                        Text("Sitting Measurements").foregroundColor(.green)
+                        Text(units ? "Sitting Measurements [cm]" : "Sitting Measurements [inches]").foregroundColor(.green)
                     }
                     ForEach(labelsSitting, id: \.self) { label in
                         HStack{
@@ -184,7 +184,9 @@ struct Form: View{
                                             labels: $labels,
                                             labelsStanding: $labelsStanding,
                                             labelsSitting: $labelsSitting,
-                                            participants: $participants).export()
+                                            participants: $participants,
+                                            units: $units
+                                ).export()
                             }
                         }
                         
@@ -208,6 +210,18 @@ struct Form: View{
                     
                 }.onChange(of: units){unit in
                     changeUnits()
+                    //MARK: auto save point
+                    if autoSave{
+                        //use save manager to save form contents
+                        SaveManager(document: $document,
+                                    labels: $labels,
+                                    labelsStanding: $labelsStanding,
+                                    labelsSitting: $labelsSitting,
+                                    participants: $participants,
+                                    units: $units
+                        ).export()
+                    }
+
                 }
                 
             }
@@ -240,7 +254,9 @@ struct Form: View{
                                 labels: $labels,
                                 labelsStanding: $labelsStanding,
                                 labelsSitting: $labelsSitting,
-                                participants: $participants).export()
+                                participants: $participants,
+                                units: $units
+                    ).export()
                 }
             }
             //if a participant has been removed, the loop continues and shifts

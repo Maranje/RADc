@@ -47,7 +47,8 @@ struct AnthroForm: View {
                            labelsSitting: $labelsSitting,
                            participants: $participants,
                            exported: $exported,
-                           autoSave: $autoSave
+                           autoSave: $autoSave,
+                           units: $units
                 )
             }
             
@@ -59,14 +60,7 @@ struct AnthroForm: View {
                 AutoSave(autoSave: $autoSave)
                 
                 //select between metric or imperial (default metric)
-                UnitsSelector(units: $units,
-                              document: $document,
-                              labels: $labels,
-                              labelsStanding: $labelsStanding,
-                              labelsSitting: $labelsSitting,
-                              participants: $participants,
-                              autoSave: $autoSave
-                )
+                UnitsSelector(units: $units)
                 
                 //slider to choose form font size (default 12pt)
                 FontSizeSlider(fontSize: $fontSize)
@@ -125,7 +119,8 @@ struct AnthroForm: View {
                                                 labels: $labels,
                                                 labelsStanding: $labelsStanding,
                                                 labelsSitting: $labelsSitting,
-                                                participants: $participants
+                                                participants: $participants,
+                                                units: $units
                                     ).export()
                                 }
                             }
@@ -245,11 +240,11 @@ struct AnthroForm: View {
     
     //MARK: methods
     func loadLabels(loadedData: [[String]]){//load labels into their corresponding string arrays
-        
+        //load through all loaded labels
         loadedData[0].enumerated().forEach{index, labelRaw in
-            
+            //reformat strings
             let label = labelRaw.replacingOccurrences(of: "\"", with: "")
-            
+            //append each label to its proper array
             if Labels().checkLabels(label: label) == true{
                 labels.append(label)
             }
@@ -259,19 +254,51 @@ struct AnthroForm: View {
             else if Labels().checkLabelsSitting(label: label) == true{
                 labelsSitting.append(label)
             }
-            
+        }
+        
+        //remove unit classifiers from each measurement label after export
+        labelsStanding.enumerated().forEach{index, label in
+            if let rangeToRemove = labelsStanding[index].range(of: " [cm]"){
+                labelsStanding[index].removeSubrange(rangeToRemove)
+                
+                //load unit type
+                units = true
+                
+            }
+            if let rangeToRemove = labelsStanding[index].range(of: " [inches]"){
+                labelsStanding[index].removeSubrange(rangeToRemove)
+                
+                //load unit type
+                units = false
+                
+            }
+        }
+        labelsSitting.enumerated().forEach{index, label in
+            if let rangeToRemove = labelsSitting[index].range(of: " [cm]"){
+                labelsSitting[index].removeSubrange(rangeToRemove)
+            }
+            if let rangeToRemove = labelsSitting[index].range(of: " [inches]"){
+                labelsSitting[index].removeSubrange(rangeToRemove)
+            }
         }
     }
     
     func loadParticipants(loadedData: [[String]]){//create list of participants and set their properties with the loaded values
         var participantNum: Int = 1
+        
+        //generate blank participants
         while participantNum < idNumber{
             participants.append(Participant(labels: labels, labelsStanding: labelsStanding, labelsSitting: labelsSitting, participantOffset: participantOffset, pNum: participantNum))
             participantNum += 1
         }
+        
+        //make an array from formatted, loaded, and allocated labels
+        let cleanLabels: [String] = labels + labelsStanding + labelsSitting + ["Comments"]
+        
+        //load data into participant properties
         participants.enumerated().forEach{pIndex, participant in
             loadedData[participant.pNum].enumerated().forEach{dIndex, data in
-                participants[pIndex].properties[loadedData[0][dIndex].replacingOccurrences(of: "\"", with: "")] = data.replacingOccurrences(of: "\"", with: "")
+                participants[pIndex].properties[cleanLabels[dIndex].replacingOccurrences(of: "\"", with: "")] = data.replacingOccurrences(of: "\"", with: "")
             }
         }
     }

@@ -94,29 +94,34 @@ struct DataEntryField: View{
                             }
                         }
                     }
-                ), onEditingChanged: {editing in
-                    //MARK: auto save point
-                    if autoSave{
-                        //use save manager to save form contents
-                        SaveManager(document: $document,
-                                    labels: $labels,
-                                    labelsStanding: $labelsStanding,
-                                    labelsSitting: $labelsSitting,
-                                    participants: $participants).export()
-                    }
-                }
+                )
             )
             .textFieldStyle(.roundedBorder)
             .onAppear(perform: checkName)
             .autocapitalization(autoCap ? .words : .none)
             .disableAutocorrection(true)
+            .onChange(of: currentParticipant.properties[label]){change in
+                //MARK: auto save point
+                if autoSave{
+                    //use save manager to save form contents
+                    SaveManager(document: $document,
+                                labels: $labels,
+                                labelsStanding: $labelsStanding,
+                                labelsSitting: $labelsSitting,
+                                participants: $participants,
+                                units: $units
+                    ).export()
+                }
+
+            }
             
             
             Spacer()
             
             //text field label, appears after data has been entered
             if !(currentParticipant.properties[label]?.isEmpty ?? true) {
-                Text(label)
+                let measurement: Bool = labelsStanding.contains(label) || labelsSitting.contains(label)
+                Text(measurement ? (units ? label + " [cm]" : label + " [inches]") : label)
                     .frame(width: fontSize * labelWidthMultiplier, height: labelHeightMultiplier)
                     .font(.system(size: fontSize * 0.8))
                     .foregroundColor(foreColor)

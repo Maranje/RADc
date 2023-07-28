@@ -17,6 +17,7 @@ struct ManualSave: View{
     @Binding var participants: [Participant]
     @Binding var exported: Bool
     @Binding var autoSave: Bool
+    @Binding var units: Bool
     @Environment(\.colorScheme) var colorScheme
     
     //MARK: export table option body
@@ -30,7 +31,9 @@ struct ManualSave: View{
                             labels: $labels,
                             labelsStanding: $labelsStanding,
                             labelsSitting: $labelsSitting,
-                            participants: $participants).export()
+                            participants: $participants,
+                            units: $units
+                ).export()
                 
                 //set exported to true within "withAnimation" to animate appear
                 withAnimation{ exported = true }

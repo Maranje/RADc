@@ -61,7 +61,9 @@ struct FormReset: View{
                                         labels: $labels,
                                         labelsStanding: $labelsStanding,
                                         labelsSitting: $labelsSitting,
-                                        participants: $participants).export()
+                                        participants: $participants,
+                                        units: $units
+                            ).export()
                         }
                     },
                     secondaryButton: .cancel()
