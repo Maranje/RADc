@@ -54,7 +54,7 @@ struct FormReset: View{
                         reset = false
                         idNumber = 1
                         participantOffset = 0
-                        
+                        //MARK: auto save point
                         if autoSave{
                             //use save manager to save form contents
                             SaveManager(document: $document,

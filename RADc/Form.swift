@@ -177,7 +177,9 @@ struct Form: View{
                         .frame(height:100)
                         .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray.opacity(0.5), lineWidth: 1))
                         .onChange(of: currentParticipant.properties["Comments"]) {change in
+                            //MARK: auto save point
                             if autoSave{
+                                //use save manager to save form contents
                                 SaveManager(document: $document,
                                             labels: $labels,
                                             labelsStanding: $labelsStanding,
@@ -231,6 +233,15 @@ struct Form: View{
                 //set bools
                 loadedParticipant = false
                 removed = true
+                //MARK: auto save point
+                if autoSave{
+                    //use save manager to save form contents
+                    SaveManager(document: $document,
+                                labels: $labels,
+                                labelsStanding: $labelsStanding,
+                                labelsSitting: $labelsSitting,
+                                participants: $participants).export()
+                }
             }
             //if a participant has been removed, the loop continues and shifts
             //all subsequent participant pNum values down to fill the new vacancy

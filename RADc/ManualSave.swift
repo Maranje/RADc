@@ -44,7 +44,6 @@ struct ManualSave: View{
                 }
             }
             .frame(width: 200, height: 50)
-            .disabled(autoSave)
             
         }
         .padding(.all, 20.0)

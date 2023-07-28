@@ -59,7 +59,14 @@ struct AnthroForm: View {
                 AutoSave(autoSave: $autoSave)
                 
                 //select between metric or imperial (default metric)
-                UnitsSelector(units: $units)
+                UnitsSelector(units: $units,
+                              document: $document,
+                              labels: $labels,
+                              labelsStanding: $labelsStanding,
+                              labelsSitting: $labelsSitting,
+                              participants: $participants,
+                              autoSave: $autoSave
+                )
                 
                 //slider to choose form font size (default 12pt)
                 FontSizeSlider(fontSize: $fontSize)
@@ -111,13 +118,15 @@ struct AnthroForm: View {
                                 participants.append(currentParticipant)
                                 idNumber += 1
                                 loadedParticipant = true
+                                //MARK: auto save point
                                 if autoSave{
                                     //use save manager to save form contents
                                     SaveManager(document: $document,
                                                 labels: $labels,
                                                 labelsStanding: $labelsStanding,
                                                 labelsSitting: $labelsSitting,
-                                                participants: $participants).export()
+                                                participants: $participants
+                                    ).export()
                                 }
                             }
                             .padding()
