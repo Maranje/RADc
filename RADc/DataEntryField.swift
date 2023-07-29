@@ -61,7 +61,7 @@ struct DataEntryField: View{
         "Bideltoid Breadth" : [25.4, 14.12],
         "Biacromial Breadth" : [30, 10],
         "Hip Breadth (sitting)" : [21.06, 9.75],
-        "Abdomianl Depth" : [14.1, 4.51],
+        "Abdominal Depth" : [14.1, 4.51],
         "Buttock-Knee Length" : [31.1, 16.9],
         "Finger Tip (right)" : [20, 3],
         "Finger Tip (left)" : [20, 3],

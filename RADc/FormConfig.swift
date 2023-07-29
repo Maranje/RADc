@@ -95,7 +95,7 @@ struct FormConfig: View{
                     Toggle("Bideltoid Breadth", isOn: $measurements[36]).padding(.horizontal)
                     Toggle("Biacromial Breadth", isOn: $measurements[37]).padding(.horizontal)
                     Toggle("Hip Breadth (sitting)", isOn: $measurements[38]).padding(.horizontal)
-                    Toggle("Abdomianl Depth", isOn: $measurements[39]).padding(.horizontal)
+                    Toggle("Abdominal Depth", isOn: $measurements[39]).padding(.horizontal)
                     Toggle("Buttock-Knee Length", isOn: $measurements[40]).padding(.horizontal)
                 }
                 VStack{
@@ -180,7 +180,7 @@ struct FormConfig: View{
         if(measurements[36]){labelsSitting.append("Bideltoid Breadth")}
         if(measurements[37]){labelsSitting.append("Biacromial Breadth")}
         if(measurements[38]){labelsSitting.append("Hip Breadth (sitting)")}
-        if(measurements[39]){labelsSitting.append("Abdomianl Depth")}
+        if(measurements[39]){labelsSitting.append("Abdominal Depth")}
         if(measurements[40]){labelsSitting.append("Buttock-Knee Length")}
         if(measurements[41]){labelsSitting.append("Finger Tip (right)")}
         if(measurements[42]){labelsSitting.append("Finger Tip (left)")}

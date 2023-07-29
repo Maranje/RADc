@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0109B93B2A743992008A7C4A /* DragDropTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0109B93A2A743992008A7C4A /* DragDropTest.swift */; };
 		0120E3CF2A704197007E83E5 /* DocumentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0120E3CE2A704197007E83E5 /* DocumentHandler.swift */; };
 		0120E3D62A70AAD3007E83E5 /* Labels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0120E3D52A70AAD3007E83E5 /* Labels.swift */; };
 		016C7CB52A72A27B005CC31E /* AutoSave.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016C7CB42A72A27B005CC31E /* AutoSave.swift */; };
@@ -28,6 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0109B93A2A743992008A7C4A /* DragDropTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragDropTest.swift; sourceTree = "<group>"; };
 		0120E3CE2A704197007E83E5 /* DocumentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentHandler.swift; sourceTree = "<group>"; };
 		0120E3D22A704B0C007E83E5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0120E3D52A70AAD3007E83E5 /* Labels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Labels.swift; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 				0120E3D52A70AAD3007E83E5 /* Labels.swift */,
 				019DAD302A61E41800118D44 /* Assets.xcassets */,
 				019DAD322A61E41800118D44 /* Preview Content */,
+				0109B93A2A743992008A7C4A /* DragDropTest.swift */,
 			);
 			path = RADc;
 			sourceTree = "<group>";
@@ -191,6 +194,7 @@
 				0120E3CF2A704197007E83E5 /* DocumentHandler.swift in Sources */,
 				019DAD492A64AAC900118D44 /* Participant.swift in Sources */,
 				019DAD2D2A61E41700118D44 /* RADcApp.swift in Sources */,
+				0109B93B2A743992008A7C4A /* DragDropTest.swift in Sources */,
 				016C7CB72A72A838005CC31E /* SaveManager.swift in Sources */,
 				016C7CB52A72A27B005CC31E /* AutoSave.swift in Sources */,
 				01B4A2642A6B0A5F0063FA27 /* FontSizeSlider.swift in Sources */,
