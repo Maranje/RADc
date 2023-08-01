@@ -21,8 +21,8 @@ struct AnthroForm: View {
     @State var newEntryBounce: Bool = false
     @State var dynamicReassign: Bool = false
     @State var autoSave: Bool = true
-    @State var reorder: Bool = false
-    @State var fontSize: Double = 12.0
+    @State var reorder: Bool = true
+    @State var fontSize: Double = 14.0
     @State var idNumber: Int = 1
     @State var participantOffset: Int = 0
     @State var labels: [String] = ["Participant ID"]
