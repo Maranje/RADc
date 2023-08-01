@@ -13,5 +13,8 @@ struct RADcApp: App {
         DocumentGroup(newDocument: DocumentHandler()) { file in
             AnthroForm(document: file.$document)
         }
+//        WindowGroup{
+//            DragDropTest()
+//        }
     }
 }

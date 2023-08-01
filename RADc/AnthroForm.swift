@@ -21,6 +21,7 @@ struct AnthroForm: View {
     @State var newEntryBounce: Bool = false
     @State var dynamicReassign: Bool = false
     @State var autoSave: Bool = true
+    @State var reorder: Bool = false
     @State var fontSize: Double = 12.0
     @State var idNumber: Int = 1
     @State var participantOffset: Int = 0
@@ -39,6 +40,7 @@ struct AnthroForm: View {
             //options bar title
             Text("Options").fontWeight(.thin).padding()
             
+            
             //"save" button and table name entry field
             if !participants.isEmpty{
                 ManualSave(document: $document,
@@ -52,43 +54,49 @@ struct AnthroForm: View {
                 )
             }
             
-            Divider().padding().frame(width: 100)
-            
-            VStack{
+            ScrollView{
                 
-                //auto save option selector (default on)
-                AutoSave(autoSave: $autoSave)
+                Divider().padding().frame(width: 100)
                 
-                //select between metric or imperial (default metric)
-                UnitsSelector(units: $units)
+                VStack{
+                    
+                    //auto save option selector (default on)
+                    AutoSave(autoSave: $autoSave)
+                    
+                    //select between metric or imperial (default metric)
+                    UnitsSelector(units: $units)
+                    
+                    //slider to choose form font size (default 12pt)
+                    FontSizeSlider(fontSize: $fontSize)
+                    
+                    //toggle option to reorganize data entry fields
+                    Reorganizer(reorder: $reorder)
+                    
+                    //dynamic participant ID toggle (default off)
+                    DynamicID(dynamicReassign: $dynamicReassign, newForm: $newForm)
+                    
+                }
+                Spacer()
                 
-                //slider to choose form font size (default 12pt)
-                FontSizeSlider(fontSize: $fontSize)
-                
-                //dynamic participant ID toggle (default off)
-                DynamicID(dynamicReassign: $dynamicReassign, newForm: $newForm)
-                
+                //"form reset" button
+                if !newForm{
+                    FormReset(
+                        document: $document,
+                        units: $units,
+                        newForm: $newForm,
+                        formLoaded: $formLoaded,
+                        labels: $labels,
+                        labelsStanding: $labelsStanding,
+                        labelsSitting: $labelsSitting,
+                        participants: $participants,
+                        measurements: $measurements,
+                        idNumber: $idNumber,
+                        participantOffset: $participantOffset,
+                        autoSave: $autoSave
+                    )
+                    .padding(.top, 5)
+                }
             }
-            Spacer()
-            
-            //"form reset" button
-            if !newForm{
-                FormReset(
-                    document: $document,
-                    units: $units,
-                    newForm: $newForm,
-                    formLoaded: $formLoaded,
-                    labels: $labels,
-                    labelsStanding: $labelsStanding,
-                    labelsSitting: $labelsSitting,
-                    participants: $participants,
-                    measurements: $measurements,
-                    idNumber: $idNumber,
-                    participantOffset: $participantOffset,
-                    autoSave: $autoSave
-                )
-            }
-            
             Divider().padding()
             
             //company name subtext
@@ -130,6 +138,7 @@ struct AnthroForm: View {
                             .cornerRadius(10)
                             .disabled(newForm)
                             .scaleEffect(newEntryBounce ? 1.2 : 1.0)
+                            .shadow(radius: (newEntryBounce ? 10 : 0))
                             .onChange(of: newForm, perform: {change in
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                                     withAnimation{ newEntryBounce = true }
@@ -150,11 +159,15 @@ struct AnthroForm: View {
                                     loadedParticipant = true
                                 }
                                 
-                            }.frame(width:200).cornerRadius(10)
-                        }.padding([.leading, .bottom, .trailing])
+                            }
+                            .frame(width:200)
+                            .cornerRadius(10)
+                        }
+                        .padding([.leading, .bottom, .trailing])
                     }
                     .background(colorScheme == .light ? Color(red: 0.949, green: 0.949, blue: 0.971) : Color(red: 0.1, green: 0.1, blue: 0.1))
                     .cornerRadius(10)
+                    .shadow(radius: 10)
                     
                     Spacer()
                     
@@ -176,7 +189,8 @@ struct AnthroForm: View {
                                  units: $units,
                                  dynamicReassign: $dynamicReassign,
                                  participantOffset: $participantOffset,
-                                 autoSave: $autoSave
+                                 autoSave: $autoSave,
+                                 reorder: $reorder
                             ).transition(.move(edge: .bottom).combined(with: .scale).combined(with: .opacity))
                         }
                         else{
@@ -189,6 +203,7 @@ struct AnthroForm: View {
                             .frame(width: 200, height: 100)
                             .font(.system(size: fontSize * 1.5))
                             .scaleEffect(newFormBounce ? 1.5 : 1.0)
+                            .shadow(radius: (newFormBounce ? 10 : 0))
                             .onAppear(){
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
                                     withAnimation{ newFormBounce = true }

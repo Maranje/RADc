@@ -7,11 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0109B93B2A743992008A7C4A /* DragDropTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0109B93A2A743992008A7C4A /* DragDropTest.swift */; };
+		0109B93B2A743992008A7C4A /* DragDrop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0109B93A2A743992008A7C4A /* DragDrop.swift */; };
 		0120E3CF2A704197007E83E5 /* DocumentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0120E3CE2A704197007E83E5 /* DocumentHandler.swift */; };
 		0120E3D62A70AAD3007E83E5 /* Labels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0120E3D52A70AAD3007E83E5 /* Labels.swift */; };
 		016C7CB52A72A27B005CC31E /* AutoSave.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016C7CB42A72A27B005CC31E /* AutoSave.swift */; };
 		016C7CB72A72A838005CC31E /* SaveManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016C7CB62A72A838005CC31E /* SaveManager.swift */; };
+		018E2B6F2A7888CA0047B828 /* Reorganize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018E2B6E2A7888CA0047B828 /* Reorganize.swift */; };
 		019DAD2D2A61E41700118D44 /* RADcApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019DAD2C2A61E41700118D44 /* RADcApp.swift */; };
 		019DAD312A61E41800118D44 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 019DAD302A61E41800118D44 /* Assets.xcassets */; };
 		019DAD342A61E41800118D44 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 019DAD332A61E41800118D44 /* Preview Assets.xcassets */; };
@@ -29,12 +30,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0109B93A2A743992008A7C4A /* DragDropTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragDropTest.swift; sourceTree = "<group>"; };
+		0109B93A2A743992008A7C4A /* DragDrop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragDrop.swift; sourceTree = "<group>"; };
 		0120E3CE2A704197007E83E5 /* DocumentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentHandler.swift; sourceTree = "<group>"; };
 		0120E3D22A704B0C007E83E5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0120E3D52A70AAD3007E83E5 /* Labels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Labels.swift; sourceTree = "<group>"; };
 		016C7CB42A72A27B005CC31E /* AutoSave.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoSave.swift; sourceTree = "<group>"; };
 		016C7CB62A72A838005CC31E /* SaveManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveManager.swift; sourceTree = "<group>"; };
+		018E2B6E2A7888CA0047B828 /* Reorganize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reorganize.swift; sourceTree = "<group>"; };
 		019DAD292A61E41700118D44 /* RADc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RADc.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		019DAD2C2A61E41700118D44 /* RADcApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RADcApp.swift; sourceTree = "<group>"; };
 		019DAD302A61E41800118D44 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 				019DAD2C2A61E41700118D44 /* RADcApp.swift */,
 				019DAD3E2A6314E400118D44 /* AnthroForm.swift */,
 				019DAD422A63780600118D44 /* Form.swift */,
+				0109B93A2A743992008A7C4A /* DragDrop.swift */,
 				019DAD462A64A4A700118D44 /* FormConfig.swift */,
 				019DAD482A64AAC900118D44 /* Participant.swift */,
 				01B4A25F2A6B07480063FA27 /* ManualSave.swift */,
@@ -93,6 +96,7 @@
 				016C7CB62A72A838005CC31E /* SaveManager.swift */,
 				01B4A2612A6B095B0063FA27 /* UnitsSelector.swift */,
 				01B4A2632A6B0A5F0063FA27 /* FontSizeSlider.swift */,
+				018E2B6E2A7888CA0047B828 /* Reorganize.swift */,
 				01F1E9C62A7178E2007509AF /* DynamicID.swift */,
 				01B4A2652A6B0B2D0063FA27 /* FormReset.swift */,
 				019DAD4C2A65B9FC00118D44 /* DataEntryField.swift */,
@@ -101,7 +105,6 @@
 				0120E3D52A70AAD3007E83E5 /* Labels.swift */,
 				019DAD302A61E41800118D44 /* Assets.xcassets */,
 				019DAD322A61E41800118D44 /* Preview Content */,
-				0109B93A2A743992008A7C4A /* DragDropTest.swift */,
 			);
 			path = RADc;
 			sourceTree = "<group>";
@@ -189,12 +192,13 @@
 				019DAD472A64A4A700118D44 /* FormConfig.swift in Sources */,
 				019DAD3F2A6314E400118D44 /* AnthroForm.swift in Sources */,
 				01B4A2662A6B0B2D0063FA27 /* FormReset.swift in Sources */,
+				018E2B6F2A7888CA0047B828 /* Reorganize.swift in Sources */,
 				019DAD412A6315B000118D44 /* CSVManager.swift in Sources */,
 				0120E3D62A70AAD3007E83E5 /* Labels.swift in Sources */,
 				0120E3CF2A704197007E83E5 /* DocumentHandler.swift in Sources */,
 				019DAD492A64AAC900118D44 /* Participant.swift in Sources */,
 				019DAD2D2A61E41700118D44 /* RADcApp.swift in Sources */,
-				0109B93B2A743992008A7C4A /* DragDropTest.swift in Sources */,
+				0109B93B2A743992008A7C4A /* DragDrop.swift in Sources */,
 				016C7CB72A72A838005CC31E /* SaveManager.swift in Sources */,
 				016C7CB52A72A27B005CC31E /* AutoSave.swift in Sources */,
 				01B4A2642A6B0A5F0063FA27 /* FontSizeSlider.swift in Sources */,
@@ -329,7 +333,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"RADc/Preview Content\"";
-				DEVELOPMENT_TEAM = MUDZX3K6R6;
+				DEVELOPMENT_TEAM = 882K27AHSC;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RADc/Info.plist;
@@ -366,7 +370,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"RADc/Preview Content\"";
-				DEVELOPMENT_TEAM = MUDZX3K6R6;
+				DEVELOPMENT_TEAM = 882K27AHSC;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RADc/Info.plist;
