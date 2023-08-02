@@ -29,7 +29,7 @@ struct DragDrop: View {
                 HStack{
                     Spacer().overlay(content: {
                         if scrollHintDisplay{ Image(systemName: "hand.tap")
-                            .offset(x: 0, y: (scrollHintOffset ? -500.0 : -100.0))
+                            .offset(x: 0, y: (scrollHintOffset ? -400.0 : -200.0))
                             .font(.title) }
                     })
                     VStack {
@@ -45,7 +45,7 @@ struct DragDrop: View {
                     .cornerRadius(10)
                     Spacer().overlay(content: {
                         if scrollHintDisplay{ Image(systemName: "hand.tap")
-                            .offset(x: 0, y: (scrollHintOffset ? -500.0 : -100.0))
+                            .offset(x: 0, y: (scrollHintOffset ? -400.0 : -200.0))
                             .font(.title) }
                     })
                 }
@@ -104,6 +104,7 @@ struct DraggableTextField: View {
                     .onChanged { value in
                         switch value {
                         case .first(true):
+                            //check if extended long press gesture logic can be changed here
                             break
                         case .second(true, let dragValue):
                             translation = dragValue?.translation ?? .zero
