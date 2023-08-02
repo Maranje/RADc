@@ -172,7 +172,7 @@ struct AnthroForm: View {
                     
                     Spacer()
                     
-                    //Form side
+                    //MARK: Form
                     VStack{
                         if formLoaded{
                             //load form
