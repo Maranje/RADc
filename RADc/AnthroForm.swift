@@ -205,7 +205,6 @@ struct AnthroForm: View {
                             .frame(width: 200, height: 100)
                             .font(.system(size: fontSize * 1.5))
                             .scaleEffect(newFormBounce ? 1.5 : 1.0)
-                            .shadow(radius: (newFormBounce ? 10 : 0))
                             .onAppear(){
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
                                     withAnimation{ newFormBounce = true }
