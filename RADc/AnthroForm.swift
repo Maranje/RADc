@@ -159,7 +159,7 @@ struct AnthroForm: View {
                                 Button("ID: \(participant.properties["Participant ID"] ?? "")\n\(participant.properties["Name"] ?? "")"){
                                     currentParticipant = participants[participant.pNum - 1] //load selected participant from list
                                     loadedParticipant = true
-                                }
+                                }.fontWeight((currentParticipant.pNum == participant.pNum) ? .bold : .light)
                                 
                             }
                             .frame(width:200)
