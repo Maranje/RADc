@@ -104,7 +104,10 @@ struct Form: View{
                             
                             //generate entry field number
                             if let index = labels.firstIndex(of: label){
-                                Text("\(index + 1). ").fontWeight(.thin).foregroundColor(.gray)
+                                Text("\(index + 1). ")
+                                    .fontWeight(.thin)
+                                    .foregroundColor(.gray)
+                                    .frame(width:30)
                             }
                             
                             //generate entry field
@@ -160,12 +163,15 @@ struct Form: View{
                             
                             //generate entry field number
                             if let index = labelsStanding.firstIndex(of: label){
-                                Text("\(index + 1 + labels.count). ").fontWeight(.thin).foregroundColor(.gray)
+                                Text("\(index + 1 + labels.count). ")
+                                    .fontWeight(.thin)
+                                    .foregroundColor(.gray)
+                                    .frame(width:30)
                             }
                             
                             //generate entry field
                             DataEntryField(label: label,
-                                           labelWidthMultiplier: 18,
+                                           labelWidthMultiplier: 20,
                                            labelColor: .blue,
                                            document: $document,
                                            labels: $labels,
@@ -215,12 +221,15 @@ struct Form: View{
                             
                             //generate entry field number
                             if let index = labelsSitting.firstIndex(of: label){
-                                Text("\(index + 1 + labels.count + labelsStanding.count). ").fontWeight(.thin).foregroundColor(.gray)
+                                Text("\(index + 1 + labels.count + labelsStanding.count). ")
+                                    .fontWeight(.thin)
+                                    .foregroundColor(.gray)
+                                    .frame(width:30)
                             }
                             
                             //generate entry field
                             DataEntryField(label: label,
-                                           labelWidthMultiplier: 10,
+                                           labelWidthMultiplier: 13,
                                            labelColor: .green,
                                            document: $document,
                                            labels: $labels,

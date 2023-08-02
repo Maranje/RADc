@@ -28,6 +28,12 @@ struct DataEntryField: View{
     let labelHeightMultiplier: Double = 34.0
     @State var edited: Bool = false
     
+    let pickerInputs: [String] = [
+        "Gender",
+        "Ethnicity",
+        "Race"
+    ]
+    
     //MARK: boundary values
     //reference list for storing boundary values, [upper bound, lower bound]
     //(to do: refine these values to 2 std. dev. from their respective means)
@@ -77,46 +83,151 @@ struct DataEntryField: View{
     var body: some View{
         //procedurally generated text entry fields
         HStack{
-            //text field for data entry
-            TextField(label, text:
-                Binding(
-                    get: {
-                        currentParticipant.properties[label] ?? ""
-                    },
-                    set: {newValue in
-                        //save to currentParticipant to display values on form
-                        currentParticipant.properties[label] = newValue
-                        //save from currentParticipant to corresponding participant in participants array
-                        participants.enumerated().forEach{index, participant in
-                            if participant.pNum == currentParticipant.pNum{
-                                participants[index].properties[label] = newValue
-                                
+            // pickers for gender, ethnicity, and race
+            // conditioned to false until get more info
+            if false && pickerInputs.contains(label){
+                switch label{
+                case "Gender":
+                    HStack{
+                        Spacer()
+                        Picker("Gender", selection: Binding(
+                            get: {
+                                currentParticipant.properties[label] ?? ""
+                            },
+                            set: {newValue in
+                                //save to currentParticipant to display values on form
+                                currentParticipant.properties[label] = newValue
+                                //save from currentParticipant to corresponding participant in participants array
+                                participants.enumerated().forEach{index, participant in
+                                    if participant.pNum == currentParticipant.pNum{
+                                        participants[index].properties[label] = newValue
+                                        
+                                    }
+                                }
                             }
+                        )
+                        ){
+                            Text("Gender").tag("")
+                            Text("Male").tag("Male")
+                            Text("Female").tag("Female")
+                            Text("Transgender").tag("Transgender")
+                            Text("Non-Binary").tag("Non-Binary")
+                            Text("Undisclosed").tag("Undisclosed")
                         }
+                        
+                        Spacer()
                     }
-                )
-            )
-            .textFieldStyle(.roundedBorder)
-            .onAppear(perform: checkName)
-            .autocapitalization(autoCap ? .words : .none)
-            .disableAutocorrection(true)
-            .onChange(of: currentParticipant.properties[label]){change in
-                //MARK: auto save point
-                if autoSave{
-                    //use save manager to save form contents
-                    SaveManager(document: $document,
-                                labels: $labels,
-                                labelsStanding: $labelsStanding,
-                                labelsSitting: $labelsSitting,
-                                participants: $participants,
-                                units: $units
-                    ).export()
+                    .padding(.horizontal)
+                    .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.gray.opacity(0.5), lineWidth: 1))
+                case "Ethnicity":
+                    HStack{
+                        Spacer()
+                        Picker("Ethnicity", selection: Binding(
+                            get: {
+                                currentParticipant.properties[label] ?? ""
+                            },
+                            set: {newValue in
+                                //save to currentParticipant to display values on form
+                                currentParticipant.properties[label] = newValue
+                                //save from currentParticipant to corresponding participant in participants array
+                                participants.enumerated().forEach{index, participant in
+                                    if participant.pNum == currentParticipant.pNum{
+                                        participants[index].properties[label] = newValue
+                                        
+                                    }
+                                }
+                            }
+                        )
+                        ){
+                            Text("Ethnicity").tag("")
+                            Text("Male").tag("Male")
+                            Text("Female").tag("Female")
+                            Text("Transgender").tag("Transgender")
+                            Text("Non-Binary").tag("Non-Binary")
+                            Text("Undisclosed").tag("Undisclosed")
+                        }
+                        
+                        Spacer()
+                    }
+                    .padding(.horizontal)
+                    .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.gray.opacity(0.5), lineWidth: 1))
+                case "Race":
+                    HStack{
+                        Spacer()
+                        Picker("Race", selection: Binding(
+                            get: {
+                                currentParticipant.properties[label] ?? ""
+                            },
+                            set: {newValue in
+                                //save to currentParticipant to display values on form
+                                currentParticipant.properties[label] = newValue
+                                //save from currentParticipant to corresponding participant in participants array
+                                participants.enumerated().forEach{index, participant in
+                                    if participant.pNum == currentParticipant.pNum{
+                                        participants[index].properties[label] = newValue
+                                        
+                                    }
+                                }
+                            }
+                        )
+                        ){
+                            Text("Race").tag("")
+                            Text("Male").tag("Male")
+                            Text("Female").tag("Female")
+                            Text("Transgender").tag("Transgender")
+                            Text("Non-Binary").tag("Non-Binary")
+                            Text("Undisclosed").tag("Undisclosed")
+                        }
+                        
+                        Spacer()
+                    }
+                    .padding(.horizontal)
+                    .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.gray.opacity(0.5), lineWidth: 1))
+                default:
+                    Text("Error generating picker")
                 }
-
+            }
+            else{
+                //text field for data entry
+                TextField(label, text:
+                            Binding(
+                                get: {
+                                    currentParticipant.properties[label] ?? ""
+                                },
+                                set: {newValue in
+                                    //save to currentParticipant to display values on form
+                                    currentParticipant.properties[label] = newValue
+                                    //save from currentParticipant to corresponding participant in participants array
+                                    participants.enumerated().forEach{index, participant in
+                                        if participant.pNum == currentParticipant.pNum{
+                                            participants[index].properties[label] = newValue
+                                            
+                                        }
+                                    }
+                                }
+                            )
+                )
+                .textFieldStyle(.roundedBorder)
+                .onAppear(perform: checkName)
+                .autocapitalization(autoCap ? .words : .none)
+                .disableAutocorrection(true)
+                .onChange(of: currentParticipant.properties[label]){change in
+                    //MARK: auto save point
+                    if autoSave{
+                        //use save manager to save form contents
+                        SaveManager(document: $document,
+                                    labels: $labels,
+                                    labelsStanding: $labelsStanding,
+                                    labelsSitting: $labelsSitting,
+                                    participants: $participants,
+                                    units: $units
+                        ).export()
+                    }
+                    
+                }
             }
             
-            
-            Spacer()
+            //Spacer()
             
             //text field label, appears after data has been entered
             if !(currentParticipant.properties[label]?.isEmpty ?? true) {
