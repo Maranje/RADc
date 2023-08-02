@@ -137,14 +137,16 @@ struct AnthroForm: View {
                             .foregroundColor(.white)
                             .cornerRadius(10)
                             .disabled(newForm)
-                            .scaleEffect(newEntryBounce ? 1.2 : 1.0)
+                            .scaleEffect(newEntryBounce ? 1.4 : 1.0)
                             .shadow(radius: (newEntryBounce ? 10 : 0))
                             .onChange(of: newForm, perform: {change in
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                                    withAnimation{ newEntryBounce = true }
-                                }
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
-                                    withAnimation{ newEntryBounce = false }
+                                if !change{
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                        withAnimation{ newEntryBounce = true }
+                                    }
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
+                                        withAnimation{ newEntryBounce = false }
+                                    }
                                 }
                             })
                             
@@ -222,7 +224,7 @@ struct AnthroForm: View {
                 }
                 .padding()
                 .font(.system(size: fontSize))
-                .navigationTitle("Anthropometry Form")
+                .navigationTitle(document.fileName.contains("Untitled") ? "Untitled Anthropometry Form" : "\(document.fileName)")
                 .navigationBarTitleDisplayMode(.inline)
                 .navigationBarBackButtonHidden(true)
                 
