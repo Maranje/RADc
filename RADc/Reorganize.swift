@@ -19,7 +19,7 @@ struct Reorganizer: View{
         ZStack(alignment: .topLeading){
             
             //toggle between metric and imperial units with a stlyed picker
-            Picker("units", selection: $reorder){
+            Picker("reorder", selection: $reorder){
                 Text("off").tag(false)
                 Text("on").tag(true)
             }

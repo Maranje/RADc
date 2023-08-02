@@ -106,7 +106,7 @@ struct AnthroForm: View {
             ZStack{
                 HStack{
                     
-                    //submitted participants list
+                    //MARK: submitted participants list
                     VStack{
                         
                         //title
@@ -159,8 +159,7 @@ struct AnthroForm: View {
                                 Button("ID: \(participant.properties["Participant ID"] ?? "")\n\(participant.properties["Name"] ?? "")"){
                                     currentParticipant = participants[participant.pNum - 1] //load selected participant from list
                                     loadedParticipant = true
-                                }
-                                
+                                }.fontWeight(currentParticipant.pNum == participant.pNum ? .bold : .light)
                             }
                             .frame(width:200)
                             .cornerRadius(10)
@@ -205,7 +204,6 @@ struct AnthroForm: View {
                             .frame(width: 200, height: 100)
                             .font(.system(size: fontSize * 1.5))
                             .scaleEffect(newFormBounce ? 1.5 : 1.0)
-                            .shadow(radius: (newFormBounce ? 10 : 0))
                             .onAppear(){
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
                                     withAnimation{ newFormBounce = true }

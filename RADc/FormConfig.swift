@@ -37,13 +37,13 @@ struct FormConfig: View{
                     //buttons for toggling all values selected or de-selected
                     if selectAll{
                         Button("Deselect All"){
-                            measurements = Array(repeating: false, count: 49)
+                            measurements = Array(repeating: false, count: 52)
                             selectAll = false
                         }.padding().background(.orange).foregroundColor(.white).cornerRadius(10)//button visibility properties
                     }
                     else{
                         Button("Reselect All"){
-                            measurements = Array(repeating: true, count: 49)
+                            measurements = Array(repeating: true, count: 52)
                             selectAll = true
                         }.padding().background(.orange).foregroundColor(.white).cornerRadius(10)//button visibility properties
                     }
@@ -127,13 +127,13 @@ struct FormConfig: View{
                     //buttons for toggling all values selected or de-selected
                     if selectAll{
                         Button("Deselect All"){
-                            measurements = Array(repeating: false, count: 49)
+                            measurements = Array(repeating: false, count: 52)
                             selectAll = false
                         }.padding().background(.orange).foregroundColor(.white).cornerRadius(10)//button visibility properties
                     }
                     else{
                         Button("Reselect All"){
-                            measurements = Array(repeating: true, count: 49)
+                            measurements = Array(repeating: true, count: 52)
                             selectAll = true
                         }.padding().background(.orange).foregroundColor(.white).cornerRadius(10)//button visibility properties
                     }
