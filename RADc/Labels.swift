@@ -19,7 +19,10 @@ struct Labels{
         "Weight",
         "AFSC",
         "Gender",
-        "Ethnicity"
+        "Ethnicity",
+        "Race",
+        "Rank",
+        "Equipment"
     ]
     private let labelsStanding: [String] = [
         "Stature (standing)",
