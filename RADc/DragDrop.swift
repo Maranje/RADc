@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+//MARK: DragDrop
 struct DragDrop: View {
     @Binding var texts: [String]
     @Binding var popupOpen: Bool
@@ -85,7 +86,7 @@ struct DragDrop: View {
     }
 }
 
-//struct for draggable fields
+//MARK: DraggableTextField
 struct DraggableTextField: View {
     let text: Binding<String>
     let index: Int
