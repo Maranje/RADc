@@ -73,6 +73,7 @@ struct Form: View{
                         Text("Participant Information").foregroundColor(.gray)
                         HStack{
                             Image(systemName: "list.bullet.clipboard")
+                                .padding()
                                 .foregroundColor(reorder ? .yellow : .gray)
                                 .onTapGesture {
                                     if reorder{ labelsPopupPresented = true }
@@ -94,7 +95,7 @@ struct Form: View{
                                 }
                             },
                             content: {
-                            DragDrop(texts: $labels)
+                                DragDrop(texts: $labels, popupOpen: $labelsPopupPresented)
                             }
                         )
                     }
@@ -133,6 +134,7 @@ struct Form: View{
                         HStack{
                             Text(units ? "Standing Measurements [cm]" : "Standing Measurements [inches]").foregroundColor(.blue)
                             Image(systemName: "list.bullet.clipboard")
+                                .padding()
                                 .foregroundColor(reorder ? .yellow : .gray)
                                 .onTapGesture {
                                     if reorder{ labelsStandingPopupPresented = true }
@@ -154,7 +156,7 @@ struct Form: View{
                                 }
                             },
                             content: {
-                            DragDrop(texts: $labelsStanding)
+                                DragDrop(texts: $labelsStanding, popupOpen: $labelsStandingPopupPresented)
                             }
                         )
                     }
@@ -192,6 +194,7 @@ struct Form: View{
                         HStack{
                             Text(units ? "Sitting Measurements [cm]" : "Sitting Measurements [inches]").foregroundColor(.green)
                             Image(systemName: "list.bullet.clipboard")
+                                .padding()
                                 .foregroundColor(reorder ? .yellow : .gray)
                                 .onTapGesture {
                                     if reorder{ labelsSittingPopupPresented = true }
@@ -212,7 +215,7 @@ struct Form: View{
                                 }
                             },
                             content: {
-                            DragDrop(texts: $labelsSitting)
+                                DragDrop(texts: $labelsSitting, popupOpen: $labelsSittingPopupPresented)
                             }
                         )
                     }

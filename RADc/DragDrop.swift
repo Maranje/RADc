@@ -9,20 +9,35 @@ import SwiftUI
 
 struct DragDrop: View {
     @Binding var texts: [String]
+    @Binding var popupOpen: Bool
     @State var scalerIndex: CGFloat = -1.0
     @State var scrollHintDisplay: Bool = false
     @State var scrollHintOffset: Bool = false
+    @State var closeScale: Bool = false
     @Environment(\.colorScheme) var colorScheme
     @State private var orientation: UIDeviceOrientation?
 
     var body: some View {
         VStack{
-            //drag and drop popup title
-            Text("Reorganize Entry Fields")
-                .padding()
-                .fontWeight(.thin)
-                .cornerRadius(20)
-                .shadow(radius: 5)
+            HStack{
+                //drag and drop popup title
+                Text("Reorganize Entry Fields")
+                    .padding()
+                    .frame(width: 500)
+                    .scaleEffect(closeScale ? 1.1 : 1.0)
+                    .fontWeight(.thin)
+                    .cornerRadius(20)
+                    .shadow(radius: 5)
+                    .overlay(){
+                        Image(systemName: "xmark")
+                            .padding()
+                            .offset(x: 300)
+                            .onTapGesture {
+                                closeScale = true
+                                popupOpen = false
+                            }
+                    }
+            }
             Divider().padding(.bottom, 20)
             //scroll area with labels
             ScrollView{
