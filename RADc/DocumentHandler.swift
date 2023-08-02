@@ -9,19 +9,21 @@ import SwiftUI
 import UniformTypeIdentifiers
 
 extension UTType {
-    static var exampleText: UTType {
+    static var anthro: UTType {
         UTType(importedAs: "com.microsoft.excel.xls")
     }
 }
 
 struct DocumentHandler: FileDocument {
     var text: String
+    var fileName: String
 
     init(text: String = "") {
         self.text = text
+        fileName = ""
     }
 
-    static var readableContentTypes: [UTType] { [.exampleText] }
+    static var readableContentTypes: [UTType] { [.anthro] }
 
     init(configuration: ReadConfiguration) throws {
         guard let data = configuration.file.regularFileContents,
@@ -30,6 +32,7 @@ struct DocumentHandler: FileDocument {
             throw CocoaError(.fileReadCorruptFile)
         }
         text = string
+        fileName = configuration.file.filename?.replacingOccurrences(of: ".xls", with: "") ?? ""
     }
     
     func fileWrapper(configuration: WriteConfiguration) throws -> FileWrapper {

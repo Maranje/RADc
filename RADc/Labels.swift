@@ -19,7 +19,10 @@ struct Labels{
         "Weight",
         "AFSC",
         "Gender",
-        "Ethnicity"
+        "Ethnicity",
+        "Race",
+        "Rank",
+        "Equipment"
     ]
     private let labelsStanding: [String] = [
         "Stature (standing)",
@@ -93,7 +96,7 @@ struct Labels{
         "Bideltoid Breadth",
         "Biacromial Breadth",
         "Hip Breadth (sitting)",
-        "Abdomianl Depth",
+        "Abdominal Depth",
         "Buttock-Knee Length",
         "Finger Tip (right)",
         "Finger Tip (left)",
@@ -112,7 +115,7 @@ struct Labels{
         "Bideltoid Breadth [cm]",
         "Biacromial Breadth [cm]",
         "Hip Breadth (sitting) [cm]",
-        "Abdomianl Depth [cm]",
+        "Abdominal Depth [cm]",
         "Buttock-Knee Length [cm]",
         "Finger Tip (right) [cm]",
         "Finger Tip (left) [cm]",
@@ -131,7 +134,7 @@ struct Labels{
         "Bideltoid Breadth [inches]",
         "Biacromial Breadth [inches]",
         "Hip Breadth (sitting) [inches]",
-        "Abdomianl Depth [inches]",
+        "Abdominal Depth [inches]",
         "Buttock-Knee Length [inches]",
         "Finger Tip (right) [inches]",
         "Finger Tip (left) [inches]",

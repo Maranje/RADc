@@ -25,8 +25,12 @@ struct Form: View{
     @Binding var dynamicReassign: Bool
     @Binding var participantOffset: Int
     @Binding var autoSave: Bool
+    @Binding var reorder: Bool
     @State private var removeBool: Bool = false
     @State private var fieldNum: Int = 1
+    @State var labelsPopupPresented: Bool = false
+    @State var labelsStandingPopupPresented: Bool = false
+    @State var labelsSittingPopupPresented: Bool = false
     
     //MARK: form body
     var body: some View{
@@ -65,13 +69,46 @@ struct Form: View{
                 ScrollView{
                     
                     //PII text fields
-                    Text("Participant Information").foregroundColor(.gray)
+                    HStack{
+                        Text("Participant Information").foregroundColor(.gray)
+                        HStack{
+                            Image(systemName: "list.bullet.clipboard")
+                                .padding()
+                                .foregroundColor(reorder ? .yellow : .gray)
+                                .onTapGesture {
+                                    if reorder{ labelsPopupPresented = true }
+                                }
+                        }
+                        .sheet(
+                            isPresented: $labelsPopupPresented,
+                            onDismiss: {
+                                //MARK: auto save point
+                                if autoSave{
+                                    //use save manager to save form contents
+                                    SaveManager(document: $document,
+                                                labels: $labels,
+                                                labelsStanding: $labelsStanding,
+                                                labelsSitting: $labelsSitting,
+                                                participants: $participants,
+                                                units: $units
+                                    ).export()
+                                }
+                            },
+                            content: {
+                                DragDrop(texts: $labels, popupOpen: $labelsPopupPresented)
+                            }
+                        )
+                    }
+                    
                     ForEach(labels, id: \.self) { label in
                         HStack{
                             
                             //generate entry field number
                             if let index = labels.firstIndex(of: label){
-                                Text("\(index + 1). ").fontWeight(.thin).foregroundColor(.gray)
+                                Text("\(index + 1). ")
+                                    .fontWeight(.thin)
+                                    .foregroundColor(.gray)
+                                    .frame(width:30)
                             }
                             
                             //generate entry field
@@ -94,19 +131,49 @@ struct Form: View{
                     //standing measurements text fields
                     if !labelsStanding.isEmpty{
                         Divider().padding()
-                        Text(units ? "Standing Measurements [cm]" : "Standing Measurements [inches]").foregroundColor(.blue)
+                        HStack{
+                            Text(units ? "Standing Measurements [cm]" : "Standing Measurements [inches]").foregroundColor(.blue)
+                            Image(systemName: "list.bullet.clipboard")
+                                .padding()
+                                .foregroundColor(reorder ? .yellow : .gray)
+                                .onTapGesture {
+                                    if reorder{ labelsStandingPopupPresented = true }
+                                }
+                        }
+                        .sheet(
+                            isPresented: $labelsStandingPopupPresented,
+                            onDismiss: {
+                                //MARK: auto save point
+                                if autoSave{
+                                    //use save manager to save form contents
+                                    SaveManager(document: $document,
+                                                labels: $labels,
+                                                labelsStanding: $labelsStanding,
+                                                labelsSitting: $labelsSitting,
+                                                participants: $participants,
+                                                units: $units
+                                    ).export()
+                                }
+                            },
+                            content: {
+                                DragDrop(texts: $labelsStanding, popupOpen: $labelsStandingPopupPresented)
+                            }
+                        )
                     }
                     ForEach(labelsStanding, id: \.self) { label in
                         HStack{
                             
                             //generate entry field number
                             if let index = labelsStanding.firstIndex(of: label){
-                                Text("\(index + 1 + labels.count). ").fontWeight(.thin).foregroundColor(.gray)
+                                Text("\(index + 1 + labels.count). ")
+                                    .fontWeight(.thin)
+                                    .foregroundColor(.gray)
+                                    .frame(width:30)
                             }
                             
                             //generate entry field
                             DataEntryField(label: label,
-                                           labelWidthMultiplier: 18,
+                                           labelWidthMultiplier: 20,
                                            labelColor: .blue,
                                            document: $document,
                                            labels: $labels,
@@ -124,19 +191,48 @@ struct Form: View{
                     //sitting measurements text fields
                     if !labelsSitting.isEmpty{
                         Divider().padding()
-                        Text(units ? "Sitting Measurements [cm]" : "Sitting Measurements [inches]").foregroundColor(.green)
+                        HStack{
+                            Text(units ? "Sitting Measurements [cm]" : "Sitting Measurements [inches]").foregroundColor(.green)
+                            Image(systemName: "list.bullet.clipboard")
+                                .padding()
+                                .foregroundColor(reorder ? .yellow : .gray)
+                                .onTapGesture {
+                                    if reorder{ labelsSittingPopupPresented = true }
+                                }
+                        }.sheet(
+                            isPresented: $labelsSittingPopupPresented,
+                            onDismiss: {
+                                //MARK: auto save point
+                                if autoSave{
+                                    //use save manager to save form contents
+                                    SaveManager(document: $document,
+                                                labels: $labels,
+                                                labelsStanding: $labelsStanding,
+                                                labelsSitting: $labelsSitting,
+                                                participants: $participants,
+                                                units: $units
+                                    ).export()
+                                }
+                            },
+                            content: {
+                                DragDrop(texts: $labelsSitting, popupOpen: $labelsSittingPopupPresented)
+                            }
+                        )
                     }
                     ForEach(labelsSitting, id: \.self) { label in
                         HStack{
                             
                             //generate entry field number
                             if let index = labelsSitting.firstIndex(of: label){
-                                Text("\(index + 1 + labels.count + labelsStanding.count). ").fontWeight(.thin).foregroundColor(.gray)
+                                Text("\(index + 1 + labels.count + labelsStanding.count). ")
+                                    .fontWeight(.thin)
+                                    .foregroundColor(.gray)
+                                    .frame(width:30)
                             }
                             
                             //generate entry field
                             DataEntryField(label: label,
-                                           labelWidthMultiplier: 10,
+                                           labelWidthMultiplier: 13,
                                            labelColor: .green,
                                            document: $document,
                                            labels: $labels,
