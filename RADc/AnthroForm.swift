@@ -28,7 +28,7 @@ struct AnthroForm: View {
     @State var labels: [String] = ["Participant ID"]
     @State var labelsStanding: [String] = []
     @State var labelsSitting: [String] = []
-    @State var measurements: [Bool] = Array(repeating: true, count: 52)
+    @State var measurements: [Bool] = Array(repeating: true, count: 58)
     @State var participants: [Participant] = []
     @State var currentParticipant: Participant = Participant(labels: [], labelsStanding: [], labelsSitting: [], participantOffset: 0, pNum: 0)
     @Environment(\.colorScheme) var colorScheme
@@ -41,7 +41,7 @@ struct AnthroForm: View {
             Text("Options").fontWeight(.thin).padding()
             
             
-            //"save" button and table name entry field
+            //"save" button and table name entry field. only available if participants list is not empty
             if !participants.isEmpty{
                 ManualSave(document: $document,
                            labels: $labels,
@@ -54,6 +54,7 @@ struct AnthroForm: View {
                 )
             }
             
+            //base options scrollview
             ScrollView{
                 
                 Divider().padding().frame(width: 100)
@@ -78,7 +79,7 @@ struct AnthroForm: View {
                 }
                 Spacer()
                 
-                //"form reset" button
+                //"form reset" button, only available once a form has been configured
                 if !newForm{
                     FormReset(
                         document: $document,
@@ -139,6 +140,7 @@ struct AnthroForm: View {
                             .disabled(newForm)
                             .scaleEffect(newEntryBounce ? 1.4 : 1.0)
                             .shadow(radius: (newEntryBounce ? 10 : 0))
+                            //rescale animation for UI
                             .onChange(of: newForm, perform: {change in
                                 if !change{
                                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
@@ -204,6 +206,7 @@ struct AnthroForm: View {
                             .frame(width: 200, height: 100)
                             .font(.system(size: fontSize * 1.5))
                             .scaleEffect(newFormBounce ? 1.5 : 1.0)
+                            //rescale animation for UI
                             .onAppear(){
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
                                     withAnimation{ newFormBounce = true }
@@ -222,13 +225,14 @@ struct AnthroForm: View {
                 }
                 .padding()
                 .font(.system(size: fontSize))
+                //file name header
                 .navigationTitle(document.fileName.contains("Untitled") ? "Untitled Anthropometry Form" : "\(document.fileName)")
                 .navigationBarTitleDisplayMode(.inline)
                 .navigationBarBackButtonHidden(true)
                 
                 
                 if exported{
-                    //fading in/out export table visual feedback text & format
+                    //fading in/out "save" button export table visual feedback text & format
                     Text("FILE SAVED")
                         .font(.body)
                         .fontWeight(.heavy)
@@ -288,6 +292,7 @@ struct AnthroForm: View {
                 
             }
         }
+        //remove unit classifier from label strings
         labelsSitting.enumerated().forEach{index, label in
             if let rangeToRemove = labelsSitting[index].range(of: " [cm]"){
                 labelsSitting[index].removeSubrange(rangeToRemove)

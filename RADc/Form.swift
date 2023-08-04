@@ -79,6 +79,7 @@ struct Form: View{
                                     if reorder{ labelsPopupPresented = true }
                                 }
                         }
+                        //rearrange entry fields popup
                         .sheet(
                             isPresented: $labelsPopupPresented,
                             onDismiss: {
@@ -140,6 +141,7 @@ struct Form: View{
                                     if reorder{ labelsStandingPopupPresented = true }
                                 }
                         }
+                        //rearrange entry fields popup
                         .sheet(
                             isPresented: $labelsStandingPopupPresented,
                             onDismiss: {
@@ -199,7 +201,9 @@ struct Form: View{
                                 .onTapGesture {
                                     if reorder{ labelsSittingPopupPresented = true }
                                 }
-                        }.sheet(
+                        }
+                        //rearrange entry fields popup
+                        .sheet(
                             isPresented: $labelsSittingPopupPresented,
                             onDismiss: {
                                 //MARK: auto save point

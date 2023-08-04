@@ -94,7 +94,9 @@ struct DraggableTextField: View {
     @State private var dragOffset: CGFloat = .zero
     @State var set: Bool = true
     @State var hovered: Bool = false
+    @State var fadeBackFromOrange = false
     @State private var translation: CGSize = .zero
+    @State var newIndex: Int = 0
     @Binding var texts: [String]
     @Binding var scalerIndex: CGFloat
     @GestureState private var isLongPressing: Bool = false
@@ -105,7 +107,7 @@ struct DraggableTextField: View {
             .disabled(true)
             .padding()
             .frame(width:300)
-            .background(set ? (colorScheme == .light ? Color(red: 0.949, green: 0.949, blue: 0.971) : Color(red: 0.1, green: 0.1, blue: 0.1)).opacity(hovered ? 0.65 : 1.0) : Color.orange)
+            .background(set ? (fadeBackFromOrange ? Color.orange : (colorScheme == .light ? Color(red: 0.949, green: 0.949, blue: 0.971) : Color(red: 0.1, green: 0.1, blue: 0.1)).opacity(hovered ? 0.65 : 1.0)) : Color.orange)
             .foregroundColor(colorScheme == .light ? .black.opacity(hovered ? 0.65 : 1.0) : .white.opacity(hovered ? 0.65 : 1.0))
             .cornerRadius(10)
             .scaleEffect(set ? 1.0:0.9)
@@ -137,7 +139,7 @@ struct DraggableTextField: View {
                     .onEnded { _ in
                         dragOffset = .zero
                         let dragged = texts.remove(at: index)
-                        var newIndex = index + Int(indexDiff)
+                        newIndex = index + Int(indexDiff)
                         if newIndex < 0 {newIndex = 0}
                         if newIndex > (texts.count) { newIndex = texts.count }
                         texts.insert(dragged, at: newIndex)
@@ -151,6 +153,12 @@ struct DraggableTextField: View {
                 }
                 else{
                     withAnimation{hovered = false}
+                }
+            }
+            .onChange(of: texts){ _ in
+                if index == newIndex{
+                    fadeBackFromOrange = true
+                    withAnimation{ fadeBackFromOrange = false }
                 }
             }
     }

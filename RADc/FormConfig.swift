@@ -37,81 +37,91 @@ struct FormConfig: View{
                     //buttons for toggling all values selected or de-selected
                     if selectAll{
                         Button("Deselect All"){
-                            measurements = Array(repeating: false, count: 52)
+                            measurements = Array(repeating: false, count: 58)
                             selectAll = false
                         }.padding().background(.orange).foregroundColor(.white).cornerRadius(10)//button visibility properties
                     }
                     else{
                         Button("Reselect All"){
-                            measurements = Array(repeating: true, count: 52)
+                            measurements = Array(repeating: true, count: 58)
                             selectAll = true
                         }.padding().background(.orange).foregroundColor(.white).cornerRadius(10)//button visibility properties
                     }
                 }
                 
-                //allow user to assign all the desired labels in the form
                 VStack{
-                    Toggle("Name", isOn: $measurements[1]).padding(.horizontal)
-                    Toggle("Phone Number", isOn: $measurements[2]).padding(.horizontal)
-                    Toggle("Email", isOn: $measurements[3]).padding(.horizontal)
-                    Toggle("Age", isOn: $measurements[4]).padding(.horizontal)
-                    Toggle("Aircraft", isOn: $measurements[5]).padding(.horizontal)
-                    Toggle("Weight", isOn: $measurements[6]).padding(.horizontal)
-                    Toggle("AFSC", isOn: $measurements[7]).padding(.horizontal)
-                    Toggle("Gender", isOn: $measurements[8]).padding(.horizontal)
-                    Toggle("Ethnicity", isOn: $measurements[9]).padding(.horizontal)
-                    Toggle("Race", isOn: $measurements[10]).padding(.horizontal)
-                }
-                VStack{
-                    Toggle("Rank", isOn: $measurements[11]).padding(.horizontal)
-                    Toggle("Equipment", isOn: $measurements[12]).padding(.horizontal)
-                    Toggle("Stature (standing)", isOn: $measurements[13]).padding(.horizontal)
-                }
-                VStack{
-                    Toggle("Stature (sitting)", isOn: $measurements[14]).padding(.horizontal)
-                    Toggle("Eye Height (standing)", isOn: $measurements[15]).padding(.horizontal)
-                    Toggle("Eye Height (sitting)", isOn: $measurements[16]).padding(.horizontal)
-                    Toggle("Acromial Height (standing)", isOn: $measurements[17]).padding(.horizontal)
-                    Toggle("Acromial Height (sitting)", isOn: $measurements[18]).padding(.horizontal)
-                    Toggle("Suprasternale Height", isOn: $measurements[19]).padding(.horizontal)
-                    Toggle("Waist Height", isOn: $measurements[20]).padding(.horizontal)
-                    Toggle("Waist Front Length", isOn: $measurements[21]).padding(.horizontal)
-                    Toggle("Chest Circumference @ Scye", isOn: $measurements[22]).padding(.horizontal)
-                    Toggle("Chest Circumference", isOn: $measurements[23]).padding(.horizontal)
-                }
-                VStack{
-                    Toggle("Waist Circumference (omphalion)", isOn: $measurements[24]).padding(.horizontal)
-                    Toggle("Waist Circumference (natural)", isOn: $measurements[25]).padding(.horizontal)
-                    Toggle("Max Hip Circumference", isOn: $measurements[26]).padding(.horizontal)
-                    Toggle("Thigh Circumference", isOn: $measurements[27]).padding(.horizontal)
-                    Toggle("Vertical Trunk Circumference", isOn: $measurements[28]).padding(.horizontal)
-                    Toggle("Kneeling Reach", isOn: $measurements[29]).padding(.horizontal)
-                    Toggle("Arm Span", isOn: $measurements[30]).padding(.horizontal)
-                    Toggle("Thumb Tip Reach average", isOn: $measurements[31]).padding(.horizontal)
-                    Toggle("Overhead Reach (flat - shoes off)", isOn: $measurements[32]).padding(.horizontal)
-                    Toggle("Overhead Reach (tiptoes - shoes off)", isOn: $measurements[33]).padding(.horizontal)
-                }
-                VStack{
-                    Toggle("Overhead Reach (flat - shoes/uniform on)", isOn: $measurements[34]).padding(.horizontal)
-                    Toggle("Overhead Reach (tiptoes - shoes/uniform on)", isOn: $measurements[35]).padding(.horizontal)
-                    Toggle("Overhead Reach (sitting)", isOn: $measurements[36]).padding(.horizontal)
-                    Toggle("Knee Height (sitting)", isOn: $measurements[37]).padding(.horizontal)
-                    Toggle("Thigh Clearance (sitting)", isOn: $measurements[38]).padding(.horizontal)
-                    Toggle("Bideltoid Breadth", isOn: $measurements[39]).padding(.horizontal)
-                    Toggle("Biacromial Breadth", isOn: $measurements[40]).padding(.horizontal)
-                    Toggle("Hip Breadth (sitting)", isOn: $measurements[41]).padding(.horizontal)
-                    Toggle("Abdominal Depth", isOn: $measurements[42]).padding(.horizontal)
-                    Toggle("Buttock-Knee Length", isOn: $measurements[43]).padding(.horizontal)
-                }
-                VStack{
-                    Toggle("Finger Tip (right)", isOn: $measurements[44]).padding(.horizontal)
-                    Toggle("Finger Tip (left)", isOn: $measurements[45]).padding(.horizontal)
-                    Toggle("Hook (right)", isOn: $measurements[46]).padding(.horizontal)
-                    Toggle("Hook (left)", isOn: $measurements[47]).padding(.horizontal)
-                    Toggle("Thumb Tip (right)", isOn: $measurements[48]).padding(.horizontal)
-                    Toggle("Thumb Tip (left)", isOn: $measurements[49]).padding(.horizontal)
-                    Toggle("Grip (right)", isOn: $measurements[50]).padding(.horizontal)
-                    Toggle("Grip (left)", isOn: $measurements[51]).padding(.horizontal)
+                    //allow user to assign all the desired labels in the form
+                    VStack{
+                        Toggle("Name", isOn: $measurements[1]).padding(.horizontal)
+                        Toggle("Phone Number", isOn: $measurements[2]).padding(.horizontal)
+                        Toggle("Email", isOn: $measurements[3]).padding(.horizontal)
+                        Toggle("Age", isOn: $measurements[4]).padding(.horizontal)
+                        Toggle("Aircraft", isOn: $measurements[5]).padding(.horizontal)
+                        Toggle("Weight", isOn: $measurements[6]).padding(.horizontal)
+                        Toggle("AFSC", isOn: $measurements[7]).padding(.horizontal)
+                        Toggle("Gender", isOn: $measurements[8]).padding(.horizontal)
+                        Toggle("Ethnicity", isOn: $measurements[9]).padding(.horizontal)
+                        Toggle("Race", isOn: $measurements[10]).padding(.horizontal)
+                    }
+                    VStack{
+                        Toggle("Rank", isOn: $measurements[11]).padding(.horizontal)
+                        Toggle("Equipment", isOn: $measurements[12]).padding(.horizontal)
+                        Toggle("Stature (standing)", isOn: $measurements[13]).padding(.horizontal)
+                    }
+                    VStack{
+                        Toggle("Stature (sitting)", isOn: $measurements[14]).padding(.horizontal)
+                        Toggle("Eye Height (standing)", isOn: $measurements[15]).padding(.horizontal)
+                        Toggle("Eye Height (sitting)", isOn: $measurements[16]).padding(.horizontal)
+                        Toggle("Acromial Height (standing)", isOn: $measurements[17]).padding(.horizontal)
+                        Toggle("Acromial Height (sitting)", isOn: $measurements[18]).padding(.horizontal)
+                        Toggle("Suprasternale Height", isOn: $measurements[19]).padding(.horizontal)
+                        Toggle("Waist Height", isOn: $measurements[20]).padding(.horizontal)
+                        Toggle("Waist Front Length", isOn: $measurements[21]).padding(.horizontal)
+                        Toggle("Chest Circumference @ Scye", isOn: $measurements[22]).padding(.horizontal)
+                        Toggle("Chest Circumference", isOn: $measurements[23]).padding(.horizontal)
+                    }
+                    VStack{
+                        Toggle("Waist Circumference (omphalion)", isOn: $measurements[24]).padding(.horizontal)
+                        Toggle("Waist Circumference (natural)", isOn: $measurements[25]).padding(.horizontal)
+                        Toggle("Max Hip Circumference", isOn: $measurements[26]).padding(.horizontal)
+                        Toggle("Thigh Circumference", isOn: $measurements[27]).padding(.horizontal)
+                        Toggle("Vertical Trunk Circumference", isOn: $measurements[28]).padding(.horizontal)
+                        Toggle("Kneeling Reach", isOn: $measurements[29]).padding(.horizontal)
+                        Toggle("Arm Span", isOn: $measurements[30]).padding(.horizontal)
+                        Toggle("Thumb Tip Reach average", isOn: $measurements[31]).padding(.horizontal)
+                        Toggle("Overhead Reach (flat - shoes off)", isOn: $measurements[32]).padding(.horizontal)
+                        Toggle("Overhead Reach (tiptoes - shoes off)", isOn: $measurements[33]).padding(.horizontal)
+                    }
+                    VStack{
+                        Toggle("Overhead Reach (flat - shoes/uniform on)", isOn: $measurements[34]).padding(.horizontal)
+                        Toggle("Overhead Reach (tiptoes - shoes/uniform on)", isOn: $measurements[35]).padding(.horizontal)
+                        Toggle("Overhead Reach (sitting)", isOn: $measurements[36]).padding(.horizontal)
+                        Toggle("Knee Height (sitting)", isOn: $measurements[37]).padding(.horizontal)
+                        Toggle("Thigh Clearance (sitting)", isOn: $measurements[38]).padding(.horizontal)
+                        Toggle("Bideltoid Breadth", isOn: $measurements[39]).padding(.horizontal)
+                        Toggle("Biacromial Breadth", isOn: $measurements[40]).padding(.horizontal)
+                        Toggle("Hip Breadth (sitting)", isOn: $measurements[41]).padding(.horizontal)
+                        Toggle("Abdominal Depth", isOn: $measurements[42]).padding(.horizontal)
+                        Toggle("Buttock-Knee Length", isOn: $measurements[43]).padding(.horizontal)
+                    }
+                    VStack{
+                        Toggle("Head Circumference", isOn: $measurements[52]).padding(.horizontal)
+                        Toggle("Head Breadth", isOn: $measurements[53]).padding(.horizontal)
+                        Toggle("Head Length", isOn: $measurements[54]).padding(.horizontal)
+                        Toggle("Tragion to Top of Head", isOn: $measurements[55]).padding(.horizontal)
+                        Toggle("Menton-Sellion Length", isOn: $measurements[56]).padding(.horizontal)
+                        Toggle("Bizygomatic Breadth", isOn: $measurements[57]).padding(.horizontal)
+                    }
+                    VStack{
+                        Toggle("Finger Tip (right)", isOn: $measurements[44]).padding(.horizontal)
+                        Toggle("Finger Tip (left)", isOn: $measurements[45]).padding(.horizontal)
+                        Toggle("Hook (right)", isOn: $measurements[46]).padding(.horizontal)
+                        Toggle("Hook (left)", isOn: $measurements[47]).padding(.horizontal)
+                        Toggle("Thumb Tip (right)", isOn: $measurements[48]).padding(.horizontal)
+                        Toggle("Thumb Tip (left)", isOn: $measurements[49]).padding(.horizontal)
+                        Toggle("Grip (right)", isOn: $measurements[50]).padding(.horizontal)
+                        Toggle("Grip (left)", isOn: $measurements[51]).padding(.horizontal)
+                    }
                 }
                 
                 //redundant button copies at bottom of form
@@ -127,13 +137,13 @@ struct FormConfig: View{
                     //buttons for toggling all values selected or de-selected
                     if selectAll{
                         Button("Deselect All"){
-                            measurements = Array(repeating: false, count: 52)
+                            measurements = Array(repeating: false, count: 58)
                             selectAll = false
                         }.padding().background(.orange).foregroundColor(.white).cornerRadius(10)//button visibility properties
                     }
                     else{
                         Button("Reselect All"){
-                            measurements = Array(repeating: true, count: 52)
+                            measurements = Array(repeating: true, count: 58)
                             selectAll = true
                         }.padding().background(.orange).foregroundColor(.white).cornerRadius(10)//button visibility properties
                     }
@@ -190,6 +200,15 @@ struct FormConfig: View{
         if(measurements[41]){labelsSitting.append("Hip Breadth (sitting)")}
         if(measurements[42]){labelsSitting.append("Abdominal Depth")}
         if(measurements[43]){labelsSitting.append("Buttock-Knee Length")}
+        
+        //insert
+        if(measurements[52]){labelsSitting.append("Head Circumference")}
+        if(measurements[53]){labelsSitting.append("Head Breadth")}
+        if(measurements[54]){labelsSitting.append("Head Length")}
+        if(measurements[55]){labelsSitting.append("Tragion to Top of Head")}
+        if(measurements[56]){labelsSitting.append("Menton-Sellion Length")}
+        if(measurements[57]){labelsSitting.append("Bizygomatic Breadth")}
+        
         if(measurements[44]){labelsSitting.append("Finger Tip (right)")}
         if(measurements[45]){labelsSitting.append("Finger Tip (left)")}
         if(measurements[46]){labelsSitting.append("Hook (right)")}
