@@ -39,7 +39,7 @@ struct DataEntryField: View{
     //(to do: refine these values to 2 std. dev. from their respective means)
     let boundsReference: [String: [Double]] = [
         "Stature (standing)" : [85.64, 53.68],
-        "Stature (sitting)" : [43.43, 29.01],
+        "Sitting Height" : [43.43, 29.01],
         "Eye Height (standing)" : [76, 43.89],
         "Eye Height (sitting)" : [38.23, 23.72],
         "Acromial Height (standing)" : [71.97, 41.66],

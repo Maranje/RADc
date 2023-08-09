@@ -69,7 +69,7 @@ struct FormConfig: View{
                         Toggle("Stature (standing)", isOn: $measurements[13]).padding(.horizontal)
                     }
                     VStack{
-                        Toggle("Stature (sitting)", isOn: $measurements[14]).padding(.horizontal)
+                        Toggle("Sitting Height", isOn: $measurements[14]).padding(.horizontal)
                         Toggle("Eye Height (standing)", isOn: $measurements[15]).padding(.horizontal)
                         Toggle("Eye Height (sitting)", isOn: $measurements[16]).padding(.horizontal)
                         Toggle("Acromial Height (standing)", isOn: $measurements[17]).padding(.horizontal)
@@ -170,7 +170,7 @@ struct FormConfig: View{
         if(measurements[11]){labels.append("Rank")}
         if(measurements[12]){labels.append("Equipment")}
         if(measurements[13]){labelsStanding.append("Stature (standing)")}
-        if(measurements[14]){labelsSitting.append("Stature (sitting)")}
+        if(measurements[14]){labelsSitting.append("Sitting Height")}
         if(measurements[15]){labelsStanding.append("Eye Height (standing)")}
         if(measurements[16]){labelsSitting.append("Eye Height (sitting)")}
         if(measurements[17]){labelsStanding.append("Acromial Height (standing)")}

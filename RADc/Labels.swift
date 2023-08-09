@@ -88,7 +88,7 @@ struct Labels{
     ]
     
     private let labelsSitting: [String] = [
-        "Stature (sitting)",
+        "Sitting Height",
         "Eye Height (sitting)",
         "Acromial Height (sitting)",
         "Overhead Reach (sitting)",
@@ -113,7 +113,7 @@ struct Labels{
         "Thumb Tip (left)",
         "Grip (right)",
         "Grip (left)",
-        "Stature (sitting) [cm]",
+        "Sitting Height [cm]",
         "Eye Height (sitting) [cm]",
         "Acromial Height (sitting) [cm]",
         "Overhead Reach (sitting) [cm]",
@@ -138,7 +138,7 @@ struct Labels{
         "Thumb Tip (left) [cm]",
         "Grip (right) [cm]",
         "Grip (left) [cm]",
-        "Stature (sitting) [inches]",
+        "Sitting Height [inches]",
         "Eye Height (sitting) [inches]",
         "Acromial Height (sitting) [inches]",
         "Overhead Reach (sitting) [inches]",
