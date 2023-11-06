@@ -50,7 +50,7 @@ struct FormReset: View{
                         labelsStanding = []
                         labelsSitting = []
                         participants = []
-                        measurements = Array(repeating: true, count: 58)
+                        measurements = Array(repeating: true, count: 81)
                         reset = false
                         idNumber = 1
                         participantOffset = 0

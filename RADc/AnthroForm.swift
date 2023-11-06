@@ -28,7 +28,7 @@ struct AnthroForm: View {
     @State var labels: [String] = ["Participant ID"]
     @State var labelsStanding: [String] = []
     @State var labelsSitting: [String] = []
-    @State var measurements: [Bool] = Array(repeating: true, count: 58)
+    @State var measurements: [Bool] = Array(repeating: true, count: 81)
     @State var participants: [Participant] = []
     @State var currentParticipant: Participant = Participant(labels: [], labelsStanding: [], labelsSitting: [], participantOffset: 0, pNum: 0)
     @Environment(\.colorScheme) var colorScheme
