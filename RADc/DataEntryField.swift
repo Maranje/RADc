@@ -29,9 +29,9 @@ struct DataEntryField: View{
     @State var edited: Bool = false
     
     let pickerInputs: [String] = [
-        "Gender",
-        "Ethnicity",
-        "Race"
+        "Thumb Tip Reach 1",
+        "Thumb Tip Reach 2",
+        "Thumb Tip Reach 3"
     ]
     
     //MARK: boundary values
@@ -85,12 +85,11 @@ struct DataEntryField: View{
         HStack{
             // pickers for gender, ethnicity, and race
             // conditioned to false until get more info
-            if false && pickerInputs.contains(label){
+            if pickerInputs.contains(label){
                 switch label{
-                case "Gender":
-                    HStack{
-                        Spacer()
-                        Picker("Gender", selection: Binding(
+                case "Thumb Tip Reach 1":
+                    TextField(label, text:
+                        Binding(
                             get: {
                                 currentParticipant.properties[label] ?? ""
                             },
@@ -101,28 +100,32 @@ struct DataEntryField: View{
                                 participants.enumerated().forEach{index, participant in
                                     if participant.pNum == currentParticipant.pNum{
                                         participants[index].properties[label] = newValue
-                                        
                                     }
                                 }
                             }
                         )
-                        ){
-                            Text("Gender").tag("")
-                            Text("Male").tag("Male")
-                            Text("Female").tag("Female")
-                            Text("Transgender").tag("Transgender")
-                            Text("Non-Binary").tag("Non-Binary")
-                            Text("Undisclosed").tag("Undisclosed")
+                    )
+                    .textFieldStyle(.roundedBorder)
+                    .onAppear(perform: checkName)
+                    .autocapitalization(autoCap ? .words : .none)
+                    .disableAutocorrection(true)
+                    .onChange(of: currentParticipant.properties[label]){change in
+                        generateTTAvg()
+                        //MARK: auto save point
+                        if autoSave{
+                            //use save manager to save form contents
+                            SaveManager(document: $document,
+                                        labels: $labels,
+                                        labelsStanding: $labelsStanding,
+                                        labelsSitting: $labelsSitting,
+                                        participants: $participants,
+                                        units: $units
+                            ).export()
                         }
-                        
-                        Spacer()
                     }
-                    .padding(.horizontal)
-                    .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.gray.opacity(0.5), lineWidth: 1))
-                case "Ethnicity":
-                    HStack{
-                        Spacer()
-                        Picker("Ethnicity", selection: Binding(
+                case "Thumb Tip Reach 2":
+                    TextField(label, text:
+                        Binding(
                             get: {
                                 currentParticipant.properties[label] ?? ""
                             },
@@ -133,28 +136,32 @@ struct DataEntryField: View{
                                 participants.enumerated().forEach{index, participant in
                                     if participant.pNum == currentParticipant.pNum{
                                         participants[index].properties[label] = newValue
-                                        
                                     }
                                 }
                             }
                         )
-                        ){
-                            Text("Ethnicity").tag("")
-                            Text("Male").tag("Male")
-                            Text("Female").tag("Female")
-                            Text("Transgender").tag("Transgender")
-                            Text("Non-Binary").tag("Non-Binary")
-                            Text("Undisclosed").tag("Undisclosed")
+                    )
+                    .textFieldStyle(.roundedBorder)
+                    .onAppear(perform: checkName)
+                    .autocapitalization(autoCap ? .words : .none)
+                    .disableAutocorrection(true)
+                    .onChange(of: currentParticipant.properties[label]){change in
+                        generateTTAvg()
+                        //MARK: auto save point
+                        if autoSave{
+                            //use save manager to save form contents
+                            SaveManager(document: $document,
+                                        labels: $labels,
+                                        labelsStanding: $labelsStanding,
+                                        labelsSitting: $labelsSitting,
+                                        participants: $participants,
+                                        units: $units
+                            ).export()
                         }
-                        
-                        Spacer()
                     }
-                    .padding(.horizontal)
-                    .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.gray.opacity(0.5), lineWidth: 1))
-                case "Race":
-                    HStack{
-                        Spacer()
-                        Picker("Race", selection: Binding(
+                case "Thumb Tip Reach 3":
+                    TextField(label, text:
+                        Binding(
                             get: {
                                 currentParticipant.properties[label] ?? ""
                             },
@@ -165,24 +172,29 @@ struct DataEntryField: View{
                                 participants.enumerated().forEach{index, participant in
                                     if participant.pNum == currentParticipant.pNum{
                                         participants[index].properties[label] = newValue
-                                        
                                     }
                                 }
                             }
                         )
-                        ){
-                            Text("Race").tag("")
-                            Text("Male").tag("Male")
-                            Text("Female").tag("Female")
-                            Text("Transgender").tag("Transgender")
-                            Text("Non-Binary").tag("Non-Binary")
-                            Text("Undisclosed").tag("Undisclosed")
+                    )
+                    .textFieldStyle(.roundedBorder)
+                    .onAppear(perform: checkName)
+                    .autocapitalization(autoCap ? .words : .none)
+                    .disableAutocorrection(true)
+                    .onChange(of: currentParticipant.properties[label]){change in
+                        generateTTAvg()
+                        //MARK: auto save point
+                        if autoSave{
+                            //use save manager to save form contents
+                            SaveManager(document: $document,
+                                        labels: $labels,
+                                        labelsStanding: $labelsStanding,
+                                        labelsSitting: $labelsSitting,
+                                        participants: $participants,
+                                        units: $units
+                            ).export()
                         }
-                        
-                        Spacer()
                     }
-                    .padding(.horizontal)
-                    .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.gray.opacity(0.5), lineWidth: 1))
                 default:
                     Text("Error generating picker")
                 }
@@ -190,22 +202,22 @@ struct DataEntryField: View{
             else{
                 //text field for data entry
                 TextField(label, text:
-                            Binding(
-                                get: {
-                                    currentParticipant.properties[label] ?? ""
-                                },
-                                set: {newValue in
-                                    //save to currentParticipant to display values on form
-                                    currentParticipant.properties[label] = newValue
-                                    //save from currentParticipant to corresponding participant in participants array
-                                    participants.enumerated().forEach{index, participant in
-                                        if participant.pNum == currentParticipant.pNum{
-                                            participants[index].properties[label] = newValue
-                                            
-                                        }
-                                    }
+                    Binding(
+                        get: {
+                            currentParticipant.properties[label] ?? ""
+                        },
+                        set: {newValue in
+                            //save to currentParticipant to display values on form
+                            currentParticipant.properties[label] = newValue
+                            //save from currentParticipant to corresponding participant in participants array
+                            participants.enumerated().forEach{index, participant in
+                                if participant.pNum == currentParticipant.pNum{
+                                    participants[index].properties[label] = newValue
+                                    
                                 }
-                            )
+                            }
+                        }
+                    )
                 )
                 .textFieldStyle(.roundedBorder)
                 .onAppear(perform: checkName)
@@ -223,11 +235,8 @@ struct DataEntryField: View{
                                     units: $units
                         ).export()
                     }
-                    
                 }
             }
-            
-            //Spacer()
             
             //text field label, appears after data has been entered
             if !(currentParticipant.properties[label]?.isEmpty ?? true) {
@@ -243,12 +252,34 @@ struct DataEntryField: View{
     }
     
     //MARK: methods
+    func generateTTAvg(){
+        let ttr1 = Double(currentParticipant.properties["Thumb Tip Reach 1"] ?? "0.0") ?? 0.0
+        let ttr2 = Double(currentParticipant.properties["Thumb Tip Reach 2"] ?? "0.0") ?? 0.0
+        let ttr3 = Double(currentParticipant.properties["Thumb Tip Reach 3"] ?? "0.0") ?? 0.0
+        
+        let ttr = [ttr1, ttr2, ttr3]
+        var reaches = 0.0
+        var avg = 0.0
+        
+        for reach in ttr{
+            if reach != 0 { reaches += 1 }
+        }
+        if reaches > 0{
+            avg = (ttr1 + ttr2 + ttr3) / reaches
+        }
+        currentParticipant.properties["Thumb Tip Reach average"] = String(avg)
+        participants.enumerated().forEach{index, participant in
+            if participant.pNum == currentParticipant.pNum{
+                participants[index].properties["Thumb Tip Reach average"] = String(avg)
+                
+            }
+        }
+    }
+    
     func checkName(){ //check if the current label is "Name" in order to set autocap on for individual word
         if label == "Name"{
-            
             //set autoCap to true for the particular entry field that is designated for "Name"
             autoCap = true
-            
         }
     }
     
