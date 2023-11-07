@@ -181,13 +181,13 @@ struct FormConfig: View{
                     //buttons for toggling all values selected or de-selected
                     if selectAll{
                         Button("Deselect All"){
-                            measurements = Array(repeating: false, count: 58)
+                            measurements = Array(repeating: false, count: 81)
                             selectAll = false
                         }.padding().background(.orange).foregroundColor(.white).cornerRadius(10)//button visibility properties
                     }
                     else{
                         Button("Reselect All"){
-                            measurements = Array(repeating: true, count: 58)
+                            measurements = Array(repeating: true, count: 81)
                             selectAll = true
                         }.padding().background(.orange).foregroundColor(.white).cornerRadius(10)//button visibility properties
                     }
@@ -202,7 +202,8 @@ struct FormConfig: View{
     //MARK: methods
     func t1Config(){
         measurements = Array(repeating: true, count: 81)
-        let setFalse = [10, 11, 12, 29, 35, 36, 37, 38, 47, 48, 49, 50, 51, 52]
+        let setFalse = [10, 11, 12, 29, 35, 36, 37, 38, 47, 48, 49, 50, 51, 52, 63, 64, 
+                        65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80]
         for index in setFalse{
             measurements[index] = false
         }
